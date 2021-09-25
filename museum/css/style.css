@@ -242,10 +242,13 @@ a {
 .panorama {
   font-size: 18px;
 }
-
-.explore-description {
+.explore-container {
   display: flex;
   flex-direction: row;
+}
+.explore-description {
+  display: flex;
+  flex-direction: column;
   gap: 25px;
   margin-top: 75px;
   max-width: 660px;
@@ -256,11 +259,15 @@ a {
   line-height: 38px;
   color: var(--main-text-color);
 }
+span {
+  color: var(--gold-color);
+}
 .explore-wrapper {
   display: flex;
   flex-direction: column;
   gap: 25px;
   min-width: 660px;
+  margin-right: 60px;
 }
 .explore-divider {
   margin-top: 25px;
