@@ -379,10 +379,16 @@ span {
   background: var(--main-text-color);
 }
 .parallax {
-  margin: 0 auto;
+  height: 100vh;
 }
-.parallax img {
-  width: 100%;
+.parallax-img {
+  height: 400px;
+  min-width: 1920px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(../assets/img/parallax.png);
 }
 .contacts-wrapper {
   margin-top: 75px;
