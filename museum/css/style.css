@@ -42,13 +42,11 @@
 :root {
   --gold-color: #9d8665;
 }
-
 :root {
-  --color-progress-before: #24809e;
+  --dark-gold-color: #7e6c51;
 }
-
 :root {
-  --color-progress-after: #c4c4c4;
+  --color-progress-before: #c4c4c4;
 }
 * {
   margin: 0;
@@ -59,6 +57,7 @@ html {
 a {
   text-decoration: none;
 }
+
 .section {
   margin: 0 auto;
   padding-top: 75px;
@@ -107,14 +106,18 @@ a {
   font-size: 22px;
   line-height: 50px;
   letter-spacing: 2px;
-
   list-style-type: none;
 }
 .menu-item a {
   text-decoration: none;
   color: var(--main-text-color);
 }
-
+.menu-item a:hover {
+  color: var(--gold-color);
+}
+.menu-item a:active {
+  color: var(--dark-gold-color);
+}
 .title-dark {
   position: relative;
   color: var(--main-text-color);
@@ -195,6 +198,9 @@ a {
   letter-spacing: 2px;
   color: var(--main-text-color);
   z-index: 4;
+}
+.welcome-btn:hover {
+  background: var(--gold-color);
 }
 .welcome-img {
   margin-right: 0;
@@ -293,4 +299,82 @@ span {
   width: 720px;
   height: 700px;
   z-index: 2;
+}
+.video-wrapper {
+  display: grid;
+  grid-template-columns: 606px 720px;
+  align-items: start;
+  gap: 115px;
+}
+.video-description {
+  width: 720px;
+  margin-bottom: 75px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 38px;
+  color: var(--bg-dark-color);
+}
+.video-slider {
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 42px;
+  width: 100%;
+}
+.video-section img {
+  width: 100%;
+}
+.video-slider img {
+  width: 452px;
+  height: 254px;
+}
+.video-player {
+  width: 1440px;
+  height: 85px;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--bg-dark-color);
+  border-radius: 0px;
+}
+.progress {
+  background: linear-gradient(
+    to right,
+    var(--dark-red--color) 0%,
+    var(--dark-red--color) 40%,
+    var(--color-progress-before) 40%,
+    var(--color-progress-before) 100%
+  );
+  border: solid 2px var(--dark-red--color);
+  border-radius: 8px;
+  width: 929px;
+  height: 15px;
+
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+.volume {
+  width: 155px;
+  height: 8px;
+}
+.full-screen:hover svg path,
+.play-button:hover svg path {
+  fill: var(--main-text-color);
+}
+
+.progress::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  background: var(--main-text-color);
 }
