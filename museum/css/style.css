@@ -378,3 +378,33 @@ span {
   cursor: ew-resize;
   background: var(--main-text-color);
 }
+.parallax {
+  margin: 0 auto;
+}
+.parallax img {
+  width: 100%;
+}
+.contacts-wrapper {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
+  gap: 198px;
+}
+.contacts-header {
+  margin-bottom: 25px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  color: var(--bg-dark-color);
+}
+.contacts-description p {
+  margin-top: 25px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  color: var(--bg-dark-color);
+}
