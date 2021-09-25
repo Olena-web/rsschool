@@ -28,6 +28,28 @@
   src: url("/museum/assets/fonts/Forum-Regular.ttf");
   font-weight: 400;
 }
+
+:root {
+  --bg-dark-color: #030303;
+}
+:root {
+  --dark-red--color: #710707;
+}
+:root {
+  --main-text-color: #ffffff;
+}
+
+:root {
+  --gold-color: #9d8665;
+}
+
+:root {
+  --color-progress-before: #24809e;
+}
+
+:root {
+  --color-progress-after: #c4c4c4;
+}
 * {
   margin: 0;
 }
@@ -37,25 +59,24 @@ html {
 .section {
   margin: 0 auto;
   padding-top: 75px;
+  padding-bottom: 75px;
   min-height: 640px;
 }
 .video-section {
   padding-top: 90px;
 }
 .dark-section {
-  background-color: #030303;
+  background-color: var(--bg-dark-color);
 }
 .container {
   margin: 0 auto;
   max-width: 1920px;
+  padding: 0 240px 0 240px;
 }
 .header {
-  max-width: 1440px;
   height: 200px;
   margin: 0 auto;
-  padding: 0 240px 0 240px;
   position: relative;
-  background-color: #030303;
 }
 .navbar {
   padding-top: 74px;
@@ -83,13 +104,24 @@ html {
   font-size: 22px;
   line-height: 50px;
   letter-spacing: 2px;
-  color: white;
+  color: var(--main-text-color);
   list-style-type: none;
 }
 
 .title-dark {
   position: relative;
-  color: white;
+  color: var(--main-text-color);
+  font-family: "Forum";
+  font-weight: normal;
+  font-size: 80px;
+  line-height: 90px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  z-index: 3;
+}
+.title-gold {
+  position: relative;
+  color: var(--gold-color);
   font-family: "Forum";
   font-weight: normal;
   font-size: 80px;
@@ -100,10 +132,8 @@ html {
 }
 .welcome-container {
   display: flex;
-  width: 598px;
   height: 390px;
   flex-direction: column;
-  margin-left: 240px;
 }
 .welcome-description {
   position: relative;
@@ -114,7 +144,7 @@ html {
   font-size: 28px;
   line-height: 33px;
   letter-spacing: 2px;
-  color: #ffffff;
+  color: var(--main-text-color);
   z-index: 3;
 }
 .welcome-btn {
@@ -122,7 +152,7 @@ html {
   position: relative;
   width: 360px;
   height: 75px;
-  background: #710707;
+  background: var(--dark-red--color);
   border-radius: 10px;
   font-family: "Roboto";
   font-style: normal;
@@ -132,16 +162,63 @@ html {
   align-items: center;
   text-align: center;
   letter-spacing: 2px;
-  color: #ffffff;
+  color: var(--main-text-color);
   z-index: 4;
 }
 .welcome-img {
   margin-right: 0;
   position: absolute;
-  width: 1215px;
+  width: 1000px;
   height: 750px;
   right: 230px;
   top: 164px;
-  background-image: url("../assets/img/background.jpg");
+  background-image: url("../assets/img/background.png");
   z-index: 2;
+}
+
+.explore-description {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  margin-top: 75px;
+  max-width: 660px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 38px;
+  color: var(--main-text-color);
+}
+.explore-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  min-width: 660px;
+}
+.explore-divider {
+  margin-top: 25px;
+  width: 660px;
+  height: 3px;
+  background: var(--dark-red--color);
+  border-radius: 0px;
+}
+.explore-slider {
+  position: relative;
+  max-width: 720px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: row;
+}
+.explore-img after {
+  position: absolute;
+  width: 440px;
+  height: 700px;
+  z-index: 3;
+  object-fit: cover;
+}
+.explore-img before {
+  position: absolute;
+  width: 720px;
+  height: 700px;
+  z-index: 1;
 }
