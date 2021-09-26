@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <link rel="icon" href="assets/favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
   </head>
   <body>
     <div class="wrapper dark-section">
@@ -48,10 +48,10 @@
       <div class="wrapper dark-section">
         <section class="section dark-section welcome">
           <div class="container welcome-container">
-            <h2 class="title-dark">
+            <h1 class="title-dark">
               Welcome<br />
               to the Louvre
-            </h2>
+            </h1>
             <p class="welcome-description">From the castle to the museum</p>
             <button class="welcome-btn">Discover the Louvre</button>
           </div>
@@ -292,6 +292,83 @@
       <section class="section">
         <div class="container">
           <h2 id="tickets" class="title-gold underline-title">BUY TICKETS</h2>
+          <div class="tickets-container">
+            <img
+              src="assets/img/fortickets.png"
+              alt="picture"
+              class="tickets-img"
+            />
+            <div class="ticket-type">
+              <h3>Ticket Type</h3>
+              <label class="mini-container">
+                <input type="radio" checked="checked" name="radio" />
+                <span class="checkmark"></span>Permanent exhibition
+              </label>
+              <label class="mini-container">
+                <input type="radio" name="radio" />
+                <span class="checkmark"></span>Temporary exhibition
+              </label>
+              <label class="mini-container">
+                <input type="radio" name="radio" />
+                <span class="checkmark"></span>Combined Admission
+              </label>
+            </div>
+            <div class="amount">
+              <h3>Amount</h3>
+              <p>Basic 18+</p>
+              <div class="number-tickets">
+                <button
+                  type="button"
+                  onclick="this.nextElementSibling.stepDown()"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="0"
+                  max="20"
+                  value="1"
+                  readonly
+                  class="number"
+                />
+                <button
+                  type="button"
+                  onclick="this.previousElementSibling.stepUp()"
+                >
+                  +
+                </button>
+
+                <!-- http://shpargalkablog.ru/2014/06/input-type-number.html -->
+              </div>
+              <p>Senior 65+</p>
+              <div class="number-tickets">
+                <button
+                  type="button"
+                  onclick="this.nextElementSibling.stepDown()"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  min="0"
+                  max="20"
+                  value="1"
+                  readonly
+                  class="number"
+                />
+                <button
+                  type="button"
+                  onclick="this.previousElementSibling.stepUp()"
+                >
+                  +
+                </button>
+
+                <!-- http://shpargalkablog.ru/2014/06/input-type-number.html -->
+              </div>
+              <div class="sum">Total € 220</div>
+              <button class="buy">Buy Now</button>
+            </div>
+          </div>
         </div>
       </section>
       <div class="wrapper parallax">

@@ -89,6 +89,10 @@ a {
 .logo {
   margin-right: 525px;
 }
+.logo:hover {
+  filter: opacity(50%);
+  transition: filter 1.5s;
+}
 .menu {
   display: flex;
   max-width: 720px;
@@ -201,6 +205,7 @@ a {
   letter-spacing: 2px;
   color: var(--main-text-color);
   z-index: 4;
+  cursor: pointer;
 }
 .welcome-btn:hover {
   background: var(--gold-color);
@@ -489,4 +494,109 @@ span {
 }
 .footer-underline a:active {
   color: var(--dark-gold-color);
+}
+
+.tickets-container {
+  margin-top: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.tickets-img {
+  margin-right: 60px;
+}
+.ticket-type {
+  max-width: 270px;
+  margin-right: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+}
+.mini-container {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  color: var(--bg-dark-color);
+}
+.mini-container input {
+  cursor: pointer;
+}
+.amount {
+  width: 150px;
+  height: 341px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ticket-type h3,
+.amount h3,
+.sum {
+  margin-top: 50px;
+  padding-bottom: 25px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+  color: var(--bg-dark-color);
+}
+.amount p {
+  margin-top: 10px;
+  padding-bottom: 15px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  color: var(--bg-dark-color);
+}
+.buy {
+  margin-top: 27px;
+  width: 175px;
+  height: 50px;
+  left: 0px;
+  top: 0px;
+  background: var(--bg-dark-color);
+  border-radius: 2px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: var(--main-text-color);
+  cursor: pointer;
+}
+.buy:hover {
+  background-color: var(--gold-color);
+  color: var(--bg-dark-color);
+}
+.number {
+  all: unset;
+  width: 4em;
+  text-align: center;
+}
+.number-tickets input {
+  font-size: 22px;
+}
+.number-tickets button {
+  border: none;
+  background-color: white;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--bg-dark-color);
+  cursor: pointer;
+}
+.number-tickets {
+  border: 3px solid var(--bg-dark-color);
+  box-sizing: border-box;
+  border-radius: 0px;
 }
