@@ -381,12 +381,25 @@ span {
   cursor: ew-resize;
   background: var(--main-text-color);
 }
-.parallax {
-  height: 100vh;
+.picture-cotainer {
+  height: 2200px;
+}
+.picture-inner-container {
+  height: 2420px;
+  overflow-y: hidden;
+  display: grid;
+  grid-template: repeat(5, auto) / repeat(3, auto);
+  row-gap: 25px;
+  column-gap: 36px;
+}
+.picture-inner-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: none;
 }
 .parallax-img {
   height: 400px;
-  min-width: 1920px;
+  width: 100%;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -426,12 +439,7 @@ span {
   justify-content: flex-end;
   align-items: flex-start;
 }
-.footer-container:first-child {
-  align-items: flex-start;
-}
-.footer-container:last-child {
-  align-items: flex-end;
-}
+
 .footer-menu {
   display: grid;
   grid-template-columns: repeat(2, minmax(106px, auto));
@@ -443,6 +451,12 @@ span {
   padding-top: 222px;
   display: flex;
   gap: 25px;
+}
+.footer-social a:hover svg path {
+  fill: var(--gold-color);
+}
+.footer-social a:active svg path {
+  fill: var(--dark-gold-color);
 }
 .footer-logo {
   margin-top: 75px;
@@ -461,11 +475,18 @@ span {
 }
 .footer-underline p,
 .footer-underline a {
-  font-family: Roboto;
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 200;
   font-size: 22px;
   line-height: 22px;
   letter-spacing: 2px;
   color: var(--main-text-color);
+}
+
+.footer-underline a:hover {
+  color: var(--gold-color);
+}
+.footer-underline a:active {
+  color: var(--dark-gold-color);
 }
