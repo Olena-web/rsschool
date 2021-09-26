@@ -1,31 +1,31 @@
 @font-face {
-  font-family: "Roboto", sans-serif;
-  src: url("/museum/assets/fonts/Roboto-Thin.ttf");
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Thin.ttf");
   font-weight: 100;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/museum/assets/fonts/Roboto-Light.ttf");
+  src: url("../assets/fonts/Roboto-Light.ttf");
   font-weight: 300;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/museum/assets/fonts/Roboto-Regular.ttf");
+  src: url("../assets/fonts/Roboto-Regular.ttf");
   font-weight: 400;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/museum/assets/fonts/Roboto-Medium.ttf");
+  src: url("../assets/fonts/Roboto-Medium.ttf");
   font-weight: 500;
 }
 @font-face {
   font-family: "Roboto";
-  src: url("/museum/assets/fonts/Roboto-Bold.ttf");
+  src: url("../assets/fonts/Roboto-Bold.ttf");
   font-weight: 700;
 }
 @font-face {
   font-family: "Forum";
-  src: url("/museum/assets/fonts/Forum-Regular.ttf");
+  src: url("../assets/fonts/Forum-Regular.ttf");
   font-weight: 400;
 }
 
@@ -163,6 +163,9 @@ a {
   left: 0;
   width: 300px;
   background-color: var(--dark-red--color);
+}
+.item-tour:hover {
+  width: 440px;
 }
 .welcome-container {
   display: flex;
@@ -413,4 +416,56 @@ span {
   font-size: 22px;
   line-height: 26px;
   color: var(--bg-dark-color);
+}
+.footer {
+  min-height: 392px;
+}
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.footer-container:first-child {
+  align-items: flex-start;
+}
+.footer-container:last-child {
+  align-items: flex-end;
+}
+.footer-menu {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(106px, auto));
+  column-gap: 150px;
+  row-gap: 25px;
+}
+.footer-social {
+  margin-left: 397px;
+  padding-top: 222px;
+  display: flex;
+  gap: 25px;
+}
+.footer-logo {
+  margin-top: 75px;
+  margin-right: 145px;
+  margin-left: 240px;
+}
+.footer-divider {
+  margin-top: 55px;
+  height: 3px;
+  background-color: #666666;
+}
+.footer-underline {
+  display: flex;
+  padding: 48px 0 48px 0;
+  justify-content: space-between;
+}
+.footer-underline p,
+.footer-underline a {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 22px;
+  line-height: 22px;
+  letter-spacing: 2px;
+  color: var(--main-text-color);
 }
