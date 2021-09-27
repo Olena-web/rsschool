@@ -291,12 +291,30 @@ span {
   border-radius: 0px;
 }
 .explore-slider {
+  position: relative;
   max-width: 720px;
   max-height: 700px;
   display: flex;
   flex-direction: row;
 }
-.after-img {
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+.img-comp-img img {
+  display: block;
+  vertical-align: middle;
+}
+.img-comp-slider {
+  position: absolute;
+  z-index: 9;
+  cursor: ew-resize;
+  left: 240px;
+}
+/* .after-img {
   position: relative;
   width: 440px;
   height: 700px;
@@ -307,7 +325,7 @@ span {
   width: 720px;
   height: 700px;
   z-index: 2;
-}
+} */
 .video-wrapper {
   display: grid;
   grid-template-columns: 606px 720px;
@@ -333,8 +351,9 @@ span {
   gap: 42px;
   width: 100%;
 }
-.video-section img {
+.video-youtube {
   width: 100%;
+  height: 900px;
 }
 .video-slider img {
   width: 452px;
@@ -387,7 +406,7 @@ span {
   background: var(--main-text-color);
 }
 .picture-container {
-  height: 2200px;
+  max-height: 1975px;
   overflow-y: hidden;
 }
 
@@ -405,6 +424,25 @@ span {
   display: inline-block;
   text-align: center;
 }
+.gallery-section {
+  position: relative;
+  z-index: 1;
+}
+.gradient {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 225px;
+  right: 0;
+  top: 1918px;
+  background: linear-gradient(
+    to top,
+    #000000 0%,
+    rgba(0, 0, 0, 0.5) 16.19%,
+    rgba(0, 0, 0, 0) 30.73%
+  );
+  /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+}
 
 .parallax-img {
   height: 400px;
@@ -413,7 +451,7 @@ span {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../assets/img/parallax.png);
+  background-image: url(../assets/parallax.jpg);
 }
 .contacts-wrapper {
   margin-top: 75px;
@@ -617,4 +655,20 @@ span {
   border: 3px solid var(--bg-dark-color);
   box-sizing: border-box;
   border-radius: 0px;
+}
+.map-responsive {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
