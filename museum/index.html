@@ -362,7 +362,7 @@
               <h3>Amount</h3>
               <p>Basic 18+</p>
               <div class="number-tickets">
-                <button
+                <button data-modal
                   type="button"
                   onclick="this.nextElementSibling.stepDown()"
                 >
@@ -411,7 +411,7 @@
                 <!-- http://shpargalkablog.ru/2014/06/input-type-number.html -->
               </div>
               <div class="sum">Total € 220</div>
-              <button class="buy">Buy Now</button>
+              <button data-modal class="buy">Buy Now</button>
             </div>
           </div>
         </div>
@@ -739,8 +739,45 @@
         </div>
       </footer>
     </div>
+    
+      <div class="modal">
+        <div class="modal__dialog">
+          <div class="modal__content">
+           <div class="booking">
+             <div class="logo"><img src="assets/icons/logo-tickets.svg" alt="logo"></div>
+             <h2 id="title-tickets" class="title-gold">Booking tickets</h2>
+             <h4 class="underline-title">Tour to Louvre</h4>
+            <form action="#">
+              <div data-close class="modal__close"> 
+                <img src="assets/icons/Close.png" alt="close">
+              </div>
+             
+              <input
+                required
+                placeholder="Name"
+                img src= 'assets/icons/name.svg'
+                name="name"
+                type="text"
+                class="modal__input"
+              />
+              <input
+                required
+                placeholder="Phone"
+                name="phone"
+                type="phone"
+                class="modal__input"
+              />
+             
+            </form>
+           </div>
+           <div class="payment"></div>
+          </div>
+        </div>
+      </div>
+   
     <script src="js/script.js"></script>
     <script src="js/gallery.js"></script>
+    <script src = 'js/modal.js'></script>
     <!-- <script src = "js/explore.js"></script> -->
   </body>
 </html>
