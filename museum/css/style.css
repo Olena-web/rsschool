@@ -386,22 +386,26 @@ span {
   cursor: ew-resize;
   background: var(--main-text-color);
 }
-.picture-cotainer {
+.picture-container {
   height: 2200px;
-}
-.picture-inner-container {
-  height: 2420px;
   overflow-y: hidden;
-  display: grid;
-  grid-template: repeat(5, auto) / repeat(3, auto);
-  row-gap: 25px;
-  column-gap: 36px;
 }
+
 .picture-inner-container img {
+  margin-top: 25px;
   width: 100%;
   height: 100%;
   object-fit: none;
 }
+.picture-inner-container {
+  columns: 3 456px;
+  column-gap: 36px;
+}
+.picture-inner-container div {
+  display: inline-block;
+  text-align: center;
+}
+
 .parallax-img {
   height: 400px;
   width: 100%;
@@ -426,9 +430,10 @@ span {
   line-height: 33px;
   color: var(--bg-dark-color);
 }
-.contacts-description p {
+.contacts-description p,
+.contacts-description a {
   margin-top: 25px;
-  font-family: Roboto;
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
@@ -462,6 +467,19 @@ span {
 }
 .footer-social a:active svg path {
   fill: var(--dark-gold-color);
+}
+.footer-social ul li {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.footer-social li {
+  border: 1px solid var(--main-text-color);
+  border-radius: 50%;
+}
+.footer-social li:hover {
+  border: 1px solid var(--gold-color);
 }
 .footer-logo {
   margin-top: 75px;
