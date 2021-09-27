@@ -387,7 +387,7 @@ span {
   background: var(--main-text-color);
 }
 .picture-container {
-  height: 2200px;
+  max-height: 1975px;
   overflow-y: hidden;
 }
 
@@ -405,6 +405,25 @@ span {
   display: inline-block;
   text-align: center;
 }
+.gallery-section {
+  position: relative;
+  z-index: 1;
+}
+.gradient {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 225px;
+  right: 0;
+  top: 1918px;
+  background: linear-gradient(
+    to top,
+    #000000 0%,
+    rgba(0, 0, 0, 0.5) 16.19%,
+    rgba(0, 0, 0, 0) 30.73%
+  );
+  /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+}
 
 .parallax-img {
   height: 400px;
@@ -413,7 +432,7 @@ span {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../assets/img/parallax.png);
+  background-image: url(../assets/parallax.jpg);
 }
 .contacts-wrapper {
   margin-top: 75px;
