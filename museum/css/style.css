@@ -405,13 +405,6 @@ span {
   display: inline-block;
   text-align: center;
 }
-@for $i from 1 through 36 {
-  div:nth-child(#{$i}) {
-    $h: (random(470) + 100) + px;
-    height: $h;
-    line-height: $h;
-  }
-}
 
 .parallax-img {
   height: 400px;
@@ -474,6 +467,19 @@ span {
 }
 .footer-social a:active svg path {
   fill: var(--dark-gold-color);
+}
+.footer-social ul li {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+.footer-social li {
+  border: 1px solid var(--main-text-color);
+  border-radius: 50%;
+}
+.footer-social li:hover {
+  border: 1px solid var(--gold-color);
 }
 .footer-logo {
   margin-top: 75px;
