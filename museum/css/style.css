@@ -637,3 +637,19 @@ span {
   box-sizing: border-box;
   border-radius: 0px;
 }
+.map-responsive {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
