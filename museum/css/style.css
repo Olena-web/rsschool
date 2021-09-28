@@ -65,7 +65,7 @@ a {
   min-height: 640px;
 }
 .video-section {
-  padding-top: 90px;
+  padding-top: 76px;
 }
 .dark-section {
   background-color: var(--bg-dark-color);
@@ -81,25 +81,26 @@ a {
   position: relative;
 }
 .navbar {
-  padding-top: 74px;
+  padding-top: 70px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
 .logo {
-  margin-right: 459px;
+  margin-right: 474px;
 }
 .logo:hover {
   filter: opacity(50%);
   transition: filter 1.5s;
 }
 .menu-top {
+  margin-top: 8px;
   display: flex;
   padding: 0;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 58px;
+  gap: 54px;
 }
 .menu {
   display: flex;
@@ -175,9 +176,11 @@ a {
   width: 300px;
   background-color: var(--dark-red--color);
 }
-.item-tour:hover {
-  width: 440px;
+.item-tour:hover .underline-card-title ::after {
+  width: 100%;
+  transition: all 0.4s ease-out;
 }
+
 .welcome-container {
   display: flex;
 
@@ -299,6 +302,7 @@ span {
   border-radius: 0px;
 }
 .explore-slider {
+  margin-top: 15px;
   position: relative;
   max-width: 720px;
   max-height: 700px;
@@ -402,7 +406,7 @@ span {
   background: var(--main-text-color);
 }
 .picture-container {
-  max-height: 1975px;
+  max-height: 1962px;
   overflow-y: hidden;
 }
 
@@ -490,8 +494,8 @@ span {
   column-gap: 114px;
 }
 .footer-social {
-  margin-left: 397px;
-  padding-top: 159px;
+  margin-left: 362px;
+  padding-top: 153px;
   display: flex;
   gap: 22px;
 }
@@ -515,18 +519,17 @@ span {
   border: 1px solid var(--gold-color);
 }
 .footer-logo {
-  margin-top: 75px;
-  margin-right: 142px;
-  margin-left: 240px;
+  margin-top: 70px;
+  margin-right: 175px;
 }
 .footer-divider {
-  margin-top: 37px;
+  margin-top: 28px;
   height: 3px;
   background-color: #666666;
 }
 .footer-underline {
   display: flex;
-  padding: 48px 0 48px 0;
+  padding: 56px 0 48px 0;
   justify-content: space-between;
 }
 .footer-underline p,
@@ -587,7 +590,7 @@ span {
 .amount h3,
 .sum {
   margin-top: 0px;
-  padding-bottom: 25px;
+  padding-bottom: 23px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: bold;
@@ -597,7 +600,7 @@ span {
 }
 
 .sum {
-  margin-top: 50px;
+  margin-top: 31px;
   padding-bottom: 25px;
   font-family: "Roboto";
   font-style: normal;
@@ -659,6 +662,8 @@ span {
   cursor: pointer;
 }
 .number-tickets {
+  width: 150px;
+  height: 50px;
   border: 3px solid var(--bg-dark-color);
   box-sizing: border-box;
   border-radius: 0px;
