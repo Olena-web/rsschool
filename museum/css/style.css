@@ -87,6 +87,7 @@ a {
   align-items: flex-start;
 }
 .logo {
+  margin-top: 8px;
   margin-right: 474px;
 }
 .logo:hover {
@@ -100,7 +101,7 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 54px;
+  gap: 56px;
 }
 .menu {
   display: flex;
@@ -333,6 +334,7 @@ span {
   gap: 115px;
 }
 .video-description {
+  margin-top: 7px;
   width: 720px;
   margin-bottom: 75px;
   font-family: "Roboto";
@@ -495,7 +497,7 @@ span {
 }
 .footer-social {
   margin-left: 362px;
-  padding-top: 153px;
+  padding-top: 150px;
   display: flex;
   gap: 22px;
 }
@@ -529,7 +531,7 @@ span {
 }
 .footer-underline {
   display: flex;
-  padding: 56px 0 48px 0;
+  padding: 51px 0 48px 0;
   justify-content: space-between;
 }
 .footer-underline p,
@@ -600,7 +602,7 @@ span {
 }
 
 .sum {
-  margin-top: 31px;
+  margin-top: 45px;
   padding-bottom: 25px;
   font-family: "Roboto";
   font-style: normal;
@@ -611,8 +613,8 @@ span {
 }
 .amount p {
   margin-top: 0px;
-  padding-bottom: 15px;
-  font-family: Roboto;
+
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
