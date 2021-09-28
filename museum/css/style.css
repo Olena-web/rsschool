@@ -83,24 +83,31 @@ a {
 .navbar {
   padding-top: 74px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
 }
 .logo {
-  margin-right: 525px;
+  margin-right: 459px;
 }
 .logo:hover {
   filter: opacity(50%);
   transition: filter 1.5s;
 }
-.menu {
+.menu-top {
   display: flex;
-  max-width: 720px;
   padding: 0;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 0px 76px;
+  gap: 58px;
+}
+.menu {
+  display: flex;
+  padding: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
 }
 .menu-item {
   margin: 0;
@@ -173,12 +180,12 @@ a {
 }
 .welcome-container {
   display: flex;
-  height: 390px;
+
   flex-direction: column;
 }
 .welcome-description {
   position: relative;
-  margin-top: 36px;
+  margin-top: -28px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
@@ -189,7 +196,7 @@ a {
   z-index: 3;
 }
 .welcome-btn {
-  margin-top: 90px;
+  margin-top: 75px;
   position: relative;
   width: 360px;
   height: 75px;
@@ -199,7 +206,7 @@ a {
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
-  line-height: 26px;
+  line-height: 70px;
   align-items: center;
   text-align: center;
   letter-spacing: 2px;
@@ -215,13 +222,13 @@ a {
   position: absolute;
   width: 1000px;
   height: 750px;
-  right: 230px;
-  top: 164px;
+  right: 470px;
+  top: 176px;
   background-image: url("../assets/img/background.png");
   z-index: 2;
 }
 .wrapper-tour {
-  margin-top: 70px;
+  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   column-gap: 60px;
@@ -235,6 +242,7 @@ a {
   height: 424px;
 }
 .header-tour {
+  margin-top: 24px;
   font-family: Forum;
   font-style: normal;
   font-weight: normal;
@@ -245,12 +253,12 @@ a {
   color: var(--bg-dark-color);
 }
 .description-tour {
-  margin-top: 22px;
+  margin-top: 21px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 200;
   font-size: 22px;
-  line-height: 26px;
+  line-height: 30px;
   color: var(--bg-dark-color);
 }
 .panorama {
@@ -264,7 +272,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 25px;
-  margin-top: 75px;
+  margin-top: 53px;
   max-width: 660px;
   font-family: "Roboto";
   font-style: normal;
@@ -284,7 +292,7 @@ span {
   margin-right: 60px;
 }
 .explore-divider {
-  margin-top: 25px;
+  margin-top: 0;
   width: 660px;
   height: 3px;
   background: var(--dark-red--color);
@@ -332,16 +340,16 @@ span {
 }
 .video-slider {
   margin: 0 auto;
-  margin-top: 40px;
+
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 42px;
+  gap: 36px;
   width: 100%;
 }
 .video-youtube {
   width: 100%;
-  height: 900px;
+  height: 745px;
 }
 .video-slider img {
   width: 452px;
@@ -442,10 +450,10 @@ span {
   background-image: url(../assets/parallax.jpg);
 }
 .contacts-wrapper {
-  margin-top: 75px;
+  margin-top: 106px;
   display: flex;
   flex-direction: row;
-  gap: 198px;
+  gap: 26px;
 }
 .contacts-header {
   margin-bottom: 25px;
@@ -458,12 +466,12 @@ span {
 }
 .contacts-description p,
 .contacts-description a {
-  margin-top: 25px;
+  margin-top: 37px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
-  line-height: 26px;
+  line-height: 52px;
   color: var(--bg-dark-color);
 }
 .footer {
@@ -479,14 +487,13 @@ span {
 .footer-menu {
   display: grid;
   grid-template-columns: repeat(2, minmax(106px, auto));
-  column-gap: 150px;
-  row-gap: 25px;
+  column-gap: 114px;
 }
 .footer-social {
   margin-left: 397px;
-  padding-top: 222px;
+  padding-top: 159px;
   display: flex;
-  gap: 25px;
+  gap: 22px;
 }
 .footer-social a:hover svg path {
   fill: var(--gold-color);
@@ -509,11 +516,11 @@ span {
 }
 .footer-logo {
   margin-top: 75px;
-  margin-right: 145px;
+  margin-right: 142px;
   margin-left: 240px;
 }
 .footer-divider {
-  margin-top: 55px;
+  margin-top: 37px;
   height: 3px;
   background-color: #666666;
 }
@@ -541,7 +548,7 @@ span {
 }
 
 .tickets-container {
-  margin-top: 75px;
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -551,7 +558,7 @@ span {
 }
 .ticket-type {
   max-width: 270px;
-  margin-right: 240px;
+  margin-right: 280px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -570,13 +577,25 @@ span {
 }
 .amount {
   width: 150px;
-  height: 341px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 .ticket-type h3,
 .amount h3,
+.sum {
+  margin-top: 0px;
+  padding-bottom: 25px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 33px;
+  color: var(--bg-dark-color);
+}
+
 .sum {
   margin-top: 50px;
   padding-bottom: 25px;
@@ -588,7 +607,7 @@ span {
   color: var(--bg-dark-color);
 }
 .amount p {
-  margin-top: 10px;
+  margin-top: 0px;
   padding-bottom: 15px;
   font-family: Roboto;
   font-style: normal;
