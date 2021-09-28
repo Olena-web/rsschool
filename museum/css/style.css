@@ -73,7 +73,7 @@ a {
 .container {
   margin: 0 auto;
   max-width: 1440px;
-  padding: 0 240px 0 240px;
+  /*  */
 }
 .header {
   height: 200px;
