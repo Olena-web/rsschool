@@ -313,6 +313,7 @@ span {
   position: absolute;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 .img-comp-img {
   z-index: 1;
@@ -325,6 +326,7 @@ span {
   position: absolute;
   z-index: 9;
   cursor: ew-resize;
+  left: 240px;
 }
 
 .video-wrapper {
