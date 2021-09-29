@@ -165,10 +165,10 @@ a {
   width: 100%;
   background-color: var(--dark-red--color);
 }
-.underline-card-title {
+.header-tour {
   position: relative;
 }
-.underline-card-title::after {
+.header-tour::after {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -176,10 +176,10 @@ a {
   left: 0;
   width: 300px;
   background-color: var(--dark-red--color);
+  transition: all 0.8s ease-in-out;
 }
-.item-tour:hover .underline-card-title ::after {
+.header-tour:hover::after {
   width: 100%;
-  transition: all 0.4s ease-out;
 }
 
 .welcome-container {
@@ -228,7 +228,7 @@ a {
   height: 750px;
   right: 225px;
   top: 176px;
-  background-image: url("../assets/img/background.png");
+  /* background-image: url("../assets/img/background.png"); */
   z-index: 2;
 }
 .wrapper-tour {
@@ -307,24 +307,24 @@ span {
   position: relative;
   max-width: 720px;
   max-height: 700px;
-  display: flex;
-  flex-direction: row;
+}
+.img-comp-img,
+.img-comp-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 .img-comp-img {
-  position: absolute;
-  width: auto;
-  height: auto;
-  overflow: hidden;
+  z-index: 1;
 }
-
-.img-comp-img img {
-  display: block;
+.img-comp-overlay {
+  width: 50%;
+  z-index: 2;
 }
 .img-comp-slider {
   position: absolute;
   z-index: 9;
   cursor: ew-resize;
-  left: 240px;
 }
 
 .video-wrapper {
@@ -362,7 +362,6 @@ span {
   height: 254px;
 }
 .video-player {
-  width: 1440px;
   height: 85px;
   left: 0px;
   top: 0px;
@@ -613,7 +612,6 @@ span {
 }
 .amount p {
   margin-top: 0px;
-
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
@@ -669,7 +667,11 @@ span {
   border: 3px solid var(--bg-dark-color);
   box-sizing: border-box;
   border-radius: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .map-responsive {
   display: block;
   overflow: hidden;
@@ -787,4 +789,134 @@ span {
   background: #ffffff;
   border: 1px solid #030303;
   box-sizing: border-box;
+}
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+.booking-description {
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--dark-red--color);
+  margin: 13px 0 60px 0;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--dark-red--color);
+}
+.form-input {
+  padding: 11px 15px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 18px;
+  text-indent: 30px;
+  line-height: 21px;
+  border: 1px solid #030303;
+}
+.form-input-date {
+  background: url("assets/img/booking-tickets/date.svg") no-repeat 15px 15px,
+    url("assets/img/booking-tickets/arrow.svg") no-repeat 157px 13px;
+}
+.form-input-time {
+  background: url("assets/img/booking-tickets/time.svg") no-repeat 15px 15px,
+    url("assets/img/booking-tickets/arrow.svg") no-repeat 157px 13px;
+}
+
+.form-input-name {
+  background: url("assets/img/booking-tickets/name.svg") no-repeat 15px 15px;
+}
+
+.form-input-mail {
+  background: url("assets/img/booking-tickets/email.svg") no-repeat 15px 15px;
+}
+.form-input-phone {
+  background: url("assets/img/booking-tickets/tel.svg") no-repeat 15px 15px;
+}
+.form-input-type {
+  background: url("assets/img/booking-tickets/Vector.svg") no-repeat 15px 15px;
+}
+
+.wrapper-date {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper-date .form-input {
+  max-width: 190px;
+  width: 100%;
+}
+
+.wrapper-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-tickets {
+  padding: 10px 15px 0;
+  border: 1px solid black;
+}
+
+.entry-tickets-title {
+  position: relative;
+  font-family: "Forum", sans-serif;
+  margin-bottom: 6px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  text-transform: capitalize;
+  color: var(--font-gold);
+  margin-top: 0;
+}
+.entry-tickets-title::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--dark-red--color);
+}
+
+.entry-tickets-amount {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-ticket-age {
+  font-size: 18px;
+  line-height: 21px;
+  margin: 14px 0;
+}
+
+.amount-change-number {
+  width: 30px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  border: none;
+}
+
+.entry-ticket-amount-change {
+  border: 1px solid var(--dark-red--color);
+  padding: 0;
+}
+
+.amount-change-button {
+  width: 31px;
+  height: 25px;
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 0px;
+  text-align: center;
+  background-color: var(--bg-dark-color);
+  color: var(--main-text-color);
+  border: 3px solid var(--bg-dark-color);
+}
+
+.entry-ticket-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.entry-ticket-amount-wrapper:first-child {
+  margin-bottom: 18px;
 }
