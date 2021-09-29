@@ -1,0 +1,126 @@
+@media (max-width: 1064px) {
+  .container {
+    width: 969px;
+  }
+  .section {
+    min-height: 585px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .header {
+    height: 130px;
+  }
+  .navbar {
+    padding-top: 32px;
+    padding-left: 4px;
+  }
+  .title-dark,
+  .title-gold {
+    font-size: 50px;
+  }
+  .underline-title::after {
+    bottom: -15px;
+  }
+  .menu-top {
+    display: none;
+  }
+  .welcome-description {
+    margin-top: -10px;
+    font-size: 24px;
+  }
+  .welcome-img {
+    left: 304px;
+    width: 700px;
+    height: 525px;
+    top: 132px;
+  }
+  .welcome-btn {
+    margin-top: 48px;
+    width: 300px;
+    height: 60px;
+    font-size: 20px;
+    line-height: 60px;
+  }
+  .wrapper-tour {
+    margin-top: 75px;
+    justify-content: center;
+    column-gap: 107px;
+    row-gap: 55px;
+  }
+  .item-tour {
+    width: 329px;
+    height: 349px;
+    line-height: 30px;
+  }
+  .header-tour {
+    margin-top: 15px;
+    font-size: 28px;
+    line-height: 33px;
+    letter-spacing: 3px;
+  }
+  .description-tour {
+    margin-top: 17px;
+    font-size: 20px;
+  }
+  .panorama {
+    font-size: 16px;
+  }
+  .item-tour img {
+    width: 330px;
+    height: 215px;
+  }
+
+  .explore-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .explore-description {
+    font-size: 20px;
+  }
+  .video-description {
+    display: none;
+  }
+  .video-slider iframe {
+    width: 300px;
+    height: 170px;
+  }
+  .picture-inner-container {
+    columns: 3 304px;
+  }
+
+  .picture-inner-container img {
+    margin-top: 24px;
+  }
+  .ticket-type {
+    display: none;
+  }
+  .contacts-header {
+    font-size: 24px;
+  }
+  .contacts-description p {
+    font-size: 20px;
+  }
+  .contacts-wrapper iframe {
+    width: 694px;
+    height: 454px;
+  }
+  .footer-social {
+    margin-left: 92px;
+  }
+  .footer-logo {
+    margin-right: 30px;
+  }
+  .footer-menu {
+    column-gap: 64px;
+  }
+}
+@media (max-width: 787px) {
+  .container {
+    width: 728px;
+  }
+}
+@media (max-width: 420px) {
+  .container {
+    width: 380px;
+  }
+}
