@@ -1,6 +1,6 @@
 "use strict";
 window.addEventListener("DOMContentLoaded", () => {
-  const modalTrigger = document.querySelectorAll("[data-modal]"),
+  const modalTrigger = document.querySelector("[data-modal]"),
     modal = document.querySelector(".modal"),
     modalCloseBtn = document.querySelector("[data-close]");
 
@@ -10,9 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "hidden";
   }
 
-  modalTrigger.forEach((btn) => {
-    btn.addEventListener("click", openModal);
-  });
+  modalTrigger.addEventListener("click", openModal);
 
   function closeModal() {
     modal.classList.add("hide");
