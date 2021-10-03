@@ -18,6 +18,12 @@
     padding-top: 29px;
     padding-left: 10px;
   }
+  .hamburger {
+    display: block;
+    position: fixed;
+    right: 8px;
+    top: 60px;
+  }
   .title-dark,
   .title-gold {
     font-size: 50px;
@@ -83,6 +89,11 @@
     height: 60px;
     font-size: 20px;
     line-height: 60px;
+  }
+  .hamburger {
+    width: 32px;
+    height: 18px;
+    display: block;
   }
 
   /* virtyal */

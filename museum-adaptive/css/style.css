@@ -95,6 +95,49 @@ a {
   justify-content: flex-start;
   align-items: flex-start;
 }
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-aside {
+  position: fixed;
+  top: 79px;
+  left: -100%;
+  height: 492px;
+  width: 292px;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+.menu-aside.active {
+  visibility: visible;
+  left: 0;
+  opacity: 1;
+}
+.menu-block {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-dark-color);
+  padding-top: 60px;
+  padding-left: 50px;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+  z-index: 10;
+}
+.arrows {
+  margin-top: 19px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+  margin-left: 31px;
+}
+
 .logo {
   margin-top: 12px;
   margin-right: 468px;
@@ -199,6 +242,9 @@ a {
   margin-left: 232px;
   display: flex;
   flex-direction: column;
+}
+.welcome-container.invisible {
+  display: none;
 }
 .welcome-description {
   position: relative;
