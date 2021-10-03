@@ -579,7 +579,7 @@ span {
   margin-top: 103px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 .tickets-img {
   margin-right: 60px;
@@ -688,6 +688,7 @@ span {
   text-align: center;
   color: var(--bg-dark-color);
   cursor: pointer;
+  /* padding-bottom: 28px; */
 }
 .number-tickets {
   width: 175px;

@@ -23,7 +23,7 @@
     font-size: 50px;
   }
   .underline-title::after {
-    bottom: -21px;
+    bottom: -15px;
   }
   .menu-top {
     display: none;
@@ -90,14 +90,15 @@
     margin-left: 18px;
   }
   .wrapper-tour {
-    margin-top: 81px;
+    margin-top: 75px;
     justify-content: center;
     column-gap: 107px;
     row-gap: 56px;
   }
   #visiting {
-    line-height: 77px;
+    line-height: 83px;
   }
+
   .item-tour {
     width: 329px;
     height: 349px;
@@ -222,13 +223,14 @@
   /* gallery-section */
   .gallery-section {
     padding-top: 53px;
+    padding-bottom: 29px;
+    margin-left: 16px;
   }
   .picture-container {
+    margin-top: 26px;
     max-height: 1262px;
   }
-  #gallery {
-    margin-left: 8px;
-  }
+
   .picture-inner-container {
     columns: 3 304px;
   }
@@ -238,26 +240,22 @@
   }
   .gradient {
     height: 239px;
-    top: 1221px;
+    top: 1193px;
   }
   .ticket-type {
     display: none;
   }
-  .contacts-header {
-    font-size: 24px;
-  }
-  .contacts-description p {
-    font-size: 20px;
-  }
-  .contacts-wrapper iframe {
-    width: 694px;
-    height: 454px;
-  }
 
   /* tickets */
-  .tickets-container {
-    margin-top: 77px;
+  .section-tickets {
+    margin-left: 16px;
+    padding-top: 53px;
+    padding-bottom: 5px;
   }
+  .tickets-container {
+    margin-top: 75px;
+  }
+
   .tickets-img {
     margin-right: 0;
     width: 700px;
@@ -265,21 +263,70 @@
     object-fit: cover;
   }
   .amount {
-    margin-left: 100px;
+    padding-left: 18px;
+    align-items: flex-start;
+  }
+  .amount h3 {
+    padding-right: 77px;
+  }
+  .number-tickets {
+    margin-bottom: 10px;
+  }
+  .sum {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* contacts */
+
+  .section-contacts {
+    padding-top: 53px;
+    padding-bottom: 21px;
+    margin-left: 8px;
+  }
+  .contacts-wrapper {
+    margin-top: 74px;
+    column-gap: 0;
+  }
+  .contacts-header {
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 26px;
+  }
+  .contacts-description p,
+  .contacts-description a {
+    font-size: 20px;
+    margin-top: 18px;
+    line-height: 39px;
+  }
+  .contacts-wrapper iframe {
+    height: 454px;
   }
   /* footer */
 
-  .footer {
-    height: 325px;
+  .footer-section {
+    padding-top: 39px;
   }
   .footer-social {
-    margin-left: 92px;
+    margin-left: 35px;
+    padding-top: 105px;
   }
   .footer-logo {
-    margin-right: 30px;
+    margin-top: 11px;
+    margin-left: 11px;
+    margin-right: 40px;
+  }
+  .footer-navbar {
+    margin-right: 0;
+    padding-left: 0;
+    padding-top: 16px;
+    min-width: 367px;
   }
   .footer-menu {
     column-gap: 64px;
+  }
+  .footer-underline {
+    margin-right: 3px;
   }
 }
 @media (max-width: 768px) {
