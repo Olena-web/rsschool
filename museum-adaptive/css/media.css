@@ -308,8 +308,11 @@
     padding-top: 39px;
   }
   .footer-social {
-    margin-left: 35px;
     padding-top: 105px;
+    gap: 24px;
+  }
+  .footer-social li {
+    margin-right: 0;
   }
   .footer-logo {
     margin-top: 11px;
@@ -317,7 +320,7 @@
     margin-right: 40px;
   }
   .footer-navbar {
-    margin-right: 0;
+    margin-right: 32px;
     padding-left: 0;
     padding-top: 16px;
     min-width: 367px;
