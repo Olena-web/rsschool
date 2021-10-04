@@ -536,6 +536,53 @@
   /* tickets */
   .section-tickets {
     padding-top: 40px;
+    min-height: 588px;
+  }
+  #tickets::after {
+    bottom: -23px;
+  }
+  .tickets-container {
+    margin-top: 63px;
+    column-gap: 10px;
+  }
+  .tickets-img {
+    width: 444px;
+    height: 340px;
+  }
+  .amount {
+    width: 180px;
+    margin-left: 32px;
+    padding-left: 18px;
+    margin-top: 0px;
+  }
+  .amount h3 {
+    padding-bottom: 30px;
+  }
+  .amount p {
+    margin-bottom: 0;
+  }
+  .number-tickets {
+    margin-bottom: 17px;
+    justify-content: space-around;
+  }
+  .sum {
+    margin-top: 14px;
+    margin-bottom: 4px;
+    font-size: 33px;
+  }
+  .buy {
+    margin-top: 1px;
+  }
+  .minus {
+    margin-right: 15px;
+    margin-left: 19px;
+    margin-bottom: 17px;
+  }
+  .plus {
+    margin-right: 14px;
+  }
+  .parallax {
+    height: 300px;
   }
 }
 
