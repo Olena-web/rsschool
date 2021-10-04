@@ -385,11 +385,13 @@
   .title-gold {
     font-size: 40px;
     line-height: 60px;
-
     letter-spacing: 5px;
   }
+  .underline-title::after {
+    bottom: -12px;
+  }
   .welcome {
-    min-height: 861px;
+    min-height: 880px;
     position: absolute;
     top: 61px;
     z-index: 2;
@@ -420,6 +422,37 @@
     height: 91px;
     left: 261px;
   }
+
+  /* virtual */
+  .virtual {
+    margin-top: 829px;
+    padding-bottom: 79px;
+  }
+  .wrapper-tour {
+    margin-top: 51px;
+    column-gap: 58px;
+    row-gap: 41px;
+  }
+  .item-tour {
+    width: 280px;
+    height: 301px;
+  }
+  .item-tour img {
+    width: 280px;
+    height: 180px;
+  }
+  .header-tour {
+    font-size: 22px;
+    line-height: 24px;
+    letter-spacing: 3px;
+  }
+  .header-tour:after {
+    bottom: -13px;
+}
+.description-tour{
+  margin-top: 20px;
+  font-size: 18px;
+line-height: 30px;
 }
 
 @media (max-width: 420px) {
