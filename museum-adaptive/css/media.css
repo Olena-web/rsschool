@@ -1,3 +1,22 @@
+:root {
+  --bg-dark-color: #030303;
+}
+:root {
+  --dark-red--color: #710707;
+}
+:root {
+  --main-text-color: #ffffff;
+}
+
+:root {
+  --gold-color: #9d8665;
+}
+:root {
+  --dark-gold-color: #7e6c51;
+}
+:root {
+  --color-progress-before: #c4c4c4;
+}
 @media (max-width: 1024px) {
   .section {
     padding-top: 60px;
@@ -24,7 +43,7 @@
   .hamburger {
     display: block;
     margin-top: 30px;
-    margin-left: 278px;
+    margin-left: 281px;
     width: 32px;
     height: 18px;
   }
@@ -58,8 +77,12 @@
   .menu-top {
     display: none;
   }
+  .welcome {
+    position: relative;
+    padding-top: 15px;
+  }
   .welcome-container {
-    margin-top: 35px;
+    margin-top: 34px;
     margin-left: 20px;
   }
   .welcome-description {
@@ -67,7 +90,8 @@
     font-size: 24px;
   }
   .welcome-slider {
-    top: 131px;
+    position: absolute;
+    top: 0px;
     width: 700px;
     grid-template: 525px;
   }
@@ -77,8 +101,8 @@
   }
 
   .slider-control {
-    top: 463px;
-    left: 322px;
+    top: 465px;
+    left: 320px;
   }
   .control-dots {
     margin-left: 20px;
@@ -293,18 +317,26 @@
     object-fit: cover;
   }
   .amount {
+    width: 173px;
     padding-left: 18px;
     align-items: flex-start;
+  }
+  .amount p {
+    margin-bottom: 0;
   }
   .amount h3 {
     padding-right: 77px;
   }
   .number-tickets {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
   .sum {
-    margin-top: 5px;
+    margin-top: 3px;
     margin-bottom: 10px;
+    font-size: 33px;
+  }
+  .buy {
+    margin-top: 25px;
   }
 
   /* contacts */
@@ -373,7 +405,7 @@
   }
   .navbar {
     padding-top: 23px;
-    padding-left: 3px;
+    padding-left: 2px;
   }
   .logo {
     margin-right: 216px;
@@ -404,6 +436,7 @@
   }
   .welcome-container {
     align-items: center;
+    margin-left: 21px;
   }
   .welcome-description {
     font-size: 20px;
@@ -420,13 +453,14 @@
   .slider-control {
     top: 550px;
     height: 91px;
-    left: 261px;
+    left: 259px;
   }
 
   /* virtual */
   .virtual {
     margin-top: 829px;
     padding-bottom: 79px;
+    margin-left: 17px;
   }
   .wrapper-tour {
     margin-top: 51px;
@@ -498,6 +532,7 @@
   }
   .video-slider {
     margin-top: 15px;
+    margin-left: 9px;
     padding-top: 4px;
     gap: 20px;
     flex-wrap: nowrap;
@@ -550,7 +585,7 @@
     height: 340px;
   }
   .amount {
-    width: 180px;
+    width: 204px;
     margin-left: 32px;
     padding-left: 18px;
     margin-top: 0px;
@@ -627,7 +662,7 @@
   .menu-item {
     font-size: 18px;
     line-height: 21px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
   }
   .footer-navbar {
     max-height: 110px;
@@ -647,8 +682,84 @@
   .footer-underline {
     padding: 39px 0 39px 0;
   }
-}
+  .menu-aside {
+    position: absolute;
+    top: 48px;
 
+    height: 971px;
+    width: 751px;
+  }
+  .menu-block {
+    padding-left: 0;
+    height: auto;
+  }
+  .menu-block ul {
+    padding-top: 23px;
+    padding-left: 56px;
+  }
+  .arrows {
+    margin-top: 38px;
+    margin-left: 15px;
+  }
+  .menu-aside-social {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-dark-color);
+    display: flex;
+  }
+  .menu-aside-img-wrapper {
+    position: relative;
+    margin-top: 22px;
+    margin-left: 17px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-aside-img-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: -36px;
+    height: 3px;
+    left: 39px;
+    width: 660px;
+    background-color: var(--gold-color);
+  }
+  .aside-social {
+    display: flex;
+    padding-top: 4px;
+    padding-bottom: 33px;
+    margin-top: 66px;
+    margin-left: 212px;
+  }
+
+  .aside-social a:hover svg path {
+    fill: var(--gold-color);
+  }
+  .aside-social a:active svg path {
+    fill: var(--dark-gold-color);
+  }
+  .aside-social ul li {
+    display: block;
+    position: relative;
+  }
+  .aside-social li {
+    border: 1px solid var(--main-text-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: ease-out 0.2s;
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin-right: 24px;
+    padding: 0;
+  }
+  .aside-social li:hover {
+    border: 1px solid var(--gold-color);
+  }
+}
 @media (max-width: 420px) {
   .container {
     width: 380px;
