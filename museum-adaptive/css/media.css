@@ -138,6 +138,10 @@
     font-size: 20px;
     line-height: 60px;
   }
+  .menu-aside-img-wrapper,
+  .menu-aside-social-wrapper {
+    display: none;
+  }
 
   /* virtyal */
   .virtual {
@@ -726,6 +730,9 @@
     left: 39px;
     width: 660px;
     background-color: var(--gold-color);
+  }
+  .menu-aside-social-wrapper {
+    display: block;
   }
   .aside-social {
     display: flex;
