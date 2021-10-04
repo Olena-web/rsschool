@@ -532,7 +532,7 @@
   }
   .volume {
     margin-top: 17px;
-    width: 486px;
+    width: 60%;
   }
   .video-slider {
     margin-top: 15px;
@@ -770,5 +770,302 @@
 @media (max-width: 420px) {
   .container {
     width: 380px;
+  }
+  .title-dark,
+  .title-gold {
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: 5px;
+  }
+  .underline-title::after {
+    bottom: -2px;
+  }
+
+  /* header */
+  .navbar {
+    padding-top: 18px;
+    justify-content: space-between;
+  }
+  .logo {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .logo img {
+    width: 138px;
+    height: 33px;
+  }
+  .hamburger {
+    margin-left: 0;
+    margin-top: 19px;
+  }
+  /* welcome */
+  .welcome {
+    top: 47px;
+    right: 3px;
+    min-height: 557px;
+  }
+  .welcome-description {
+    margin-top: 25px;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 2px;
+  }
+  .welcome-slider {
+    height: 285px;
+    width: 380px;
+    top: 222px;
+    right: 222px;
+  }
+  .welcome-img {
+    width: 380px;
+    height: 285px;
+  }
+  .slider-control {
+    width: 230px;
+    height: 40px;
+    top: 300px;
+    left: 365px;
+  }
+  .control-dots {
+    width: 75px;
+    height: 7px;
+    gap: 11px;
+  }
+  .control-arrows {
+    gap: 14px;
+    margin-right: 139px;
+    margin-top: 8px;
+  }
+  .prev,
+  .next {
+    width: 20px;
+  }
+  .current,
+  .total {
+    font-size: 16px;
+    line-height: 40px;
+    margin-left: 0;
+  }
+  .divider-current {
+    margin-top: 12px;
+    margin-right: 7px;
+    margin-left: -14px;
+    height: 14px;
+  }
+  .control-dots {
+    margin-top: 8px;
+  }
+  .control-dot {
+    width: 7px;
+    height: 7px;
+  }
+  /* virtual */
+  .virtual {
+    margin-top: 482px;
+    padding-bottom: 34px;
+  }
+  .wrapper-tour {
+    margin-top: 42px;
+    row-gap: 34px;
+  }
+  .header-tour {
+    font-size: 22px;
+    line-height: 20px;
+  }
+  .description-tour {
+    font-size: 16px;
+    margin-top: 17px;
+  }
+  /* explore */
+  .explore {
+    padding-top: 40px;
+    min-height: 497px;
+    padding-bottom: 14px;
+  }
+  .explore-wrapper {
+    min-width: 377px;
+  }
+  .explore-slider {
+    margin-top: 40px;
+    left: 1px;
+    max-width: 380px;
+    max-height: 368px;
+  }
+  .explore-slider img {
+    width: 380px;
+    height: 368px;
+  }
+  .img-comp-slider {
+    left: 0px;
+  }
+
+  /* video */
+  .video-section {
+    padding-top: 37px;
+    padding-bottom: 36px;
+    min-height: 478px;
+  }
+  .video-main {
+    width: 380px;
+    height: 226px;
+  }
+  .video-slider {
+    margin-top: 34px;
+    margin-left: 7px;
+    gap: 15px;
+  }
+  .video-slider iframe {
+    max-width: 180px;
+    max-height: 101px;
+  }
+  .video-player {
+    max-width: 380px;
+    max-height: 55px;
+    left: 4px;
+    top: 171px;
+  }
+  .progress,
+  .volume {
+    height: 4px;
+    margin-top: 0;
+  }
+  .video-slider-panel {
+    padding-top: 38px;
+  }
+  .video-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    background-color: #030303;
+  }
+  /* gallery */
+  .gallery {
+    padding-top: 40px;
+  }
+  .picture-container {
+    margin-top: 19px;
+    max-height: 630px;
+  }
+  .picture-inner-container {
+    columns: 2 178px;
+  }
+  .gradient {
+    top: 519px;
+  }
+  /* tickets */
+  .section-tickets {
+    padding-bottom: 42px;
+  }
+  .tickets-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .tickets-img {
+    width: 380px;
+    height: 160px;
+  }
+  .amount h3 {
+    margin-top: 41px;
+    margin-left: 48px;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    padding-bottom: 8px;
+  }
+  .number-tickets {
+    margin-left: -8px;
+    margin-bottom: 12px;
+  }
+  .amount p {
+    font-size: 14px;
+  }
+  .sum {
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-top: 11px;
+    margin-left: 37px;
+    padding-bottom: 23px;
+  }
+  .buy {
+    margin-top: 0;
+    font-size: 16px;
+    margin-left: 37px;
+    margin-left: -11px;
+  }
+  .section-contacts {
+    min-height: 595px;
+    padding-bottom: 0;
+  }
+  .contacts-wrapper {
+    margin-top: 60px;
+  }
+  #contacts::after {
+    bottom: -22px;
+  }
+  .contacts-header {
+    font-size: 16px;
+    line-height: 21px;
+  }
+  .contacts-wrapper a,
+  .contacts-wrapper p {
+    font-size: 16px;
+    line-height: 32px;
+    margin-top: 32px;
+  }
+  .contacts-wrapper iframe {
+    width: 380px;
+    height: 248px;
+  }
+  .footer-section {
+    padding-top: 32px;
+  }
+  .footer-navbar {
+    padding-top: 29px;
+    margin-left: 8px;
+    max-height: 70px;
+  }
+  .footer-menu {
+    column-gap: 81px;
+  }
+  .menu-item {
+    font-size: 15px;
+  }
+  .footer-social {
+    padding-left: 68px;
+    padding-top: 38px;
+    gap: 3px;
+  }
+  .footer-underline p,
+  .footer-underline a {
+    font-size: 15px;
+  }
+  .menu-aside {
+    /* position: absolute;
+    left: -100%; */
+    width: 415px;
+    height: 634px;
+  }
+
+  .menu-aside-img-wrapper img {
+    width: 95px;
+    height: 95px;
+  }
+  .menu-aside-img-wrapper {
+    margin-left: 0;
+  }
+  .menu-aside-img-wrapper::after {
+    width: 342px;
+  }
+  .aside-social {
+    margin-left: 27px;
+  }
+  .aside-social li {
+    margin-right: 0;
+  }
+}
+@media (max-width: 320px) {
+  .container {
+    width: 90%;
   }
 }
