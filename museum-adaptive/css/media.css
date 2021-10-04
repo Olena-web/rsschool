@@ -366,7 +366,62 @@
   .container {
     width: 728px;
   }
+  .header {
+    max-height: 110px;
+    position: relative;
+    z-index: 3;
+  }
+  .navbar {
+    padding-top: 23px;
+    padding-left: 3px;
+  }
+  .logo {
+    margin-right: 216px;
+  }
+  .hamburger {
+    margin-top: 24px;
+  }
+  .title-dark,
+  .title-gold {
+    font-size: 40px;
+    line-height: 60px;
+
+    letter-spacing: 5px;
+  }
+  .welcome {
+    min-height: 861px;
+    position: absolute;
+    top: 61px;
+    z-index: 2;
+  }
+  .title-welcome {
+    text-align: center;
+  }
+  .welcome-btn {
+    display: none;
+  }
+  .welcome-container {
+    align-items: center;
+  }
+  .welcome-description {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .welcome-slider {
+    top: 264px;
+    right: 246px;
+  }
+  .welcome-img {
+    width: 728px;
+    height: 546px;
+  }
+  .slider-control {
+    top: 550px;
+    height: 91px;
+    left: 261px;
+  }
 }
+
 @media (max-width: 420px) {
   .container {
     width: 380px;
