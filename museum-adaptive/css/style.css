@@ -82,7 +82,6 @@ a {
 .container {
   margin: 0 auto;
   max-width: 1440px;
-  /*  */
 }
 .header {
   height: 150px;
@@ -348,7 +347,6 @@ span {
   flex-direction: column;
   gap: 25px;
   min-width: 660px;
-  /* margin-right: 60px; */
 }
 .explore-divider {
   margin-top: 12px;
@@ -1146,7 +1144,7 @@ span {
 }
 .video-slider-dot {
   width: 12px;
-  height: 12x;
+  height: 12px;
   background-image: url("../assets/icons/Ellipse.svg");
   background-repeat: no-repeat;
   max-height: 100%;
