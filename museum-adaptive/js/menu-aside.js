@@ -6,14 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
     menuBlock = menu.querySelector(".menu-block");
 
   hamburger.addEventListener("click", () => {
-    menu.classList.add("active");
-    welcome.classList.add("invisible");
+    hamburger.classList.toggle("hamburger_active");
+    menu.classList.toggle("active");
+    welcome.classList.toggle("invisible");
   });
 
   setTimeout(
     menuBlock.addEventListener("click", () => {
-      menu.classList.remove("active");
-      welcome.classList.remove("invisible");
+      hamburger.classList.toggle("hamburger_active");
+      menu.classList.toggle("active");
+      welcome.classList.toggle("invisible");
     }),
     500
   );
