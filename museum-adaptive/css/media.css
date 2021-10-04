@@ -475,7 +475,7 @@
   /* video */
   .video-section {
     padding-top: 40px;
-    min-height: 742px;
+    min-height: 741px;
   }
   .player-wrapper {
     margin-left: 6px;
@@ -513,6 +513,29 @@
     padding-top: 20px;
     padding-left: 23px;
     max-width: 190px;
+  }
+  /* gallery */
+  .gallery-section {
+    padding-top: 39px;
+  }
+  .picture-container {
+    margin-top: 17px;
+    max-height: 1075px;
+  }
+  .picture-inner-container {
+    columns: 2 352px;
+    column-gap: 24px;
+  }
+  .picture-inner-container img {
+    object-fit: contain;
+  }
+  .gradient {
+    height: 235px;
+    top: 984px;
+  }
+  /* tickets */
+  .section-tickets {
+    padding-top: 40px;
   }
 }
 
