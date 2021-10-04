@@ -213,7 +213,7 @@
     height: 60px;
     width: 100%;
     z-index: 2;
-    top: 445px;
+    top: 327px;
   }
   .volume-icon {
     width: 26px;
@@ -581,8 +581,71 @@
   .plus {
     margin-right: 14px;
   }
-  .parallax {
+  .parallax-img {
     height: 300px;
+  }
+  /* contacts */
+  .section-contacts {
+    padding-top: 40px;
+    padding-bottom: 67px;
+    margin-left: 15px;
+  }
+  #contacts::after {
+    bottom: -23px;
+  }
+  .contacts-wrapper {
+    margin-top: 63px;
+    flex-direction: column;
+  }
+  .contacts-wrapper iframe {
+    width: 728px;
+    height: 476px;
+  }
+  .contacts-wrapper a,
+  .contacts-wrapper p {
+    font-size: 18px;
+    line-height: 35px;
+    margin-top: 35px;
+  }
+  .contacts-description {
+    max-width: 240px;
+  }
+  .contacts-header {
+    margin-bottom: 35px;
+    font-size: 20px;
+    line-height: 23px;
+  }
+  /* footer */
+  .footer-container {
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    margin-top: 2px;
+    margin-left: 10px;
+    margin-right: 100px;
+  }
+  .menu-item {
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 2px;
+  }
+  .footer-navbar {
+    max-height: 110px;
+    min-width: 354px;
+  }
+  .footer-menu {
+    column-gap: 170px;
+    row-gap: 11px;
+  }
+  .footer-social {
+    padding-left: 303px;
+    padding-top: 47px;
+  }
+  .footer-divider {
+    margin-top: 37px;
+  }
+  .footer-underline {
+    padding: 39px 0 39px 0;
   }
 }
 
