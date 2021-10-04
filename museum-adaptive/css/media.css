@@ -448,11 +448,29 @@
   }
   .header-tour:after {
     bottom: -13px;
-}
-.description-tour{
-  margin-top: 20px;
-  font-size: 18px;
-line-height: 30px;
+  }
+  .description-tour {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  /* explore */
+  .explore {
+    padding-top: 39px;
+    min-height: 857px;
+    padding-bottom: 12px;
+  }
+  .explore-divider {
+    margin-top: -5px;
+  }
+  .explore-description {
+    display: none;
+  }
+  .explore-slider {
+    margin-top: 45px;
+    left: 6px;
+  }
 }
 
 @media (max-width: 420px) {
