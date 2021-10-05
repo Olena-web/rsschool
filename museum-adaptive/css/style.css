@@ -753,12 +753,10 @@ span {
 }
 
 .map-responsive {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 56.25%;
-
-  height: auto;
-  max-width: 100%;
+  display: flex;
+  flex: 0 1 66.7%;
+  position: relative;
+  height: 620px;
   margin: 0 auto;
 }
 .map-responsive iframe {
@@ -767,6 +765,7 @@ span {
   left: 0;
   width: 100% !important;
   height: 100% !important;
+  object-fit: cover;
 }
 .modal {
   position: fixed;
