@@ -8,6 +8,7 @@
     <title>museum</title>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet preconnect" href="css/slick.css" />
     <link rel="stylesheet" href="css/media.css" />
     <link rel="icon" href="favicon.ico" />
   </head>
@@ -64,6 +65,7 @@
               >Discover the Louvre</a
             >
           </div>
+         <div class="slider-container">
           <div class="welcome-slider">
             <div class="welcome-img">
               <img
@@ -71,27 +73,34 @@
                 src="assets/img/background.webp"
                 alt="monalisa"
               />
-              <img
-                src="assets/img/welcome-slider/2.jpg"
-                alt="slider image"
-                class="slider__item"
-              />
-              <img
-                src="assets/img/welcome-slider/3.jpg"
-                alt="slider image"
-                class="slider__item"
-              />
-              <img
-                src="assets/img/welcome-slider/4.jpg"
-                alt="slider image"
-                class="slider__item"
-              />
-              <img
-                src="assets/img/welcome-slider/5.jpg"
-                alt="slider image"
-                class="slider__item"
-              />
             </div>
+            
+            <div class="welcome-img"> <img
+              src="assets/img/welcome-slider/2.jpg"
+              alt="slider image"
+              class="slider__item"
+            /></div>
+            <div class="welcome-img"> <img
+              src="assets/img/welcome-slider/3.jpg"
+              alt="slider image"
+              class="slider__item"
+            /></div>
+            <div class="welcome-img"> <img
+              src="assets/img/welcome-slider/4.jpg"
+              alt="slider image"
+              class="slider__item"
+            /></div>
+            <div class="welcome-img"> <img
+              src="assets/img/welcome-slider/5.jpg"
+              alt="slider image"
+              class="slider__item"
+            /></div>
+             
+             
+             
+             
+            </div>
+         </div>
             <div class="slider-control">
               <div class="control-current">
                 <span class="current">01</span>
@@ -99,7 +108,7 @@
                 <span class="total">05</span>
               </div>
               <div class="control-dots">
-                <span class="control-dot control-dot-active"></span>
+                <span class="control-dot control-dot-active slick-active"></span>
                 <span class="control-dot"></span>
                 <span class="control-dot"></span>
                 <span class="control-dot"></span>
@@ -1294,6 +1303,16 @@
     <script src="js/modal.js"></script>
     <script src="js/explore.js"></script>
     <script src="js/menu-aside.js"></script>
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-1.11.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
+    ></script>
+    <script src="js/slick.js"></script>
+    <script src="js/slider.js"></script>
     <script src="js/index.js"></script>
   </body>
 </html>
