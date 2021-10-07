@@ -404,7 +404,7 @@ span {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 36px;
+  gap: 32px;
   width: 100%;
   justify-content: center;
 }
@@ -1143,7 +1143,7 @@ ul.slick-dots {
   display: flex;
   gap: 20px;
 }
-.video-dotts-wrapper {
+.video-dots-wrapper {
   display: flex;
   gap: 20px;
 }
@@ -1157,32 +1157,15 @@ ul.slick-dots {
 .video-slider-dot:hover {
   background-color: var(--bg-dark-color);
 }
+.video-slider-dot.active {
+  background-color: var(--bg-dark-color);
+}
 
 .video-btn-slider {
   border: none;
-  background-color: #ffffff;
+  background-color: transparent;
 }
-.video-btn-slider:hover {
-  fill: #9d8665;
-}
-#video-btn-prev {
-  background-image: url("../assets/icons/prev-arrow.svg");
-  width: 12px;
-  height: 12px;
-  background-repeat: no-repeat;
-}
-#video-btn-prev:hover {
-  background-image: url("../assets/icons/prev-arrow.svg");
-}
-#video-btn-next {
-  background-image: url("../assets/icons/next-arrow.svg");
-  width: 12px;
-  height: 12px;
-  background-repeat: no-repeat;
-}
-#video-btn-next:hover {
-  background-image: url("../assets/icons/next-arrow.svg");
-}
-.video-dot-active {
-  background-image: url("../assets/icons/Ellipse-active.svg");
+
+.video-btn-slider:hover svg path {
+  fill: var(--bg-dark-color);
 }

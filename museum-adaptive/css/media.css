@@ -245,7 +245,7 @@
   }
   .video-main iframe {
     width: 100%;
-    height: 100%;
+    height: 481px;
   }
   .video-player {
     position: absolute;
@@ -278,7 +278,7 @@
   }
   .video-slider {
     margin-top: 41px;
-    margin-left: 7px;
+    margin-left: 0px;
   }
   .video-slider iframe {
     width: 300px;
@@ -555,7 +555,7 @@
   }
   .video-slider {
     margin-top: 15px;
-    margin-left: 9px;
+    margin-left: 1px;
     padding-top: 4px;
     gap: 20px;
     flex-wrap: nowrap;
