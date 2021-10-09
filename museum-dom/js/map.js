@@ -1,10 +1,12 @@
 mapboxgl.accessToken = accessToken;
 let map = new mapboxgl.Map({
   container: "map",
-  style: "mapbox://styles/mapbox/light-v9",
-  zoom: 15.75,
-  center: [2.3364, 48.86091],
-  pitch: 45,
+  style: "mapbox://styles/olena-web/ckujs94wx0u7417nsl6ptbs1f",
+  // "mapbox://styles/mapbox/light-v9",
+
+  zoom: 15.8,
+  center: [2.3363864421844482, 48.86086808631856],
+  pitch: 47,
   bearing: 17.6,
 });
 let nav = new mapboxgl.NavigationControl({
@@ -18,49 +20,62 @@ const points = {
   features: [
     {
       type: "Feature",
-      properties: {
-        icon: "monument",
-        title: "",
-      },
+
       geometry: {
         type: "Point",
-        coordinates: [2.3363596200942993, 48.86086808631856],
+        coordinates: [2.3363864421844482, 48.86086808631856],
       },
+      marker: new mapboxgl.Marker({ color: "#1a1a1a" })
+        .setLngLat([2.3363864421844482, 48.86086808631856])
+        .addTo(map),
     },
     {
       type: "Feature",
-      properties: { icon: "monument", title: "" },
+
       geometry: {
         type: "Point",
-        coordinates: [2.3329210281372066, 48.861665678191514],
+        coordinates: [2.333275079727173, 48.86014812521784],
       },
+      marker: new mapboxgl.Marker({ color: "#606060" })
+        .setLngLat([2.333275079727173, 48.86014812521784])
+        .addTo(map),
     },
     {
       type: "Feature",
-      properties: { icon: "monument", title: "" },
+
       geometry: {
         type: "Point",
-        coordinates: [2.333317995071411, 48.860091657242556],
+        coordinates: [2.3397016525268555, 48.860656334128684],
       },
+      marker: new mapboxgl.Marker({ color: "#606060" })
+        .setLngLat([2.3397016525268555, 48.860656334128684])
+        .addTo(map),
     },
     {
       type: "Feature",
-      properties: { icon: "monument", title: "" },
+
       geometry: {
         type: "Point",
-        coordinates: [2.3395943641662598, 48.86069162622254],
+        coordinates: [2.336472272872925, 48.86242796650965],
       },
+      marker: new mapboxgl.Marker({ color: "#606060" })
+        .setLngLat([2.336472272872925, 48.86242796650965])
+        .addTo(map),
     },
     {
       type: "Feature",
-      properties: { icon: "monument", title: "" },
+
       geometry: {
         type: "Point",
-        coordinates: [2.3364078998565674, 48.86244914101941],
+        coordinates: [2.333017587661743, 48.86187742611116],
       },
+      marker: new mapboxgl.Marker({ color: "#606060" })
+        .setLngLat([2.333017587661743, 48.86187742611116])
+        .addTo(map),
     },
   ],
 };
+
 map.on("load", function () {
   map.addLayer({
     id: "points",
@@ -68,13 +83,6 @@ map.on("load", function () {
     source: {
       type: "geojson",
       data: points,
-    },
-    layout: {
-      "icon-image": "{icon}-15",
-      "text-field": "{title}",
-      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-      "text-offset": [0, 0.6],
-      "text-anchor": "top",
     },
   });
 });

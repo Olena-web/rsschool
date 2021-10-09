@@ -70,7 +70,7 @@ a {
   padding-bottom: 157px;
 }
 .explore {
-  padding-bottom: 134px;
+  padding-bottom: 129px;
 }
 .video-section {
   padding-top: 76px;
@@ -91,8 +91,6 @@ a {
 .navbar {
   padding-top: 41px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
 }
 .hamburger {
   display: none;
@@ -143,8 +141,8 @@ a {
 }
 
 .logo {
-  margin-top: 12px;
-  margin-right: 468px;
+  margin-top: 9px;
+  margin-right: 479px;
 }
 .logo:hover {
   filter: opacity(50%);
@@ -211,6 +209,20 @@ a {
 }
 #visiting {
   line-height: 82px;
+  left: 8px;
+}
+#explore {
+  left: 8px;
+  position: relative;
+}
+#explore::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  height: 3px;
+  left: 0;
+  width: 100%;
+  background-color: var(--dark-red--color);
 }
 .underline-title {
   position: relative;
@@ -244,8 +256,8 @@ a {
   position: relative;
 }
 .welcome-container {
-  margin-top: 80px;
-  margin-left: 232px;
+  margin-top: 75px;
+  margin-left: 239px;
   display: flex;
   flex-direction: column;
 }
@@ -333,11 +345,13 @@ a {
   flex-direction: row;
 }
 .explore-description {
+  margin-right: 68px;
+  padding-left: 9px;
   display: flex;
   flex-direction: column;
   gap: 25px;
   margin-top: 53px;
-  max-width: 660px;
+  max-width: 654px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
@@ -354,15 +368,9 @@ span {
   gap: 25px;
   min-width: 660px;
 }
-.explore-divider {
-  margin-top: 12px;
-  width: 660px;
-  height: 3px;
-  background: var(--dark-red--color);
-  border-radius: 0px;
-}
+
 .explore-slider {
-  margin-top: 15px;
+  margin-top: 12px;
   position: relative;
   max-width: 720px;
   max-height: 700px;
@@ -1042,6 +1050,7 @@ span {
     rgba(0, 0, 0, 0.5) 16.19%,
     rgba(0, 0, 0, 0) 30.73%
   );
+  pointer-events: none;
 }
 
 .slider-control {
@@ -1050,8 +1059,7 @@ span {
   background-color: var(--bg-dark-color);
   position: absolute;
   top: 690px;
-  right: 0;
-
+  right: 224px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -1114,12 +1122,13 @@ span {
 }
 
 ul.slick-dots {
-  margin-left: 14px;
+  margin-left: 6px;
   display: flex;
   flex-direction: row;
   width: 180px;
-  margin-right: 35px;
+  margin-right: 30px;
   justify-content: space-around;
+  gap: 21px;
 }
 .slick-dots li button {
   display: block;

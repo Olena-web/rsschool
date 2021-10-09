@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.classList.toggle("active");
     welcome.classList.toggle("invisible");
     if (window.matchMedia("(max-width:420px)")) {
-      sliderControl.classList.add("hide");
+      sliderControl.classList.toggle("hide");
     }
   });
 
@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
       hamburger.classList.toggle("hamburger_active");
       menu.classList.toggle("active");
       welcome.classList.toggle("invisible");
+      if (window.matchMedia("(max-width:420px)")) {
+        sliderControl.classList.toggle("hide");
+      }
     }),
     500
   );
