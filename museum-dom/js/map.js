@@ -1,8 +1,7 @@
 mapboxgl.accessToken = accessToken;
 let map = new mapboxgl.Map({
   container: "map",
-  style: "mapbox://styles/olena-web/ckujs94wx0u7417nsl6ptbs1f",
-  // "mapbox://styles/mapbox/light-v9",
+  style: "mapbox://styles/mapbox/light-v9",
 
   zoom: 15.8,
   center: [2.3363864421844482, 48.86086808631856],
