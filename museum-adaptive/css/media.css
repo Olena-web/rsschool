@@ -95,26 +95,34 @@
     margin-top: 22px;
     font-size: 24px;
   }
-  .welcome-slider {
+  .slider-container {
+    margin: 0 auto;
+    margin-right: 0;
     position: absolute;
-    top: 0px;
     width: 700px;
-    grid-template: 525px;
+    height: auto;
+    right: 10px;
+    top: 0px;
+    z-index: 2;
   }
+
   .slider__item-active {
     width: 100%;
     height: 100%;
   }
+  .slick-slider img {
+    width: 100%;
+  }
 
   .slider-control {
     top: 465px;
-    left: 320px;
+    left: 408px;
   }
-  .control-dots {
+  .ul.slick-dots {
     margin-left: 20px;
     justify-content: space-around;
   }
-  .control-dot {
+  .slick-dots li button {
     width: 12px;
     height: 12px;
   }
@@ -240,7 +248,7 @@
   }
   .video-main iframe {
     width: 100%;
-    height: 100%;
+    height: 481px;
   }
   .video-player {
     position: absolute;
@@ -273,7 +281,7 @@
   }
   .video-slider {
     margin-top: 41px;
-    margin-left: 7px;
+    margin-left: 0px;
   }
   .video-slider iframe {
     width: 300px;
@@ -460,18 +468,18 @@
     font-size: 20px;
     margin-top: 20px;
   }
-  .welcome-slider {
+  .slider-container {
     top: 264px;
-    right: 246px;
+    right: 10px;
   }
   .welcome-img {
     width: 728px;
     height: 546px;
   }
   .slider-control {
-    top: 550px;
+    top: 815px;
     height: 91px;
-    left: 259px;
+    left: 63px;
   }
 
   /* virtual */
@@ -550,7 +558,7 @@
   }
   .video-slider {
     margin-top: 15px;
-    margin-left: 9px;
+    margin-left: 1px;
     padding-top: 4px;
     gap: 20px;
     flex-wrap: nowrap;
@@ -703,7 +711,7 @@
   }
   .menu-aside {
     position: absolute;
-    top: 10px;
+    top: 70px;
 
     height: 971px;
     width: 751px;
@@ -835,11 +843,12 @@
     line-height: 19px;
     letter-spacing: 2px;
   }
-  .welcome-slider {
+
+  .slider-container {
     height: 285px;
     width: 380px;
     top: 222px;
-    right: 222px;
+    right: 0px;
   }
   .welcome-img {
     width: 380px;
@@ -848,22 +857,26 @@
   .slider-control {
     width: 230px;
     height: 40px;
-    top: 300px;
-    left: 365px;
+    top: 523px;
+    left: 165px;
   }
-  .control-dots {
+  ul.slick-dots {
     width: 75px;
     height: 7px;
-    gap: 11px;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+    margin-right: 25px;
+    margin-left: 5px;
   }
   .control-arrows {
-    gap: 14px;
+    gap: 5px;
     margin-right: 139px;
     margin-top: 8px;
   }
-  .prev,
-  .next {
-    width: 20px;
+  .prev svg,
+  .next svg {
+    width: 22px;
   }
   .current,
   .total {
@@ -877,10 +890,8 @@
     margin-left: -14px;
     height: 14px;
   }
-  .control-dots {
-    margin-top: 8px;
-  }
-  .control-dot {
+
+  .slick-dots li button {
     width: 7px;
     height: 7px;
   }
@@ -1069,15 +1080,17 @@
     font-size: 15px;
   }
   .menu-aside {
-    top: 0px;
+    top: 54px;
     width: 415px;
     height: 634px;
     transition: 1s;
-    transform: translateX(-100%);
   }
   .menu-block {
-    padding-left: 15px;
+    padding-left: 0px;
     width: 97%;
+  }
+  .menu-block ul {
+    padding-top: 19px;
   }
   .menu-item.aside {
     font-size: 18px;
@@ -1088,18 +1101,19 @@
     height: 95px;
   }
   .menu-aside-img-wrapper {
-    margin-left: 20px;
-    margin-top: 24px;
+    margin-left: 7px;
+    margin-top: 21px;
+    gap: 13px;
   }
   .menu-aside-img-wrapper::after {
     width: 318px;
     bottom: -21px;
   }
   .aside-social {
-    margin-left: 96px;
+    margin-left: 79px;
     margin-top: 39px;
     padding-bottom: 24px;
-    gap: 2px;
+    gap: 3px;
   }
   .aside-social li {
     margin-right: 0;
