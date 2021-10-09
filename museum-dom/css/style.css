@@ -70,7 +70,7 @@ a {
   padding-bottom: 157px;
 }
 .explore {
-  padding-bottom: 129px;
+  padding-bottom: 75px;
 }
 .video-section {
   padding-top: 76px;
@@ -351,7 +351,7 @@ a {
   flex-direction: column;
   gap: 25px;
   margin-top: 53px;
-  max-width: 654px;
+  max-width: 660px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 300;
@@ -374,22 +374,23 @@ span {
   position: relative;
   max-width: 720px;
   max-height: 700px;
-}
-.img-comp-img,
-.img-comp-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
 }
 .img-comp-img {
-  z-index: 1;
-}
-.img-comp-overlay {
-  width: 100%;
+  position: absolute;
+  overflow: hidden;
   z-index: 2;
+}
+
+.img-comp-overlay {
+  width: 97%;
+  object-fit: cover;
 }
 .img-comp-slider {
   position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
   z-index: 9;
   cursor: ew-resize;
 }
