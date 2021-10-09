@@ -110,6 +110,9 @@
     width: 100%;
     height: 100%;
   }
+  .slick-slider img {
+    width: 100%;
+  }
 
   .slider-control {
     top: 465px;
@@ -867,13 +870,13 @@
     margin-left: 5px;
   }
   .control-arrows {
-    gap: 14px;
+    gap: 5px;
     margin-right: 139px;
     margin-top: 8px;
   }
-  .prev,
-  .next {
-    width: 20px;
+  .prev svg,
+  .next svg {
+    width: 22px;
   }
   .current,
   .total {
@@ -1077,15 +1080,17 @@
     font-size: 15px;
   }
   .menu-aside {
-    top: 0px;
+    top: 54px;
     width: 415px;
     height: 634px;
     transition: 1s;
-    transform: translateX(-100%);
   }
   .menu-block {
-    padding-left: 15px;
+    padding-left: 0px;
     width: 97%;
+  }
+  .menu-block ul {
+    padding-top: 19px;
   }
   .menu-item.aside {
     font-size: 18px;
@@ -1096,18 +1101,19 @@
     height: 95px;
   }
   .menu-aside-img-wrapper {
-    margin-left: 20px;
-    margin-top: 24px;
+    margin-left: 7px;
+    margin-top: 21px;
+    gap: 13px;
   }
   .menu-aside-img-wrapper::after {
     width: 318px;
     bottom: -21px;
   }
   .aside-social {
-    margin-left: 96px;
+    margin-left: 79px;
     margin-top: 39px;
     padding-bottom: 24px;
-    gap: 2px;
+    gap: 3px;
   }
   .aside-social li {
     margin-right: 0;
