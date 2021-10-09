@@ -1183,3 +1183,16 @@ ul.slick-dots {
 .video-btn-slider:hover svg path {
   fill: var(--bg-dark-color);
 }
+.pageup {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
+.pageup img {
+  width: 100%;
+}
