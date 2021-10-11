@@ -480,18 +480,21 @@ span {
 }
 
 .picture-inner-container img {
+  display: block;
   margin-top: 25px;
   width: 100%;
   height: 100%;
-  object-fit: none;
 }
+
 .picture-inner-container {
   columns: 3 456px;
   column-gap: 36px;
+  overflow-y: hidden;
 }
 .picture-inner-container div {
   display: inline-block;
   text-align: center;
+  overflow: hidden;
 }
 .gallery-section {
   position: relative;
@@ -504,6 +507,7 @@ span {
   height: 360px;
   right: 0;
   top: 1814px;
+  pointer-events: none;
   background: linear-gradient(
     to top,
     #000000 0%,
@@ -875,14 +879,18 @@ span {
 }
 .fade {
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 6.5s;
 }
 @keyframes fade {
   from {
-    opacity: 0.1;
+    opacity: 0;
+    transform: scale(0.5);
+    margin-top: 120px;
   }
   to {
     opacity: 1;
+    transform: scale(1);
+    margin-top: 0px;
   }
 }
 .payment {
@@ -1042,7 +1050,7 @@ span {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  left: -2px;
   width: 40%;
   height: 100%;
   background: linear-gradient(
@@ -1182,4 +1190,16 @@ ul.slick-dots {
 
 .video-btn-slider:hover svg path {
   fill: var(--bg-dark-color);
+}
+.pageup {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+a.pageup:hover svg path {
+  fill: var(--gold-color);
 }
