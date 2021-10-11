@@ -27,11 +27,13 @@ function shuffle(array) {
   }
 }
 shuffle(images);
+
 function createGallery(container, images) {
   let i = 0,
     L = images.length,
     docFrag = document.createDocumentFragment(),
     img;
+
   if (L) {
     for (
       docFrag.appendChild((img = document.createElement("img"))).src =
@@ -39,7 +41,10 @@ function createGallery(container, images) {
       ++i < L;
       docFrag.appendChild(img.cloneNode(false)).src = images[i]
     );
-    container.appendChild(docFrag);
+
+    setTimeout(() => {
+      container.appendChild(docFrag);
+    }, 400);
   }
 }
 
