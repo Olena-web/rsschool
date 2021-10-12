@@ -1,4 +1,12 @@
 //animation-gallery
+const windowOnloadAdd = function (event) {
+  if (window.onload) {
+    window.onload = window.onload + event;
+  } else {
+    window.onload = event;
+  }
+};
+windowOnloadAdd(function () {
 const animItems = pictureInnerContainer.querySelectorAll("img");
 if (animItems.length > 0) {
   window.addEventListener("scroll", animOnScroll);
@@ -34,3 +42,4 @@ if (animItems.length > 0) {
 
   animOnScroll();
 }
+});
