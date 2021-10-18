@@ -11,6 +11,12 @@ const weatherDescription = document.querySelector(".weather-description");
 const city = document.querySelector(".city");
 const nameEl = document.querySelector(".name");
 const greeting = document.querySelector(".greeting");
+const quote = document.querySelector(".quote");
+const author = document.querySelector(".author");
+const body = document.querySelector("body");
+const changeQuote = document.querySelector(".change-quote");
+body.style.backgroundImage =
+  "url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/evening/18.jpg')";
 
 const options = {
   month: "long",
@@ -38,6 +44,7 @@ function showTime() {
 
   function showTime() {
     dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
+    showGreeting();
   }
   setTimeout(showTime, 1000);
 }
@@ -78,14 +85,6 @@ city.addEventListener("change", () => {
   }
 });
 
-function setBg() {
-  const timeOfDay = getTimeOfDay();
-  let bgNum = getRandomNum(1, 20).toString();
-  bgNum = bgNum.padStart(2, "0");
-  body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
-  randomSlideNum = (randomSlideNum - 1) % 20;
-}
-
 // local storage and name
 function setLocalStorage() {
   localStorage.setItem("name", nameEl.value);
@@ -99,7 +98,7 @@ function getLocalStorage() {
 window.addEventListener("load", getLocalStorage);
 //greeting
 const hours = date.getHours();
-console.log(hours);
+
 function getTimeOfDay() {
   let message = "";
   if (hours < 6) {
@@ -113,7 +112,32 @@ function getTimeOfDay() {
   }
   return message;
 }
+function showGreeting() {
+  const timeOfDay = getTimeOfDay();
+  const greetingText = `Good ${timeOfDay}, `;
+  greeting.innerHTML = greetingText;
+}
 
-const timeOfDay = getTimeOfDay();
-const greetingText = `Good ${timeOfDay}, `;
-greeting.innerHTML = greetingText;
+// picture from unsplash
+async function getLinkToImage() {
+  const url =
+    "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(data);
+}
+getLinkToImage();
+
+//quotes
+
+window.addEventListener("load", getQuotes);
+changeQuote.addEventListener("click", getQuotes);
+async function getQuotes() {
+  const quotes = "data.json";
+  const res = await fetch(quotes);
+  const data = await res.json();
+  let pick = Math.floor(Math.random() * data.length);
+  quote.innerHTML = `${data[pick].text}`;
+  author.innerHTML = `${data[pick].author}`;
+}
+getQuotes();
