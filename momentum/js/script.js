@@ -15,8 +15,13 @@ const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
 const body = document.querySelector("body");
 const changeQuote = document.querySelector(".change-quote");
+const weatherError = document.querySelector(".weather-error");
 body.style.backgroundImage =
-  "url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/evening/18.jpg')";
+  "url('https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/evening/16.jpg')";
+const slidePrev = document.querySelector(".slide-prev");
+const slideNext = document.querySelector(".slide-next");
+let randomNum;
+let bgNum;
 
 const options = {
   month: "long",
@@ -41,12 +46,11 @@ getWeekDay(date);
 const currentDayOfWeek = getWeekDay(date);
 function showTime() {
   time.textContent = currentTime;
-
   function showTime() {
     dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
     showGreeting();
   }
-  setTimeout(showTime, 1000);
+  setTimeout(showTime, 100);
 }
 showTime();
 
@@ -58,19 +62,14 @@ async function getWeather() {
   const res = await fetch(url);
   const data = await res.json();
   weatherIcon.className = "weather-icon owf";
-
-  console.log(
-    data.weather[0].id,
-    data.weather[0].description,
-    data.main.temp,
-    data.main.humidity,
-    data.wind.speed
-  );
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.round(data.main.temp)} °C`;
   weatherDescription.textContent = data.weather[0].description;
   humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
   wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+  if (res.status == 404 || res == undefined) {
+    weatherError.textContent = "Error";
+  }
 }
 getWeather();
 
@@ -80,8 +79,12 @@ city.addEventListener("change", () => {
   localStorage.setItem("Location", city.value);
   city.textContent = city.value;
   getWeather();
-  if (city.value == "" || city.value.validity.badInput) {
+  if (
+    localStorage.getItem("Location") == null ||
+    localStorage.getItem("Location") == ""
+  ) {
     city.value = "Minsk";
+    getWeather();
   }
 });
 
@@ -124,9 +127,41 @@ async function getLinkToImage() {
     "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
 }
 getLinkToImage();
+
+function getRandomNum(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomNum;
+}
+getRandomNum();
+const timeOfDay = getTimeOfDay();
+
+function setBg() {
+  let bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
+  body.style.backgroundImage = `url('https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
+}
+setBg();
+
+const getSlideNext = (number) => {
+  setBg(++number > 20 ? (randomNum = 1) : number);
+  slideNext.disabled = true;
+  setTimeout(function () {
+    slideNext.disabled = false;
+  }, 1000);
+};
+const getSlidePrev = (number) => {
+  setBg(--number < 1 ? (randomNum = 20) : number);
+};
+slidePrev.disabled = true;
+setTimeout(function () {
+  slidePrev.disabled = false;
+}, 1000);
+
+slideNext.onclick = () => getSlideNext(randomNum++);
+slidePrev.onclick = () => getSlidePrev(randomNum--);
 
 //quotes
 
