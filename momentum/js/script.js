@@ -1,8 +1,8 @@
 "use strict";
 const time = document.querySelector(".time");
 const dayOfWeek = document.querySelector(".date");
-const date = new Date();
-const currentTime = date.toLocaleTimeString();
+let date;
+
 const weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
 const wind = document.querySelector(".wind");
@@ -21,15 +21,15 @@ body.style.backgroundImage =
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
-let bgNum;
 
 const options = {
   month: "long",
   day: "numeric",
 };
-const currentDate = date.toLocaleDateString("en-US", options);
+// const currentDate = date.toLocaleDateString("en-US", options);
 
 function getWeekDay(date) {
+  date = new Date();
   let days = [
     "Sunday",
     "Monday",
@@ -43,16 +43,36 @@ function getWeekDay(date) {
   return days[date.getDay()];
 }
 getWeekDay(date);
-const currentDayOfWeek = getWeekDay(date);
 function showTime() {
-  time.textContent = currentTime;
-  function showTime() {
-    dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
-    showGreeting();
-  }
-  setTimeout(showTime, 100);
+  date = new Date();
+  let currentDate = date.toLocaleDateString("en-US", options);
+  let currentDayOfWeek = getWeekDay(date);
+  const currentTime = date.toLocaleTimeString();
+  time.innerHTML = currentTime;
+  dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
+  setTimeout(showTime, 1000);
 }
+
 showTime();
+
+// function showTime() {// second option
+//   date = new Date();
+//   let h = date.getHours();
+//   let m = date.getMinutes();
+//   let s = date.getSeconds();
+
+//   h = h < 10 ? "0" + h : h;
+//   m = m < 10 ? "0" + m : m;
+//   s = s < 10 ? "0" + s : s;
+
+//   let timeNow = h + ":" + m + ":" + s;
+
+//   time.textContent = timeNow;
+
+//   setTimeout(showTime, 1000);
+// }
+
+// showTime();
 
 city.value = localStorage.getItem("Location");
 
@@ -100,16 +120,17 @@ function getLocalStorage() {
 }
 window.addEventListener("load", getLocalStorage);
 //greeting
-const hours = date.getHours();
 
 function getTimeOfDay() {
+  date = new Date();
+  let hours = date.getHours();
   let message = "";
   if (hours < 6) {
     message = "night";
   } else if (hours < 12) {
     message = "morning";
   } else if (hours < 18) {
-    message = "day";
+    message = "afternoon";
   } else {
     message = "evening";
   }
@@ -120,7 +141,7 @@ function showGreeting() {
   const greetingText = `Good ${timeOfDay}, `;
   greeting.innerHTML = greetingText;
 }
-
+showGreeting();
 // picture from unsplash
 async function getLinkToImage() {
   const url =
