@@ -21,6 +21,7 @@ body.style.backgroundImage =
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
+let bgNum;
 
 const options = {
   month: "long",
@@ -158,38 +159,48 @@ function getRandomNum(min, max) {
   return randomNum;
 }
 getRandomNum();
+
 const timeOfDay = getTimeOfDay();
 
 function setBg() {
-  let bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
-  body.style.backgroundImage = `url('https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
+  const img = new Image();
+  bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
+  img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  img.addEventListener("load", () => {
+    body.style.backgroundImage = `url(${img.src})`;
+  });
 }
 setBg();
 
-const getSlideNext = (number) => {
-  setBg(++number > 20 ? (randomNum = 1) : number);
+function getSlideNext() {
+  randomNum++;
+  ++randomNum == 20 ? (randomNum = 1) : randomNum;
+  setBg(randomNum);
   slideNext.disabled = true;
   setTimeout(function () {
     slideNext.disabled = false;
   }, 1000);
-};
-const getSlidePrev = (number) => {
-  setBg(--number < 1 ? (randomNum = 20) : number);
-};
-slidePrev.disabled = true;
-setTimeout(function () {
-  slidePrev.disabled = false;
-}, 1000);
+}
+function getSlidePrev() {
+  --randomNum;
+  --randomNum == 1 ? (randomNum = 20) : randomNum;
+  setBg(randomNum);
 
-slideNext.onclick = () => getSlideNext(randomNum++);
-slidePrev.onclick = () => getSlidePrev(randomNum--);
+  slidePrev.disabled = true;
+  setTimeout(function () {
+    slidePrev.disabled = false;
+  }, 1000);
+}
+
+slideNext.addEventListener("click", getSlideNext);
+slidePrev.addEventListener("click", getSlidePrev);
 
 //quotes
 
 window.addEventListener("load", getQuotes);
 changeQuote.addEventListener("click", getQuotes);
 async function getQuotes() {
-  const quotes = "data.json";
+  let quotes = "data_en.json";
   const res = await fetch(quotes);
   const data = await res.json();
   let pick = Math.floor(Math.random() * data.length);
