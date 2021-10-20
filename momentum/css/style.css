@@ -20,7 +20,11 @@ body {
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
 }
-
+.fromApi {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .header {
   display: flex;
   justify-content: space-between;

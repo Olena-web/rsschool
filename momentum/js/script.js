@@ -145,15 +145,15 @@ function showGreeting() {
 showGreeting();
 // picture from unsplash
 window.addEventListener("load", getLinkToImage);
-slideNext.addEventListener("click", getLinkToImage);
-slidePrev.addEventListener("click", getLinkToImage);
+
 async function getLinkToImage() {
   const url =
     "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
   const res = await fetch(url);
   const data = await res.json();
   console.log(data.urls.regular);
-  body.style.backgroundImage = `url(${data.urls.regular})`;
+  body.style.backgroundImage = `url(${data.urls.regular}) `;
+  body.classList.add("fromApi");
 }
 getLinkToImage();
 
@@ -201,6 +201,8 @@ function getSlidePrev() {
 
 slideNext.addEventListener("click", getSlideNext);
 slidePrev.addEventListener("click", getSlidePrev);
+slideNext.addEventListener("click", getLinkToImage);
+slidePrev.addEventListener("click", getLinkToImage);
 
 //quotes
 
