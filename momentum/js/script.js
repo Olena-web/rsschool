@@ -88,7 +88,7 @@ async function getWeather() {
   weatherDescription.textContent = data.weather[0].description;
   humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
   wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
-  if (res.status == 404 || res == undefined) {
+  if (res.status == 404) {
     weatherError.textContent = "Error";
   }
 }
@@ -143,19 +143,34 @@ function showGreeting() {
   greeting.innerHTML = greetingText;
 }
 showGreeting();
-// picture from unsplash
-window.addEventListener("load", getLinkToImage);
 
-async function getLinkToImage() {
+//picture from unsplash
+window.addEventListener("load", getLinkToUnsplash);
+async function getLinkToUnsplash() {
   const url =
     "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data.urls.regular);
+
   body.style.backgroundImage = `url(${data.urls.regular}) `;
   body.classList.add("fromApi");
 }
-getLinkToImage();
+getLinkToUnsplash();
+
+//picture from flickr
+
+//window.addEventListener("load", getLinkToFlickr);
+async function getLinkToFlickr() {
+  const url =
+    "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=967601ec97e7827f2af51bc844b8eaca&tags=nature&extras=url_l&format=json&nojsoncallback=1";
+  const res = await fetch(url);
+  const data = await res.json();
+  let pick = Math.floor(Math.random() * data.photos.photo.length);
+
+  body.style.backgroundImage = `url(${data.photos.photo[pick].url_l}) `;
+  body.classList.add("fromApi");
+}
+//getLinkToFlickr();
 
 //picture from github
 
@@ -169,15 +184,15 @@ getRandomNum();
 
 const timeOfDay = getTimeOfDay();
 
-// function setBg() {
-//   const img = new Image();
-//   bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
-//   img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
-//   img.addEventListener("load", () => {
-//     body.style.backgroundImage = `url(${img.src})`;
-//   });
-// }
-// setBg();
+function setBg() {
+  const img = new Image();
+  bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
+  img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  img.addEventListener("load", () => {
+    body.style.backgroundImage = `url(${img.src})`;
+  });
+}
+//setBg();
 
 function getSlideNext() {
   randomNum++;
@@ -199,10 +214,12 @@ function getSlidePrev() {
   }, 1000);
 }
 
-slideNext.addEventListener("click", getSlideNext);
-slidePrev.addEventListener("click", getSlidePrev);
-slideNext.addEventListener("click", getLinkToImage);
-slidePrev.addEventListener("click", getLinkToImage);
+//slideNext.addEventListener("click", getSlideNext);
+//slidePrev.addEventListener("click", getSlidePrev);
+slideNext.addEventListener("click", getLinkToUnsplash);
+slidePrev.addEventListener("click", getLinkToUnsplash);
+//slideNext.addEventListener("click", getLinkToFlickr);
+//slidePrev.addEventListener("click", getLinkToFlickr);
 
 //quotes
 
