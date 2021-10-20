@@ -144,13 +144,20 @@ function showGreeting() {
 }
 showGreeting();
 // picture from unsplash
+window.addEventListener("load", getLinkToImage);
+slideNext.addEventListener("click", getLinkToImage);
+slidePrev.addEventListener("click", getLinkToImage);
 async function getLinkToImage() {
   const url =
     "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
   const res = await fetch(url);
   const data = await res.json();
+  console.log(data.urls.regular);
+  body.style.backgroundImage = `url(${data.urls.regular})`;
 }
 getLinkToImage();
+
+//picture from github
 
 function getRandomNum(min, max) {
   min = Math.ceil(min);
@@ -162,19 +169,19 @@ getRandomNum();
 
 const timeOfDay = getTimeOfDay();
 
-function setBg() {
-  const img = new Image();
-  bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
-  img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
-  img.addEventListener("load", () => {
-    body.style.backgroundImage = `url(${img.src})`;
-  });
-}
-setBg();
+// function setBg() {
+//   const img = new Image();
+//   bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
+//   img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+//   img.addEventListener("load", () => {
+//     body.style.backgroundImage = `url(${img.src})`;
+//   });
+// }
+// setBg();
 
 function getSlideNext() {
   randomNum++;
-  ++randomNum == 20 ? (randomNum = 1) : randomNum;
+  randomNum == 20 ? (randomNum = 1) : randomNum;
   setBg(randomNum);
   slideNext.disabled = true;
   setTimeout(function () {
@@ -182,8 +189,8 @@ function getSlideNext() {
   }, 1000);
 }
 function getSlidePrev() {
-  --randomNum;
-  --randomNum == 1 ? (randomNum = 20) : randomNum;
+  randomNum--;
+  randomNum == 1 ? (randomNum = 20) : randomNum;
   setBg(randomNum);
 
   slidePrev.disabled = true;
