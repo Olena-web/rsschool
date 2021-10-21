@@ -22,6 +22,8 @@ const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
 let bgNum;
+let isPlay = false;
+let playNum = 0;
 
 const options = {
   month: "long",
@@ -157,7 +159,7 @@ async function getLinkToUnsplash() {
   body.classList.add("fromApi");
 }
 
-getLinkToUnsplash();
+//getLinkToUnsplash();
 
 //picture from flickr
 
@@ -195,7 +197,7 @@ function setBg() {
     body.style.backgroundImage = `url(${img.src})`;
   });
 }
-//setBg();
+setBg();
 
 function getSlideNext() {
   randomNum++;
@@ -215,10 +217,10 @@ slidePrev.disabled = true;
 setTimeout(function () {
   slidePrev.disabled = false;
 }, 1000);
-//slideNext.addEventListener("click", getSlideNext);
-//slidePrev.addEventListener("click", getSlidePrev);
-slideNext.addEventListener("click", getLinkToUnsplash);
-slidePrev.addEventListener("click", getLinkToUnsplash);
+slideNext.addEventListener("click", getSlideNext);
+slidePrev.addEventListener("click", getSlidePrev);
+//slideNext.addEventListener("click", getLinkToUnsplash);
+//slidePrev.addEventListener("click", getLinkToUnsplash);
 //slideNext.addEventListener("click", getLinkToFlickr);
 //slidePrev.addEventListener("click", getLinkToFlickr);
 
