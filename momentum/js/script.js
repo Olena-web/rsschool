@@ -51,6 +51,7 @@ function showTime() {
   const currentTime = date.toLocaleTimeString();
   time.innerHTML = currentTime;
   dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
+  showGreeting();
   setTimeout(showTime, 1000);
 }
 
@@ -155,20 +156,22 @@ async function getLinkToUnsplash() {
   body.style.backgroundImage = `url(${data.urls.regular}) `;
   body.classList.add("fromApi");
 }
+
 getLinkToUnsplash();
 
 //picture from flickr
 
 //window.addEventListener("load", getLinkToFlickr);
 async function getLinkToFlickr() {
-  const url =
-    "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=967601ec97e7827f2af51bc844b8eaca&tags=nature&extras=url_l&format=json&nojsoncallback=1";
   const res = await fetch(url);
   const data = await res.json();
   let pick = Math.floor(Math.random() * data.photos.photo.length);
-
-  body.style.backgroundImage = `url(${data.photos.photo[pick].url_l}) `;
-  body.classList.add("fromApi");
+  const img = new Image();
+  img.src = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=967601ec97e7827f2af51bc844b8eaca&tags=nature&extras=url_l&format=json&nojsoncallback=1`;
+  img.addEventListener("load", () => {
+    body.style.backgroundImage = `url(${data.photos.photo[pick].url_l}) `;
+    body.classList.add("fromApi");
+  });
 }
 //getLinkToFlickr();
 
@@ -207,13 +210,11 @@ function getSlidePrev() {
   randomNum--;
   randomNum == 1 ? (randomNum = 20) : randomNum;
   setBg(randomNum);
-
-  slidePrev.disabled = true;
-  setTimeout(function () {
-    slidePrev.disabled = false;
-  }, 1000);
 }
-
+slidePrev.disabled = true;
+setTimeout(function () {
+  slidePrev.disabled = false;
+}, 1000);
 //slideNext.addEventListener("click", getSlideNext);
 //slidePrev.addEventListener("click", getSlidePrev);
 slideNext.addEventListener("click", getLinkToUnsplash);

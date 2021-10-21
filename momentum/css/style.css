@@ -16,15 +16,18 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background-image: url("../assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
+  background: url("../assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
 }
-.fromApi {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+ul {
+  list-style-type: none;
 }
+.container {
+  margin: 0 auto;
+  max-width: 1700px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -103,10 +106,22 @@ body {
   transform: scale(1.1);
 }
 
-.play {
+.play-main {
   width: 40px;
   height: 40px;
   background-size: 40px 40px;
+  background-image: url("../assets/svg/play.svg");
+}
+.player-list {
+  background-size: 20px 20px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
   background-image: url("../assets/svg/play.svg");
 }
 
@@ -121,7 +136,17 @@ body {
 .play-next {
   background-image: url("../assets/svg/play-next.svg");
 }
-
+.play-list li {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.play-list li:hover {
+  opacity: 1;
+}
 .weather {
   display: flex;
   flex-direction: column;
@@ -166,6 +191,14 @@ body {
   font-size: 20px;
   color: #fff;
   opacity: 0.6;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
 }
 
 .main {
@@ -244,6 +277,56 @@ body {
   opacity: 0.6;
 }
 
+.settings-icon {
+  margin-left: 3em;
+  top: 35em;
+  position: absolute;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.settings-icon:hover {
+  opacity: 1;
+}
+.settings {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 40em;
+  left: -100%;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+}
+.active {
+  visibility: visible;
+  left: 5em;
+  opacity: 1;
+}
+option {
+  width: 100%;
+  background-color: #5d6163;
+}
+option:hover {
+  background: #7b7f81;
+}
+.settings-language,
+.settings-picture {
+  width: 100%;
+  height: 30px;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #fff;
+}
+.settings-language:hover,
+.settings-picture:hover {
+  background-color: blueviolet;
+}
 .footer {
   display: flex;
   flex-direction: column;
