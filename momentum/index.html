@@ -188,8 +188,20 @@
               <option value="flickr">FLICKR</option>
             </select>
           </li>
-          <li>TO-DO List</li>
+         
         </ul>
+      </div>
+      <div class="todo">
+        <div class="todo__input">
+          <input class="todo__text" type="text">
+          <span class="todo__add"></span>
+        </div>
+        <select class="todo__options">
+          <option value="active">активные</option>
+          <option value="completed">завершённые</option>
+          <option value="deleted">удалённые</option>
+        </select>
+        <ul class="todo__items" data-todo-option="active"></ul>
       </div>
     </div>
     <div class="container">
@@ -201,8 +213,10 @@
         </div>
       </footer>
     </div>
-    <script src="js/script.js"></script>
+    <script  type = 'module'src="js/script.js"></script>
     <script src="js/settings.js"></script>
-    <script src="js/player.js"></script>
+    <script src="js/todo.js"></script>
+    <script type = 'module' src="js/player.js"></script>
+    
   </body>
 </html>

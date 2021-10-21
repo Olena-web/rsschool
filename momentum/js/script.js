@@ -22,7 +22,7 @@ const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
 let bgNum;
-let isPlay = false;
+
 let playNum = 0;
 
 const options = {
@@ -83,18 +83,26 @@ city.value = localStorage.getItem("Location");
 //weather
 async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
-  const res = await fetch(url);
-  const data = await res.json();
-  weatherIcon.className = "weather-icon owf";
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${Math.round(data.main.temp)} °C`;
-  weatherDescription.textContent = data.weather[0].description;
-  humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
-  wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
-  if (res.status == 404) {
-    weatherError.textContent = "Error";
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    weatherIcon.className = "weather-icon owf";
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp)} °C`;
+    weatherDescription.textContent = data.weather[0].description;
+    humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
+    wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+  } catch (err) {
+    weatherError.textContent = "Error, enter city";
+    weatherIcon.className = "";
+    weatherIcon = "";
+    temperature.textContent = "";
+    weatherDescription.textContent = "";
+    humidity.textContent = "";
+    wind.textContent = "";
   }
 }
+
 getWeather();
 
 //city
