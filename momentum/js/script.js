@@ -21,7 +21,6 @@ body.style.backgroundImage =
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
-let bgNum;
 
 let playNum = 0;
 
@@ -156,13 +155,12 @@ function showGreeting() {
 showGreeting();
 
 //picture from unsplash
-window.addEventListener("load", getLinkToUnsplash);
+//window.addEventListener("load", getLinkToUnsplash);
 async function getLinkToUnsplash() {
   const url =
     "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
   const res = await fetch(url);
   const data = await res.json();
-
   body.style.backgroundImage = `url(${data.urls.regular}) `;
   body.classList.add("fromApi");
 }
@@ -197,29 +195,41 @@ getRandomNum();
 
 const timeOfDay = getTimeOfDay();
 
-function setBg() {
+let bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
+
+function setBg(bgNum) {
   const img = new Image();
-  bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
   img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
   img.addEventListener("load", () => {
     body.style.backgroundImage = `url(${img.src})`;
   });
 }
-setBg();
+setBg(bgNum);
 
 function getSlideNext() {
-  randomNum++;
-  randomNum == 20 ? (randomNum = 1) : randomNum;
-  setBg(randomNum);
-  slideNext.disabled = true;
-  setTimeout(function () {
-    slideNext.disabled = false;
-  }, 1000);
+  let bgNumInit = parseInt(bgNum) + 1;
+  if (bgNumInit == 20) {
+    bgNum = "01";
+    setBg(bgNum);
+    return;
+  }
+  bgNum = bgNumInit.toString().padStart(2, "0");
+  setBg(bgNum);
 }
+slideNext.disabled = true;
+setTimeout(function () {
+  slideNext.disabled = false;
+}, 1000);
+
 function getSlidePrev() {
-  randomNum--;
-  randomNum == 1 ? (randomNum = 20) : randomNum;
-  setBg(randomNum);
+  let bgNumInit = parseInt(bgNum) - 1;
+  if (bgNumInit == 0) {
+    bgNum = "20";
+    setBg(bgNum);
+    return;
+  }
+  bgNum = bgNumInit.toString().padStart(2, "0");
+  setBg(bgNum);
 }
 slidePrev.disabled = true;
 setTimeout(function () {
