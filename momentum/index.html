@@ -7,6 +7,7 @@
     <link href="assets/favicon.ico" rel="shortcut icon" />
     <link rel="stylesheet" href="css/owfont-regular.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/btn.css">
     <title>momentum</title>
   </head>
   <body>
@@ -171,6 +172,46 @@
         </svg>
       </div>
       <div class="settings">
+        <h3>settings</h3>
+        <h4>show</h4>
+        <div class="settings-total">
+            <div class="switch">
+              <div class="switch-item"></div>
+              <label>Time<input type="checkbox"  id = 'time' class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Date<input type="checkbox"  id = 'date' class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Greeting<input type="checkbox" id = 'greeting'  class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Quotes<input type="checkbox"  id = 'quotes' class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Weather<input type="checkbox"   id ='weather' class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+                <label>Audio<input type="checkbox" id = 'audio' class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+                <label>TO-DO<input type="checkbox"  id = 'todo' class="btn-switch green tinyswitch" checked />
+                <div><div></div></div></label>
+            </div>
+            <input type="button" value="Save" onclick="save();" />
+        </div>
         <ul>
           <li>
             Language
