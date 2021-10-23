@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const settingsIcon = document.querySelector(".settings-icon");
   const settings = document.querySelector(".settings");
   const toDoBtn = document.getElementById("todo");
-  const toDo = document.querySelector(".todo");
+  const toDo = document.querySelector(".container-todo");
   const player = document.querySelector(".player");
   const audioBtn = document.getElementById("audio");
   const weatherBtn = document.getElementById("weather");
@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const date = document.querySelector(".date");
   const timeBtn = document.getElementById("times");
   console.log(timeBtn);
+  console.log(dateBtn);
   const time = document.querySelector(".time");
 
   settingsIcon.addEventListener("click", () => {

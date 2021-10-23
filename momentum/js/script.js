@@ -28,6 +28,7 @@ const options = {
   day: "numeric",
   weekday: "long",
 };
+import langArr from "./lang.js";
 
 function showTime() {
   date = new Date();
@@ -40,25 +41,6 @@ function showTime() {
 }
 
 showTime();
-
-// function showTime() {// second option
-//   date = new Date();
-//   let h = date.getHours();
-//   let m = date.getMinutes();
-//   let s = date.getSeconds();
-
-//   h = h < 10 ? "0" + h : h;
-//   m = m < 10 ? "0" + m : m;
-//   s = s < 10 ? "0" + s : s;
-
-//   let timeNow = h + ":" + m + ":" + s;
-
-//   time.textContent = timeNow;
-
-//   setTimeout(showTime, 1000);
-// }
-
-// showTime();
 
 city.value = localStorage.getItem("Location");
 
@@ -135,10 +117,18 @@ function getTimeOfDay() {
   }
   return message;
 }
+
 function showGreeting() {
   const timeOfDay = getTimeOfDay();
-  const greetingText = `Good ${timeOfDay}, `;
-  greeting.innerHTML = greetingText;
+  if (timeOfDay == "night") {
+    greeting.innerHTML = langArr.greeting[hash][3];
+  } else if (timeOfDay == "morning") {
+    greeting.innerHTML = langArr.greeting[hash][0];
+  } else if (timeOfDay == "afternoon") {
+    greeting.innerHTML = langArr.greeting[hash][1];
+  } else {
+    greeting.innerHTML = langArr.greeting[hash][2];
+  }
 }
 showGreeting();
 

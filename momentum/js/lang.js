@@ -3,20 +3,15 @@ const langArr = {
     ru: "момент",
     en: "momentum",
   },
-  // greeting: {
-  //   ru: [
-  //     { morning: "доброе утро" },
-  //     { afternoon: "добрый день" },
-  //     { evening: "добрый вечер" },
-  //     { night: "доброй ночи" },
-  //   ],
-  //   en: [
-  //     { morning: "good morning" },
-  //     { afternoon: "good afternoon" },
-  //     { evening: "good evening" },
-  //     { night: "good night" },
-  //   ],
-  // },
+  greeting: {
+    ru: ["доброе утро, ", "добрый день, ", "добрый вечер, ", "доброй ночи, "],
+    en: [
+      "good morning, ",
+      "good afternoon, ",
+      "good evening, ",
+      "good night, ",
+    ],
+  },
   h4: {
     ru: "настройки",
     en: "settings",
