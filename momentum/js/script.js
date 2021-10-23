@@ -2,7 +2,6 @@
 const time = document.querySelector(".time");
 const dayOfWeek = document.querySelector(".date");
 let date;
-
 const weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
 const wind = document.querySelector(".wind");
@@ -21,37 +20,21 @@ body.style.backgroundImage =
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
-
 let playNum = 0;
-
+let hash = window.location.hash;
+hash = hash.substr(1);
 const options = {
   month: "long",
   day: "numeric",
+  weekday: "long",
 };
-// const currentDate = date.toLocaleDateString("en-US", options);
 
-function getWeekDay(date) {
-  date = new Date();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  return days[date.getDay()];
-}
-getWeekDay(date);
 function showTime() {
   date = new Date();
-  let currentDate = date.toLocaleDateString("en-US", options);
-  let currentDayOfWeek = getWeekDay(date);
+  let currentDate = date.toLocaleDateString(`${hash}`, options);
   const currentTime = date.toLocaleTimeString();
   time.innerHTML = currentTime;
-  dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
+  dayOfWeek.textContent = currentDate;
   showGreeting();
   setTimeout(showTime, 1000);
 }
@@ -81,7 +64,7 @@ city.value = localStorage.getItem("Location");
 
 //weather
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${hash}&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -89,8 +72,13 @@ async function getWeather() {
     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp)} °C`;
     weatherDescription.textContent = data.weather[0].description;
-    humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
-    wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+    if (hash == "en") {
+      humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
+      wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+    } else if (hash == "ru") {
+      humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
+      wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  m/c `;
+    }
   } catch (err) {
     weatherError.textContent = "Error, enter city";
     weatherIcon.className = "";
@@ -247,7 +235,7 @@ slidePrev.addEventListener("click", getSlidePrev);
 window.addEventListener("load", getQuotes);
 changeQuote.addEventListener("click", getQuotes);
 async function getQuotes() {
-  let quotes = "data_en.json";
+  let quotes = `data_${hash}.json`;
   const res = await fetch(quotes);
   const data = await res.json();
   let pick = Math.floor(Math.random() * data.length);

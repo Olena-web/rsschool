@@ -277,8 +277,8 @@ input:invalid {
 }
 
 .settings-icon {
-  top: 54em;
-  left: 4em;
+  top: 48em;
+  left: 2em;
   position: absolute;
   opacity: 0.6;
   cursor: pointer;
@@ -291,7 +291,7 @@ input:invalid {
   flex-direction: column;
   position: fixed;
   overflow-y: scroll;
-  max-height: 300px;
+  max-height: 270px;
   width: 13%;
   top: 30em;
   left: -100%;
@@ -306,12 +306,12 @@ input:invalid {
   left: 4em;
   opacity: 1;
   overflow-y: scroll;
-  max-height: 300px;
+  max-height: 270px;
   -webkit-transition: all 0.8s;
   transition: all 0.6s;
 }
-.settings h3,
-.settings h4 {
+.settings h4,
+.settings h5 {
   text-transform: uppercase;
   opacity: 0.8;
 }
@@ -321,7 +321,11 @@ option {
   background-color: #5d6163;
 }
 option:hover {
-  background: #7b7f81;
+  background: #00e359;
+  opacity: 0.8;
+}
+option:focus-visible {
+  outline-color: #00e359;
 }
 .settings-language,
 .settings-picture {

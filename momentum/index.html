@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+    
     <link href="assets/favicon.ico" rel="shortcut icon" />
     <link rel="stylesheet" href="css/owfont-regular.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/btn.css">
+    <link rel="stylesheet" href="css/todo.css">
     <title>momentum</title>
   </head>
   <body>
@@ -62,8 +63,8 @@
           <button class="slide-prev slider-icon"></button>
           <button class="slide-next slider-icon"></button>
         </div>
-        <time class="time"></time>
-        <date class="date"></date>
+        <div class="time"></div>
+        <div class="date"></div>
         <div class="greeting-container">
           <span class="greeting">Hello, </span>
           <input type="text" class="name" placeholder="[Enter name]" />
@@ -172,58 +173,15 @@
         </svg>
       </div>
       <div class="settings">
-        <h3>settings</h3>
-        <h4>show</h4>
-        <div class="settings-total">
-            <div class="switch">
-              <div class="switch-item"></div>
-              <label>Time<input type="checkbox"  id = 'time' class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>Date<input type="checkbox"  id = 'date' class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>Greeting<input type="checkbox" id = 'greeting'  class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>Quotes<input type="checkbox"  id = 'quotes' class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>Weather<input type="checkbox"   id ='weather' class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-                <label>Audio<input type="checkbox" id = 'audio' class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-                <label>TO-DO<input type="checkbox"  id = 'todo' class="btn-switch green tinyswitch" checked />
-                <div><div></div></div></label>
-            </div>
-            <input type="button" value="Save" onclick="save();" />
-        </div>
+        <h4>settings</h4>
         <ul>
-          <li>
-            Language
-            <select name="language" id="" class="settings-language">
-              <option value="en">EN</option>
+          <li class="chooselang">Choose language<select name="language"  class="settings-language">
+              <option value="en" selected >EN</option>
               <option value="ru">RU</option>
-              <option value="ukr">UKR</option>
+              <!-- <option value="ukr">UKR</option> -->
             </select>
           </li>
-          <li>
-            Picture
-            <select name="picture" id="" class="settings-picture">
+          <li class="choosepict">Choose source of picture<select name="picture" class="settings-picture">
               <option value="github">GITHUB</option>
               <option value="unsplash">UNSPLASH</option>
               <option value="flickr">FLICKR</option>
@@ -231,19 +189,124 @@
           </li>
          
         </ul>
-      </div>
-      <div class="todo">
-        <div class="todo__input">
-          <input class="todo__text" type="text">
-          <span class="todo__add"></span>
+        <h5>show</h5>
+        <div class="settings-total">
+          <div class="switch ">
+            <div class="switch-item"></div>
+            <label id="times">Time<input type="checkbox"  id = 'times' class="btn-switch green tinyswitch " checked />
+              <div><div></div></div></label>
+          </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label class="dates">Date<input type="checkbox"  id = 'date' class="btn-switch green tinyswitch " checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Greeting<input type="checkbox" id = 'greeting'  class="btn-switch green tinyswitch greeting1" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Quotes<input type="checkbox"  id = 'quotes' class="btn-switch green tinyswitch quotes1" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+              <label>Weather<input type="checkbox"   id ='weather' class="btn-switch green tinyswitch weather1" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+                <label>Audio<input type="checkbox" id = 'audio' class="btn-switch green tinyswitch audio1" checked />
+                <div><div></div></div></label>
+            </div>
+            <div class="switch ">
+              <div class="switch-item"></div>
+                <label>TO-DO<input type="checkbox"  id = 'todo' class="btn-switch green tinyswitch todo1" checked />
+                <div><div></div></div></label>
+            </div>
+            <input type="button" value="Save" onclick="save();" />
         </div>
-        <select class="todo__options">
-          <option value="active">активные</option>
-          <option value="completed">завершённые</option>
-          <option value="deleted">удалённые</option>
-        </select>
-        <ul class="todo__items" data-todo-option="active"></ul>
+       
       </div>
+      <div class="todo-icon">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 470.767 470.767" style="enable-background:new 0 0 470.767 470.767;" xml:space="preserve">
+<g>
+	<path d="M362.965,21.384H289.62L286.638,7.99C285.614,3.323,281.467,0,276.685,0h-82.618c-4.782,0-8.913,3.323-9.953,7.99
+		l-2.967,13.394h-73.36c-26.835,0-48.654,21.827-48.654,48.662v352.06c0,26.835,21.819,48.662,48.654,48.662h255.179
+		c26.835,0,48.67-21.827,48.67-48.662V70.046C411.635,43.211,389.8,21.384,362.965,21.384z M379.831,422.105
+		c0,9.295-7.563,16.858-16.866,16.858H107.786c-9.287,0-16.85-7.563-16.85-16.858V70.046c0-9.295,7.563-16.857,16.85-16.857h66.294
+		l-1.692,7.609c-0.684,3.02,0.062,6.188,1.988,8.596c1.94,2.415,4.876,3.82,7.965,3.82h106.082c3.091,0,6.026-1.405,7.951-3.82
+		c1.942-2.415,2.687-5.575,2.004-8.596l-1.692-7.609h66.279c9.303,0,16.866,7.563,16.866,16.857V422.105z"/>
+	<path d="M170.835,188.426h43.249l-10.279-7.019c-14.506-9.899-18.232-29.693-8.325-44.197c9.893-14.489,29.693-18.239,44.197-8.324
+		l1.694,1.157v-12.136c0-7.866-6.383-14.248-14.242-14.248h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.271
+		C156.595,182.045,162.978,188.426,170.835,188.426z"/>
+	<path d="M303.256,110.313l-49.85,47.194l-22.704-15.49c-7.221-4.962-17.13-3.083-22.099,4.162
+		c-4.954,7.251-3.09,17.144,4.178,22.098l33.28,22.727c2.718,1.864,5.839,2.772,8.961,2.772c3.96,0,7.888-1.474,10.933-4.356
+		l59.167-56.014c6.382-6.033,6.645-16.104,0.62-22.479C319.686,104.552,309.637,104.28,303.256,110.313z"/>
+	<path d="M170.835,297.669H214.1l-10.295-7.027c-14.506-9.901-18.232-29.693-8.325-44.197c9.893-14.498,29.693-18.248,44.197-8.325
+		l1.694,1.158v-12.136c0-7.865-6.383-14.248-14.242-14.248h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.279
+		C156.595,291.286,162.978,297.669,170.835,297.669z"/>
+	<path d="M303.256,219.555l-49.85,47.186l-22.704-15.49c-7.221-4.97-17.13-3.098-22.099,4.162
+		c-4.954,7.253-3.09,17.144,4.178,22.099l33.28,22.727c2.718,1.864,5.839,2.772,8.961,2.772c3.96,0,7.888-1.476,10.933-4.356
+		l59.167-56.007c6.382-6.033,6.645-16.096,0.62-22.479C319.686,213.793,309.637,213.529,303.256,219.555z"/>
+	<path d="M227.129,322.135h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.271c0,7.865,6.383,14.248,14.24,14.248h56.294
+		c7.859,0,14.242-6.383,14.242-14.248v-56.271C241.371,328.518,234.988,322.135,227.129,322.135z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+
+      </div>
+      <div class="container-todo">
+        <p>
+          <label for="new-task">Add Item</label><input id="new-task" type="text"><button>Add</button>
+        </p>
+        
+        <h3>Todo</h3>
+        <ul id="incomplete-tasks">
+          <li><input type="checkbox"><label>Pay Bills</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+          <li class="editMode"><input type="checkbox"><label>Go Shopping</label><input type="text" value="Go Shopping"><button class="edit">Save</button><button class="delete">Delete</button></li>
+          
+        </ul>
+        
+        <h3>Completed</h3>
+        <ul id="completed-tasks">
+          <li><input type="checkbox" checked><label>See the Doctor</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+        </ul>
+      </div>
+  
+   
     </div>
     <div class="container">
       <footer class="footer">
@@ -254,10 +317,11 @@
         </div>
       </footer>
     </div>
-    <script  type = 'module'src="js/script.js"></script>
+    <script  type = 'module' src="js/script.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/todo.js"></script>
     <script type = 'module' src="js/player.js"></script>
+    <script  type = 'module' src="js/translate.js"></script>
     
   </body>
 </html>
