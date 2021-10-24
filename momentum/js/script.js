@@ -2,7 +2,7 @@
 const time = document.querySelector(".time");
 const dayOfWeek = document.querySelector(".date");
 let date;
-const weatherIcon = document.querySelector(".weather-icon");
+let weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
 const wind = document.querySelector(".wind");
 const humidity = document.querySelector(".humidity");
@@ -14,13 +14,12 @@ const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
 const body = document.querySelector("body");
 const changeQuote = document.querySelector(".change-quote");
-const weatherError = document.querySelector(".weather-error");
+const weatherError = document.querySelector(".weather_error");
 body.style.backgroundImage =
   "url('https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/evening/16.jpg')";
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 const selectSource = document.querySelector(".settings-picture");
-console.log(selectSource);
 let randomNum;
 let playNum = 0;
 let hash = window.location.hash;
@@ -62,9 +61,17 @@ async function getWeather() {
     } else if (hash == "ru") {
       humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
       wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
+    } else if (data.cod === "404" || data.cod === "400") {
+      weatherError.textContent = langArr.weather_error[hash];
+      weatherIcon.className = "";
+      weatherIcon = "";
+      temperature.textContent = "";
+      weatherDescription.textContent = "";
+      humidity.textContent = "";
+      wind.textContent = "";
     }
   } catch (err) {
-    weatherError.textContent = "Error, enter city";
+    weatherError.textContent = langArr.weather_error[hash];
     weatherIcon.className = "";
     weatherIcon = "";
     temperature.textContent = "";
@@ -73,7 +80,6 @@ async function getWeather() {
     wind.textContent = "";
   }
 }
-
 getWeather();
 
 //city
@@ -86,8 +92,9 @@ city.addEventListener("change", () => {
     localStorage.getItem("Location") == null ||
     localStorage.getItem("Location") == ""
   ) {
-    city.value = "Minsk";
-    getWeather();
+    city.value = langArr.city[hash];
+    weatherError.textContent = langArr.weather_error[hash];
+    //getWeather();
   }
 });
 
@@ -229,7 +236,6 @@ selectSource.addEventListener("change", showPicture);
 
 function showPicture() {
   let picture = selectSource.value;
-  console.log(picture);
   if (picture == "github") {
     picture = "github";
     setBg(bgNum);

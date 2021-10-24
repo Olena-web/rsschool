@@ -60,6 +60,14 @@ const langArr = {
     ru: "сохранить",
     en: "save",
   },
+  weather_error: {
+    ru: "введите город",
+    en: "enter city",
+  },
+  city: {
+    ru: "Минск",
+    en: "Minsk",
+  },
 };
 
 export default langArr;
