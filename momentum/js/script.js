@@ -100,7 +100,9 @@ city.addEventListener("change", () => {
 
 // local storage and name
 function setLocalStorage() {
-  localStorage.setItem("name", nameEl.value);
+  if (nameEl.value !== langArr.namevalue[hash]) {
+    localStorage.setItem("name", nameEl.value);
+  }
 }
 window.addEventListener("beforeunload", setLocalStorage);
 function getLocalStorage() {

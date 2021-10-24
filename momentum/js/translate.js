@@ -35,6 +35,8 @@ function changeLanguage() {
   document.getElementById("audioset").textContent = langArr.audioset[hash];
   document.getElementById("todos").textContent = langArr.todos[hash];
   document.getElementById("save").value = langArr.save[hash];
+  document.querySelector(".namevalue").value = langArr.namevalue[hash];
+  document.querySelector(".city").value = langArr.city[hash];
 }
 
 changeLanguage();
