@@ -16,14 +16,16 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background: url("../assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5);
+  /* background: url("../assets/img/bg.jpg") center/cover, rgba(0, 0, 0, 0.5); */
   background-blend-mode: multiply;
+  background: center/cover, rgba(0, 0, 0, 0.5);
   transition: background-image 1s ease-in-out;
 }
 ul {
   list-style-type: none;
 }
-button {
+
+#save {
   height: 39px;
   width: 85px;
   background-color: #00e359;
@@ -31,8 +33,6 @@ button {
   opacity: 0.6;
   cursor: pointer;
   border-radius: 22px;
-}
-#save {
   opacity: 0.8;
 }
 #save:hover {
