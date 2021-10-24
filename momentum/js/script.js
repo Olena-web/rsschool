@@ -1,8 +1,7 @@
 "use strict";
 const time = document.querySelector(".time");
 const dayOfWeek = document.querySelector(".date");
-const date = new Date();
-const currentTime = date.toLocaleTimeString();
+let date;
 const weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
 const wind = document.querySelector(".wind");
@@ -21,56 +20,58 @@ body.style.backgroundImage =
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
 let randomNum;
-let bgNum;
-
+let playNum = 0;
+let hash = window.location.hash;
+hash = hash.substr(1);
 const options = {
   month: "long",
   day: "numeric",
+  weekday: "long",
 };
-const currentDate = date.toLocaleDateString("en-US", options);
+import langArr from "./lang.js";
 
-function getWeekDay(date) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  return days[date.getDay()];
-}
-getWeekDay(date);
-const currentDayOfWeek = getWeekDay(date);
 function showTime() {
-  time.textContent = currentTime;
-  function showTime() {
-    dayOfWeek.textContent = currentDayOfWeek + "," + " " + currentDate;
-    showGreeting();
-  }
-  setTimeout(showTime, 100);
+  date = new Date();
+  let currentDate = date.toLocaleDateString(`${hash}`, options);
+  const currentTime = date.toLocaleTimeString();
+  time.innerHTML = currentTime;
+  dayOfWeek.textContent = currentDate;
+  showGreeting();
+  setTimeout(showTime, 1000);
 }
+
 showTime();
 
 city.value = localStorage.getItem("Location");
 
 //weather
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=en&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
-  const res = await fetch(url);
-  const data = await res.json();
-  weatherIcon.className = "weather-icon owf";
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${Math.round(data.main.temp)} °C`;
-  weatherDescription.textContent = data.weather[0].description;
-  humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
-  wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
-  if (res.status == 404 || res == undefined) {
-    weatherError.textContent = "Error";
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${hash}&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    weatherIcon.className = "weather-icon owf";
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp)} °C`;
+    weatherDescription.textContent = data.weather[0].description;
+    if (hash == "en") {
+      humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
+      wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+    } else if (hash == "ru") {
+      humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
+      wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
+    }
+  } catch (err) {
+    weatherError.textContent = "Error, enter city";
+    weatherIcon.className = "";
+    weatherIcon = "";
+    temperature.textContent = "";
+    weatherDescription.textContent = "";
+    humidity.textContent = "";
+    wind.textContent = "";
   }
 }
+
 getWeather();
 
 //city
@@ -100,35 +101,67 @@ function getLocalStorage() {
 }
 window.addEventListener("load", getLocalStorage);
 //greeting
-const hours = date.getHours();
 
 function getTimeOfDay() {
+  date = new Date();
+  let hours = date.getHours();
   let message = "";
   if (hours < 6) {
     message = "night";
   } else if (hours < 12) {
     message = "morning";
   } else if (hours < 18) {
-    message = "day";
+    message = "afternoon";
   } else {
     message = "evening";
   }
   return message;
 }
+
 function showGreeting() {
   const timeOfDay = getTimeOfDay();
-  const greetingText = `Good ${timeOfDay}, `;
-  greeting.innerHTML = greetingText;
+  if (timeOfDay == "night") {
+    greeting.innerHTML = langArr.greeting[hash][3];
+  } else if (timeOfDay == "morning") {
+    greeting.innerHTML = langArr.greeting[hash][0];
+  } else if (timeOfDay == "afternoon") {
+    greeting.innerHTML = langArr.greeting[hash][1];
+  } else {
+    greeting.innerHTML = langArr.greeting[hash][2];
+  }
 }
+showGreeting();
 
-// picture from unsplash
-async function getLinkToImage() {
+//picture from unsplash
+//window.addEventListener("load", getLinkToUnsplash);
+async function getLinkToUnsplash() {
   const url =
     "https://api.unsplash.com/photos/random?orientation=landscape&query=nature&client_id=Byn5HXTV7irw_GKyvddJTxKBS-TJk4b-QCizSKjsxlg";
   const res = await fetch(url);
   const data = await res.json();
+  body.style.backgroundImage = `url(${data.urls.regular}) `;
+  body.classList.add("fromApi");
 }
-getLinkToImage();
+
+//getLinkToUnsplash();
+
+//picture from flickr
+
+//window.addEventListener("load", getLinkToFlickr);
+async function getLinkToFlickr() {
+  const res = await fetch(url);
+  const data = await res.json();
+  let pick = Math.floor(Math.random() * data.photos.photo.length);
+  const img = new Image();
+  img.src = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=967601ec97e7827f2af51bc844b8eaca&tags=nature&extras=url_l&format=json&nojsoncallback=1`;
+  img.addEventListener("load", () => {
+    body.style.backgroundImage = `url(${data.photos.photo[pick].url_l}) `;
+    body.classList.add("fromApi");
+  });
+}
+//getLinkToFlickr();
+
+//picture from github
 
 function getRandomNum(min, max) {
   min = Math.ceil(min);
@@ -137,38 +170,62 @@ function getRandomNum(min, max) {
   return randomNum;
 }
 getRandomNum();
+
 const timeOfDay = getTimeOfDay();
 
-function setBg() {
-  let bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
-  body.style.backgroundImage = `url('https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg')`;
-}
-setBg();
+let bgNum = getRandomNum(1, 20).toString().padStart(2, "0");
 
-const getSlideNext = (number) => {
-  setBg(++number > 20 ? (randomNum = 1) : number);
-  slideNext.disabled = true;
-  setTimeout(function () {
-    slideNext.disabled = false;
-  }, 1000);
-};
-const getSlidePrev = (number) => {
-  setBg(--number < 1 ? (randomNum = 20) : number);
-};
+function setBg(bgNum) {
+  const img = new Image();
+  img.src = `https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
+  img.addEventListener("load", () => {
+    body.style.backgroundImage = `url(${img.src})`;
+  });
+}
+setBg(bgNum);
+
+function getSlideNext() {
+  let bgNumInit = parseInt(bgNum) + 1;
+  if (bgNumInit == 20) {
+    bgNum = "01";
+    setBg(bgNum);
+    return;
+  }
+  bgNum = bgNumInit.toString().padStart(2, "0");
+  setBg(bgNum);
+}
+slideNext.disabled = true;
+setTimeout(function () {
+  slideNext.disabled = false;
+}, 1000);
+
+function getSlidePrev() {
+  let bgNumInit = parseInt(bgNum) - 1;
+  if (bgNumInit == 0) {
+    bgNum = "20";
+    setBg(bgNum);
+    return;
+  }
+  bgNum = bgNumInit.toString().padStart(2, "0");
+  setBg(bgNum);
+}
 slidePrev.disabled = true;
 setTimeout(function () {
   slidePrev.disabled = false;
 }, 1000);
-
-slideNext.onclick = () => getSlideNext(randomNum++);
-slidePrev.onclick = () => getSlidePrev(randomNum--);
+slideNext.addEventListener("click", getSlideNext);
+slidePrev.addEventListener("click", getSlidePrev);
+//slideNext.addEventListener("click", getLinkToUnsplash);
+//slidePrev.addEventListener("click", getLinkToUnsplash);
+//slideNext.addEventListener("click", getLinkToFlickr);
+//slidePrev.addEventListener("click", getLinkToFlickr);
 
 //quotes
 
 window.addEventListener("load", getQuotes);
 changeQuote.addEventListener("click", getQuotes);
 async function getQuotes() {
-  const quotes = "data.json";
+  let quotes = `data_${hash}.json`;
   const res = await fetch(quotes);
   const data = await res.json();
   let pick = Math.floor(Math.random() * data.length);
