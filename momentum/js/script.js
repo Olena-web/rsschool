@@ -59,7 +59,7 @@ async function getWeather() {
       wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
     } else if (hash == "ru") {
       humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
-      wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  m/c `;
+      wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
     }
   } catch (err) {
     weatherError.textContent = "Error, enter city";

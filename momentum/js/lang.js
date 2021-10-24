@@ -28,12 +28,32 @@ const langArr = {
     ru: "выбрать источник картин",
     en: "choose source of picture",
   },
-  times: {
+  timeset: {
     ru: "время",
     en: "time",
   },
   dates: {
     ru: "дата",
+    en: "date",
+  },
+  greetingset: {
+    ru: "приветствие",
+    en: "greeting",
+  },
+  quoteset: {
+    ru: "цитаты",
+    en: "date",
+  },
+  weatherset: {
+    ru: "погода",
+    en: "date",
+  },
+  audioset: {
+    ru: "аудио",
+    en: "date",
+  },
+  todos: {
+    ru: "дела",
     en: "date",
   },
 };

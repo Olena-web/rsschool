@@ -175,14 +175,14 @@
       <div class="settings">
         <h4>settings</h4>
         <ul>
-          <li class="chooselang">Choose language<select name="language"  class="settings-language">
+          <li> <span id="chooselang">Choose language</span><select name="language"  class="settings-language">
               <option value="en" selected >EN</option>
               <option value="ru">RU</option>
               <!-- <option value="ukr">UKR</option> -->
             </select>
           </li>
-          <li class="choosepict">Choose source of picture<select name="picture" class="settings-picture">
-              <option value="github">GITHUB</option>
+          <li> <span id="choosepict">Choose source of picture</span><select name="picture" class="settings-picture">
+                        <option value="github">GITHUB</option>
               <option value="unsplash">UNSPLASH</option>
               <option value="flickr">FLICKR</option>
             </select>
@@ -193,37 +193,53 @@
         <div class="settings-total">
           <div class="switch ">
             <div class="switch-item"></div>
-            <label id="time">Time<input type="checkbox"  id = 'times' class="btn-switch green tinyswitch " checked />
+            <label><span id="times" >Time</span>
+              <input type="checkbox" id = 'timeset'  class="btn-switch green tinyswitch " checked />
               <div><div></div></div></label>
           </div>
             <div class="switch ">
               <div class="switch-item"></div>
-              <label class="dates">Date<input type="checkbox"  id = 'date' class="btn-switch green tinyswitch " checked />
+              <label >
+                 <span id="dates">Date</span><input type="checkbox"  id = 'date' class="btn-switch green tinyswitch " checked />
                 <div><div></div></div></label>
             </div>
             <div class="switch ">
               <div class="switch-item"></div>
-              <label>Greeting<input type="checkbox" id = 'greeting'  class="btn-switch green tinyswitch greeting1" checked />
+              <label>
+                <span id="greetingset">
+                  Greeting
+                </span> <input type="checkbox" id = 'greeting'  class="btn-switch green tinyswitch greeting1" checked />
                 <div><div></div></div></label>
             </div>
             <div class="switch ">
               <div class="switch-item"></div>
-              <label>Quotes<input type="checkbox"  id = 'quotes' class="btn-switch green tinyswitch quotes1" checked />
+              <label>
+                <span id="quoteset">
+                  Quotes
+                </span> <input type="checkbox"  id = 'quotes' class="btn-switch green tinyswitch quotes1" checked />
                 <div><div></div></div></label>
             </div>
             <div class="switch ">
               <div class="switch-item"></div>
-              <label>Weather<input type="checkbox"   id ='weather' class="btn-switch green tinyswitch weather1" checked />
+              <label>
+                <span id="weatherset">
+                  Weather
+                </span> <input type="checkbox"   id ='weather' class="btn-switch green tinyswitch weather1" checked />
                 <div><div></div></div></label>
             </div>
             <div class="switch ">
               <div class="switch-item"></div>
-                <label>Audio<input type="checkbox" id = 'audio' class="btn-switch green tinyswitch audio1" checked />
+                <label>
+                  <span id="audioset">
+                    Audio
+                  </span> <input type="checkbox" id = 'audio' class="btn-switch green tinyswitch audio1" checked />
                 <div><div></div></div></label>
             </div>
             <div class="switch ">
               <div class="switch-item"></div>
-                <label>TO-DO<input type="checkbox"  id = 'todo' class="btn-switch green tinyswitch todo1" checked />
+                <label>
+                  <span id = 'todos'> TO-DO</span>
+                  <input type="checkbox"  id = 'todo' class="btn-switch green tinyswitch todo1" checked />
                 <div><div></div></div></label>
             </div>
             <input type="button" value="Save" onclick="save();" />

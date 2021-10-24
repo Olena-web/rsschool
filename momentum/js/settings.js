@@ -14,11 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const greeting = document.querySelector(".greeting-container");
   const dateBtn = document.getElementById("date");
   const date = document.querySelector(".date");
-  const timeBtn = document.getElementById("times");
-  console.log(timeBtn);
-  console.log(dateBtn);
+  const timeBtn = document.getElementById("timeset");
   const time = document.querySelector(".time");
-
   settingsIcon.addEventListener("click", () => {
     settings.classList.toggle("active");
   });
