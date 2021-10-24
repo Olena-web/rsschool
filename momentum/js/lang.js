@@ -69,8 +69,8 @@ const langArr = {
     en: "Minsk",
   },
   namevalue: {
-    ru: "введите имя",
-    en: "enter name",
+    ru: "[введите имя]",
+    en: "[enter name]",
   },
 };
 

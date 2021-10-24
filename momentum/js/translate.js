@@ -36,7 +36,7 @@ function changeLanguage() {
   document.getElementById("todos").textContent = langArr.todos[hash];
   document.getElementById("save").value = langArr.save[hash];
   document.querySelector(".namevalue").value = langArr.namevalue[hash];
-  document.querySelector(".city").value = langArr.city[hash];
+  //document.querySelector(".city").value = langArr.city[hash];
 }
 
 changeLanguage();

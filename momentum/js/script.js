@@ -84,6 +84,7 @@ city.addEventListener("change", () => {
     localStorage.getItem("Location") == ""
   ) {
     weatherError.textContent = langArr.weather_error[hash];
+    city.value = langArr.city[hash];
   }
 });
 
