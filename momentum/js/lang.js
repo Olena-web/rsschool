@@ -56,6 +56,10 @@ const langArr = {
     ru: "дела",
     en: "date",
   },
+  save: {
+    ru: "сохранить",
+    en: "save",
+  },
 };
 
 export default langArr;
