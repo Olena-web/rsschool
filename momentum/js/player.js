@@ -27,18 +27,22 @@ function toggleBtn() {
 playBtn.addEventListener("click", playAudio);
 
 playNext.addEventListener("click", () => {
-  if (playNum > 2) {
+  if (isPlay) {
+    audio.pause();
+  }
+  if (playNum == 3) {
     playNum = 0;
   } else {
     playNum++;
   }
-  playAudio();
+  audio.play();
 });
 playPrev.addEventListener("click", () => {
-  if (playNum < 1) {
+  if (playNum == 0) {
     playNum = 3;
   } else {
     playNum--;
   }
-  playAudio();
+  audio.src = playList[playNum].src;
+  audio.currentTime = 0;
 });

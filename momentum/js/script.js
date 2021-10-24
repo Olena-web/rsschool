@@ -61,18 +61,9 @@ async function getWeather() {
     } else if (hash == "ru") {
       humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
       wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
-    } else if (data.cod === "404" || data.cod === "400") {
-      weatherError.textContent = langArr.weather_error[hash];
-      weatherIcon.className = "";
-      weatherIcon = "";
-      temperature.textContent = "";
-      weatherDescription.textContent = "";
-      humidity.textContent = "";
-      wind.textContent = "";
     }
   } catch (err) {
     weatherError.textContent = langArr.weather_error[hash];
-    weatherIcon.className = "";
     weatherIcon = "";
     temperature.textContent = "";
     weatherDescription.textContent = "";
@@ -92,17 +83,13 @@ city.addEventListener("change", () => {
     localStorage.getItem("Location") == null ||
     localStorage.getItem("Location") == ""
   ) {
-    city.value = langArr.city[hash];
     weatherError.textContent = langArr.weather_error[hash];
-    //getWeather();
   }
 });
 
 // local storage and name
 function setLocalStorage() {
-  if (nameEl.value !== langArr.namevalue[hash]) {
-    localStorage.setItem("name", nameEl.value);
-  }
+  localStorage.setItem("name", nameEl.value);
 }
 window.addEventListener("beforeunload", setLocalStorage);
 function getLocalStorage() {

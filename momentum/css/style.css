@@ -366,9 +366,9 @@ option:focus-visible {
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  height: 30vh;
+  height: 22vh;
   min-height: 160px;
-  padding: 20px;
+  padding: 15px;
 }
 
 .change-quote {
@@ -406,4 +406,22 @@ option:focus-visible {
 }
 .hidden {
   opacity: 0;
+}
+.logo__rsschool {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.contacts__link {
+  max-width: 100px;
+  max-height: 100px;
+  transform: rotate(90deg);
+}
+.contacts__link svg path {
+  fill: #ffff;
+}
+.footer__link {
+  width: 100px;
 }
