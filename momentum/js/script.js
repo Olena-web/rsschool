@@ -2,7 +2,7 @@
 const time = document.querySelector(".time");
 const dayOfWeek = document.querySelector(".date");
 let date;
-const weatherIcon = document.querySelector(".weather-icon");
+let weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
 const wind = document.querySelector(".wind");
 const humidity = document.querySelector(".humidity");
@@ -14,11 +14,12 @@ const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
 const body = document.querySelector("body");
 const changeQuote = document.querySelector(".change-quote");
-const weatherError = document.querySelector(".weather-error");
+const weatherError = document.querySelector(".weather_error");
 body.style.backgroundImage =
   "url('https://raw.githubusercontent.com/Olena-web/stage1-tasks/assets/images/evening/16.jpg')";
 const slidePrev = document.querySelector(".slide-prev");
 const slideNext = document.querySelector(".slide-next");
+const selectSource = document.querySelector(".settings-picture");
 let randomNum;
 let playNum = 0;
 let hash = window.location.hash;
@@ -62,8 +63,7 @@ async function getWeather() {
       wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
     }
   } catch (err) {
-    weatherError.textContent = "Error, enter city";
-    weatherIcon.className = "";
+    weatherError.textContent = langArr.weather_error[hash];
     weatherIcon = "";
     temperature.textContent = "";
     weatherDescription.textContent = "";
@@ -71,7 +71,6 @@ async function getWeather() {
     wind.textContent = "";
   }
 }
-
 getWeather();
 
 //city
@@ -84,8 +83,8 @@ city.addEventListener("change", () => {
     localStorage.getItem("Location") == null ||
     localStorage.getItem("Location") == ""
   ) {
-    city.value = "Minsk";
-    getWeather();
+    weatherError.textContent = langArr.weather_error[hash];
+    city.value = langArr.city[hash];
   }
 });
 
@@ -143,23 +142,18 @@ async function getLinkToUnsplash() {
   body.classList.add("fromApi");
 }
 
-//getLinkToUnsplash();
-
 //picture from flickr
 
 //window.addEventListener("load", getLinkToFlickr);
 async function getLinkToFlickr() {
+  const url =
+    "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=967601ec97e7827f2af51bc844b8eaca&tags=nature&extras=url_l&format=json&nojsoncallback=1";
   const res = await fetch(url);
   const data = await res.json();
   let pick = Math.floor(Math.random() * data.photos.photo.length);
-  const img = new Image();
-  img.src = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=967601ec97e7827f2af51bc844b8eaca&tags=nature&extras=url_l&format=json&nojsoncallback=1`;
-  img.addEventListener("load", () => {
-    body.style.backgroundImage = `url(${data.photos.photo[pick].url_l}) `;
-    body.classList.add("fromApi");
-  });
+  body.style.backgroundImage = `url(${data.photos.photo[pick].url_l}) `;
+  body.classList.add("fromApi");
 }
-//getLinkToFlickr();
 
 //picture from github
 
@@ -182,7 +176,7 @@ function setBg(bgNum) {
     body.style.backgroundImage = `url(${img.src})`;
   });
 }
-setBg(bgNum);
+//setBg(bgNum);
 
 function getSlideNext() {
   let bgNumInit = parseInt(bgNum) + 1;
@@ -213,12 +207,6 @@ slidePrev.disabled = true;
 setTimeout(function () {
   slidePrev.disabled = false;
 }, 1000);
-slideNext.addEventListener("click", getSlideNext);
-slidePrev.addEventListener("click", getSlidePrev);
-//slideNext.addEventListener("click", getLinkToUnsplash);
-//slidePrev.addEventListener("click", getLinkToUnsplash);
-//slideNext.addEventListener("click", getLinkToFlickr);
-//slidePrev.addEventListener("click", getLinkToFlickr);
 
 //quotes
 
@@ -233,3 +221,28 @@ async function getQuotes() {
   author.innerHTML = `${data[pick].author}`;
 }
 getQuotes();
+
+selectSource.addEventListener("change", showPicture);
+
+function showPicture() {
+  let picture = selectSource.value;
+  if (picture == "github") {
+    picture = "github";
+    setBg(bgNum);
+    slideNext.addEventListener("click", getSlideNext);
+    slidePrev.addEventListener("click", getSlidePrev);
+  } else if (picture == "unsplash") {
+    window.addEventListener("load", getLinkToUnsplash);
+    picture = "unsplash";
+    getLinkToUnsplash();
+    slideNext.addEventListener("click", getLinkToUnsplash);
+    slidePrev.addEventListener("click", getLinkToUnsplash);
+  } else if (picture == "flickr") {
+    window.addEventListener("load", getLinkToFlickr);
+    picture = "flickr";
+    getLinkToFlickr();
+    slideNext.addEventListener("click", getLinkToFlickr);
+    slidePrev.addEventListener("click", getLinkToFlickr);
+  }
+}
+showPicture();

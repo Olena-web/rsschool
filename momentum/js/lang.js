@@ -42,23 +42,35 @@ const langArr = {
   },
   quoteset: {
     ru: "цитаты",
-    en: "date",
+    en: "quotes",
   },
   weatherset: {
     ru: "погода",
-    en: "date",
+    en: "weather",
   },
   audioset: {
     ru: "аудио",
-    en: "date",
+    en: "audio",
   },
   todos: {
     ru: "дела",
-    en: "date",
+    en: "to-do",
   },
   save: {
     ru: "сохранить",
     en: "save",
+  },
+  weather_error: {
+    ru: "введите город",
+    en: "enter city",
+  },
+  city: {
+    ru: "Минск",
+    en: "Minsk",
+  },
+  namevalue: {
+    ru: "[введите имя]",
+    en: "[enter name]",
   },
 };
 

@@ -2,9 +2,10 @@ const audio = new Audio();
 const playBtn = document.querySelector(".play-main");
 const playNext = document.querySelector(".play-next");
 const playPrev = document.querySelector(".play-prev");
+const list = document.querySelector(".play-list");
 import playList from "./playList.js";
 let playNum = 0;
-console.log(playList);
+
 let isPlay = false;
 function playAudio() {
   audio.src = playList[playNum].src;
@@ -27,18 +28,44 @@ function toggleBtn() {
 playBtn.addEventListener("click", playAudio);
 
 playNext.addEventListener("click", () => {
-  if (playNum > 2) {
+  if (isPlay) {
+    audio.pause();
+  }
+  if (playNum == 3) {
     playNum = 0;
   } else {
     playNum++;
   }
-  playAudio();
+  audio.src = playList[playNum].src;
+  audio.currentTime = 0;
+  playBtn.classList.add("pause");
+  changeList();
+  audio.play();
 });
+
 playPrev.addEventListener("click", () => {
-  if (playNum < 1) {
+  if (isPlay) {
+    audio.pause();
+  }
+  if (playNum == 0) {
     playNum = 3;
   } else {
     playNum--;
   }
-  playAudio();
+  audio.src = playList[playNum].src;
+  audio.currentTime = 0;
+  playBtn.classList.add("pause");
+  changeList();
+  audio.play();
 });
+
+function changeList() {
+  for (let i = 0; i < list.children.length; i++) {
+    for (let j = 0; j < playList.length; j++) {
+      if (playList[j] == list[i]) {
+        list.children[i].classList.add("playing");
+      }
+    }
+  }
+}
+console.log(list.children);
