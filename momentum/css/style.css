@@ -8,6 +8,9 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --green-color: aqua;
+}
 
 body {
   min-width: 480px;
@@ -28,7 +31,7 @@ ul {
 #save {
   height: 39px;
   width: 85px;
-  background-color: #00e359;
+  background-color: var(--green-color);
   color: white;
   opacity: 0.6;
   cursor: pointer;
@@ -142,9 +145,6 @@ ul {
   transition: 0.3s;
   background-image: url("../assets/svg/play.svg");
 }
-.playing {
-  opacity: 1.2;
-}
 
 .pause {
   background-image: url("../assets/svg/pause.svg");
@@ -167,6 +167,11 @@ ul {
 }
 .play-list li:hover {
   opacity: 1;
+}
+.playing {
+  font-size: 22px;
+  opacity: 1;
+  color: var(--green-color);
 }
 
 .weather {
@@ -341,11 +346,11 @@ option {
   background-color: #5d6163;
 }
 option:hover {
-  background: #00e359;
+  background: var(--green-color);
   opacity: 0.8;
 }
 option:focus-visible {
-  outline-color: #00e359;
+  outline-color: var(--green-color);
 }
 .settings-language,
 .settings-picture {
@@ -362,7 +367,7 @@ option:focus-visible {
 }
 .settings-language:hover,
 .settings-picture:hover {
-  background-color: rgba(0, 227, 89, 1);
+  background-color: var(--green-color);
 }
 .footer {
   display: flex;

@@ -40,8 +40,15 @@ function showTime() {
   showGreeting();
   setTimeout(showTime, 1000);
 }
-
 showTime();
+
+//city
+
+city.addEventListener("change", () => {
+  getWeather();
+  localStorage.setItem("Location", city.value);
+  city.textContent = city.value;
+});
 
 city.value = localStorage.getItem("Location");
 
@@ -62,6 +69,12 @@ async function getWeather() {
       humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
       wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
     }
+    if (
+      localStorage.getItem("Location") == null ||
+      localStorage.getItem("Location") == ""
+    ) {
+      weatherError.textContent = langArr.weather_error[hash];
+    }
   } catch (err) {
     weatherError.textContent = langArr.weather_error[hash];
     weatherIcon = "";
@@ -72,21 +85,6 @@ async function getWeather() {
   }
 }
 getWeather();
-
-//city
-
-city.addEventListener("change", () => {
-  localStorage.setItem("Location", city.value);
-  city.textContent = city.value;
-  getWeather();
-  if (
-    localStorage.getItem("Location") == null ||
-    localStorage.getItem("Location") == ""
-  ) {
-    weatherError.textContent = langArr.weather_error[hash];
-    city.value = langArr.city[hash];
-  }
-});
 
 // local storage and name
 function setLocalStorage() {
