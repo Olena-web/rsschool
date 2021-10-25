@@ -1,0 +1,155 @@
+@media (max-width: 1500px) {
+  .container {
+    max-width: 1400px;
+  }
+  label {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 1000px;
+  }
+  .settings {
+    width: 19%;
+  }
+  .active {
+    left: 1em;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 700px;
+  }
+  .time {
+    min-height: 80px;
+    font-size: 72px;
+  }
+  .settings,
+  .container-todo {
+    width: 25%;
+    font-size: 13px;
+  }
+  .container-todo li > label,
+  .container-todo label,
+  .container-todo li,
+  .container-todo li > input {
+    font-size: 13px;
+  }
+  .container-todo input {
+    max-width: 5em;
+  }
+  .settings h4,
+  .settings h5 {
+    font-size: 12px;
+  }
+  #save {
+    height: 30px;
+    width: 70px;
+    font-size: 10px;
+  }
+  .greeting-container {
+    flex-direction: column;
+    width: 77vw;
+  }
+  .name {
+    font-size: 27px;
+    max-width: 50%;
+  }
+  .player-icon,
+  .slider-icon,
+  .change-quote {
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+  }
+  .play-main {
+    width: 28px;
+    height: 28px;
+    background-size: 28px 28px;
+  }
+  .player-list {
+    width: 17px;
+    height: 17px;
+    background-size: 17px 17px;
+  }
+  .playing {
+    font-size: 18px;
+  }
+  .todo-icon {
+    width: 36px;
+    height: 36px;
+    right: 1em;
+  }
+  .footer {
+    height: 20vh;
+  }
+  .footer__link {
+    width: 50px;
+  }
+}
+@media (max-width: 485px) {
+  .container {
+    max-width: 460px;
+  }
+  .main {
+    padding: 10px;
+    height: 34vh;
+  }
+  .header {
+    padding: 10px;
+    height: 25%;
+  }
+  .time {
+    font-size: 64px;
+  }
+  .greeting,
+  .name {
+    font-size: 24px;
+  }
+  .play-list li,
+  .weather {
+    font-size: 15px;
+  }
+
+  .logo__rsschool {
+    justify-content: space-evenly;
+  }
+
+  h4 {
+    font-size: 12px;
+  }
+  .weather-icon {
+    font-size: 30px;
+  }
+  .weather-description {
+    font-size: 14px;
+  }
+  .city {
+    font-size: 1em;
+    width: 10em;
+  }
+  .settings {
+    align-items: flex-start;
+    font-size: 13px;
+  }
+  .visible {
+    right: 1em;
+  }
+}
+@media (max-width: 482px) {
+  .container {
+    max-width: 95vw;
+  }
+  .header {
+    flex-direction: column;
+  }
+  .main,
+  .header,
+  .footer {
+    width: 80%;
+  }
+}
