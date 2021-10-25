@@ -45,9 +45,9 @@ showTime();
 //city
 
 city.addEventListener("change", () => {
-  getWeather();
   localStorage.setItem("Location", city.value);
   city.textContent = city.value;
+  getWeather();
 });
 
 city.value = localStorage.getItem("Location");
