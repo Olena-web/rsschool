@@ -22,6 +22,12 @@ const slideNext = document.querySelector(".slide-next");
 const selectSource = document.querySelector(".settings-picture");
 let randomNum;
 let playNum = 0;
+let lang = "en";
+let sliderSource = 0,
+  sliderCounter = 0,
+  sliderCounterMax = 500;
+let flickrData,
+  flickrNum = 0;
 let hash = window.location.hash;
 hash = hash.substr(1);
 const options = {
@@ -42,61 +48,85 @@ function showTime() {
 }
 showTime();
 
-//city
-
-city.addEventListener("change", () => {
-  localStorage.setItem("Location", city.value);
-  city.textContent = city.value;
-  getWeather();
-});
-
-city.value = localStorage.getItem("Location");
-
-//weather
-async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${hash}&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    weatherIcon.className = "weather-icon owf";
-    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-    temperature.textContent = `${Math.round(data.main.temp)} °C`;
-    weatherDescription.textContent = data.weather[0].description;
-    if (hash == "en") {
-      humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
-      wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
-    } else if (hash == "ru") {
-      humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
-      wind.textContent = `скорость ветра  ${Math.round(data.wind.speed)}  м/c `;
-    }
-    if (
-      localStorage.getItem("Location") == null ||
-      localStorage.getItem("Location") == ""
-    ) {
-      weatherError.textContent = langArr.weather_error[hash];
-    }
-  } catch (err) {
-    weatherError.textContent = langArr.weather_error[hash];
-    weatherIcon = "";
-    temperature.textContent = "";
-    weatherDescription.textContent = "";
-    humidity.textContent = "";
-    wind.textContent = "";
-  }
-}
-getWeather();
-
 // local storage and name
 function setLocalStorage() {
   localStorage.setItem("name", nameEl.value);
+  localStorage.setItem("Location", city.value);
+  localStorage.setItem("lang", lang);
+  localStorage.setItem("sliderSource", sliderSource);
 }
 window.addEventListener("beforeunload", setLocalStorage);
+
 function getLocalStorage() {
   if (localStorage.getItem("name")) {
     nameEl.value = localStorage.getItem("name");
   }
+  if (localStorage.getItem("lang")) {
+    lang = localStorage.getItem("lang");
+  } else {
+    lang = "en";
+  }
+  if (localStorage.getItem("sliderSource")) {
+    sliderSource = Number(localStorage.getItem("sliderSource"));
+  }
+  if (localStorage.getItem("Location")) {
+    city.value = localStorage.getItem("Location").trim();
+  }
+  getWeather();
 }
 window.addEventListener("load", getLocalStorage);
+
+//city
+
+// city.addEventListener("change", () => {
+//   localStorage.setItem("Location", city.value);
+//   city.textContent = city.value;
+//   getWeather();
+// });
+
+//city.value = localStorage.getItem("Location");
+
+//weather
+async function getWeather() {
+  if (city.value) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${hash}&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      weatherIcon.className = "weather-icon owf";
+      weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+      temperature.textContent = `${Math.round(data.main.temp)} °C`;
+      weatherDescription.textContent = data.weather[0].description;
+      if (hash == "en") {
+        humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
+        wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+      } else if (hash == "ru") {
+        humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
+        wind.textContent = `скорость ветра  ${Math.round(
+          data.wind.speed
+        )}  м/c `;
+      }
+    } catch (error) {
+      weatherError.textContent = langArr.weather_error[hash];
+      weatherIcon = "";
+      temperature.textContent = "";
+      weatherDescription.textContent = "";
+      humidity.textContent = "";
+      wind.textContent = "";
+    }
+  }
+}
+function setCity(event) {
+  if (
+    (event.code === "Enter" || event.code === "NumpadEnter") &&
+    city.value != ""
+  ) {
+    getWeather();
+    city.blur();
+  }
+}
+city.addEventListener("keypress", setCity);
+
 //greeting
 
 function getTimeOfDay() {
