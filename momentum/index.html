@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <link href="assets/favicon.ico" rel="shortcut icon" />
     <link rel="stylesheet" href="css/owfont-regular.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/btn.css">
-    <link rel="stylesheet" href="css/todo.css">
-    <link rel="stylesheet" href="css/media.css">
+    <link rel="stylesheet" href="css/btn.css" />
+    <link rel="stylesheet" href="css/todo.css" />
+    <link rel="stylesheet" href="css/media.css" />
     <title>momentum</title>
   </head>
   <body>
@@ -25,23 +25,22 @@
             <li>
               <div class="play player-list"></div>
               <span>Aqua Caelestis</span>
-              <audio src="assets/sounds/Aqua Caelestis.mp3"></audio>
-              </li>
-              <li>
-                <div class="play player-list"></div>
-               <span> River Flows In You</span>
-                <audio src="assets/sounds/River Flows In You.mp3"></audio>
-              </li>
-              <li>
-                <div class="play player-list"></div>
-                <span>Ennio Morricone</span>
-                <audio src="assets/sounds/Ennio Morricone.mp3"></audio>
-              </li>
+              <audio src="assets/sounds/Aqua_Caelestis.mp3"></audio>
+            </li>
+            <li>
+              <div class="play player-list"></div>
+              <span> River Flows In You</span>
+              <audio src="assets/sounds/River_Flows_In_You.mp3"></audio>
+            </li>
+            <li>
+              <div class="play player-list"></div>
+              <span>Ennio Morricone</span>
+              <audio src="assets/sounds/Ennio_Morricone.mp3"></audio>
+            </li>
             <li>
               <div class="play player-list"></div>
               <span>Summer Wind</span>
-              <audio src="assets/sounds/Summer Wind.mp3"></audio>
-            </li>
+              <audio src="assets/sounds/Summer_Wind.mp3"></audio>
             </li>
           </ul>
         </div>
@@ -68,7 +67,11 @@
         <div class="date"></div>
         <div class="greeting-container">
           <span class="greeting"> </span>
-          <input type="text" class="name namevalue" placeholder="[enter name]" />
+          <input
+            type="text"
+            class="name namevalue"
+            placeholder="[enter name]"
+          />
         </div>
       </main>
       <div class="settings-icon">
@@ -176,154 +179,205 @@
       <div class="settings">
         <h4>settings</h4>
         <ul>
-          <li> <span id="chooselang">Choose language</span><select name="language"  class="settings-language">
-              <option value="en" selected >EN</option>
+          <li>
+            <span id="chooselang">Choose language</span
+            ><select name="language" class="settings-language">
+              <option value="en" selected>EN</option>
               <option value="ru">RU</option>
               <!-- <option value="ukr">UKR</option> -->
             </select>
           </li>
-          <li> <span id="choosepict">Choose source of picture</span><select name="picture" class="settings-picture">
-                        <option value="github">GITHUB</option>
+          <li>
+            <span id="choosepict">Choose source of picture</span
+            ><select name="picture" class="settings-picture">
+              <option value="github">GITHUB</option>
               <option value="unsplash">UNSPLASH</option>
               <option value="flickr">FLICKR</option>
             </select>
           </li>
-         
         </ul>
         <h5>show</h5>
         <div class="settings-total">
-          <div class="switch ">
+          <div class="switch">
             <div class="switch-item"></div>
-            <label><span id="times" >Time</span>
-              <input type="checkbox" id = 'timeset'  class="btn-switch green tinyswitch " checked />
-              <div><div></div></div></label>
+            <label
+              ><span id="times">Time</span>
+              <input
+                type="checkbox"
+                id="timeset"
+                class="btn-switch green tinyswitch"
+                checked />
+              <div><div></div></div
+            ></label>
           </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label >
-                 <span id="dates">Date</span><input type="checkbox"  id = 'date' class="btn-switch green tinyswitch " checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>
-                <span id="greetingset">
-                  Greeting
-                </span> <input type="checkbox" id = 'greeting'  class="btn-switch green tinyswitch greeting1" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>
-                <span id="quoteset">
-                  Quotes
-                </span> <input type="checkbox"  id = 'quotes' class="btn-switch green tinyswitch quotes1" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-              <label>
-                <span id="weatherset">
-                  Weather
-                </span> <input type="checkbox"   id ='weather' class="btn-switch green tinyswitch weather1" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-                <label>
-                  <span id="audioset">
-                    Audio
-                  </span> <input type="checkbox" id = 'audio' class="btn-switch green tinyswitch audio1" checked />
-                <div><div></div></div></label>
-            </div>
-            <div class="switch ">
-              <div class="switch-item"></div>
-                <label>
-                  <span id = 'todos'> TO-DO</span>
-                  <input type="checkbox"  id = 'todo' class="btn-switch green tinyswitch todo1" checked />
-                <div><div></div></div></label>
-            </div>
-            <input id = 'save' type="button" value="Save" onclick="save();" />
+          <div class="switch">
+            <div class="switch-item"></div>
+            <label>
+              <span id="dates">Date</span
+              ><input
+                type="checkbox"
+                id="date"
+                class="btn-switch green tinyswitch"
+                checked />
+              <div><div></div></div
+            ></label>
+          </div>
+          <div class="switch">
+            <div class="switch-item"></div>
+            <label>
+              <span id="greetingset"> Greeting </span>
+              <input
+                type="checkbox"
+                id="greeting"
+                class="btn-switch green tinyswitch greeting1"
+                checked />
+              <div><div></div></div
+            ></label>
+          </div>
+          <div class="switch">
+            <div class="switch-item"></div>
+            <label>
+              <span id="quoteset"> Quotes </span>
+              <input
+                type="checkbox"
+                id="quotes"
+                class="btn-switch green tinyswitch quotes1"
+                checked />
+              <div><div></div></div
+            ></label>
+          </div>
+          <div class="switch">
+            <div class="switch-item"></div>
+            <label>
+              <span id="weatherset"> Weather </span>
+              <input
+                type="checkbox"
+                id="weather"
+                class="btn-switch green tinyswitch weather1"
+                checked />
+              <div><div></div></div
+            ></label>
+          </div>
+          <div class="switch">
+            <div class="switch-item"></div>
+            <label>
+              <span id="audioset"> Audio </span>
+              <input
+                type="checkbox"
+                id="audio"
+                class="btn-switch green tinyswitch audio1"
+                checked />
+              <div><div></div></div
+            ></label>
+          </div>
+          <div class="switch">
+            <div class="switch-item"></div>
+            <label>
+              <span id="todos"> TO-DO</span>
+              <input
+                type="checkbox"
+                id="todo"
+                class="btn-switch green tinyswitch todo1"
+                checked />
+              <div><div></div></div
+            ></label>
+          </div>
+          <input id="save" type="button" value="Save" onclick="save();" />
         </div>
-       
       </div>
       <div class="todo-icon">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 470.767 470.767" style="enable-background:new 0 0 470.767 470.767;" xml:space="preserve">
-<g>
-	<path d="M362.965,21.384H289.62L286.638,7.99C285.614,3.323,281.467,0,276.685,0h-82.618c-4.782,0-8.913,3.323-9.953,7.99
+        <svg
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 470.767 470.767"
+          style="enable-background: new 0 0 470.767 470.767"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M362.965,21.384H289.62L286.638,7.99C285.614,3.323,281.467,0,276.685,0h-82.618c-4.782,0-8.913,3.323-9.953,7.99
 		l-2.967,13.394h-73.36c-26.835,0-48.654,21.827-48.654,48.662v352.06c0,26.835,21.819,48.662,48.654,48.662h255.179
 		c26.835,0,48.67-21.827,48.67-48.662V70.046C411.635,43.211,389.8,21.384,362.965,21.384z M379.831,422.105
 		c0,9.295-7.563,16.858-16.866,16.858H107.786c-9.287,0-16.85-7.563-16.85-16.858V70.046c0-9.295,7.563-16.857,16.85-16.857h66.294
 		l-1.692,7.609c-0.684,3.02,0.062,6.188,1.988,8.596c1.94,2.415,4.876,3.82,7.965,3.82h106.082c3.091,0,6.026-1.405,7.951-3.82
-		c1.942-2.415,2.687-5.575,2.004-8.596l-1.692-7.609h66.279c9.303,0,16.866,7.563,16.866,16.857V422.105z"/>
-	<path d="M170.835,188.426h43.249l-10.279-7.019c-14.506-9.899-18.232-29.693-8.325-44.197c9.893-14.489,29.693-18.239,44.197-8.324
+		c1.942-2.415,2.687-5.575,2.004-8.596l-1.692-7.609h66.279c9.303,0,16.866,7.563,16.866,16.857V422.105z"
+            />
+            <path
+              d="M170.835,188.426h43.249l-10.279-7.019c-14.506-9.899-18.232-29.693-8.325-44.197c9.893-14.489,29.693-18.239,44.197-8.324
 		l1.694,1.157v-12.136c0-7.866-6.383-14.248-14.242-14.248h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.271
-		C156.595,182.045,162.978,188.426,170.835,188.426z"/>
-	<path d="M303.256,110.313l-49.85,47.194l-22.704-15.49c-7.221-4.962-17.13-3.083-22.099,4.162
+		C156.595,182.045,162.978,188.426,170.835,188.426z"
+            />
+            <path
+              d="M303.256,110.313l-49.85,47.194l-22.704-15.49c-7.221-4.962-17.13-3.083-22.099,4.162
 		c-4.954,7.251-3.09,17.144,4.178,22.098l33.28,22.727c2.718,1.864,5.839,2.772,8.961,2.772c3.96,0,7.888-1.474,10.933-4.356
-		l59.167-56.014c6.382-6.033,6.645-16.104,0.62-22.479C319.686,104.552,309.637,104.28,303.256,110.313z"/>
-	<path d="M170.835,297.669H214.1l-10.295-7.027c-14.506-9.901-18.232-29.693-8.325-44.197c9.893-14.498,29.693-18.248,44.197-8.325
+		l59.167-56.014c6.382-6.033,6.645-16.104,0.62-22.479C319.686,104.552,309.637,104.28,303.256,110.313z"
+            />
+            <path
+              d="M170.835,297.669H214.1l-10.295-7.027c-14.506-9.901-18.232-29.693-8.325-44.197c9.893-14.498,29.693-18.248,44.197-8.325
 		l1.694,1.158v-12.136c0-7.865-6.383-14.248-14.242-14.248h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.279
-		C156.595,291.286,162.978,297.669,170.835,297.669z"/>
-	<path d="M303.256,219.555l-49.85,47.186l-22.704-15.49c-7.221-4.97-17.13-3.098-22.099,4.162
+		C156.595,291.286,162.978,297.669,170.835,297.669z"
+            />
+            <path
+              d="M303.256,219.555l-49.85,47.186l-22.704-15.49c-7.221-4.97-17.13-3.098-22.099,4.162
 		c-4.954,7.253-3.09,17.144,4.178,22.099l33.28,22.727c2.718,1.864,5.839,2.772,8.961,2.772c3.96,0,7.888-1.476,10.933-4.356
-		l59.167-56.007c6.382-6.033,6.645-16.096,0.62-22.479C319.686,213.793,309.637,213.529,303.256,219.555z"/>
-	<path d="M227.129,322.135h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.271c0,7.865,6.383,14.248,14.24,14.248h56.294
-		c7.859,0,14.242-6.383,14.242-14.248v-56.271C241.371,328.518,234.988,322.135,227.129,322.135z"/>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
-
+		l59.167-56.007c6.382-6.033,6.645-16.096,0.62-22.479C319.686,213.793,309.637,213.529,303.256,219.555z"
+            />
+            <path
+              d="M227.129,322.135h-56.294c-7.857,0-14.24,6.383-14.24,14.248v56.271c0,7.865,6.383,14.248,14.24,14.248h56.294
+		c7.859,0,14.242-6.383,14.242-14.248v-56.271C241.371,328.518,234.988,322.135,227.129,322.135z"
+            />
+          </g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+        </svg>
       </div>
       <div class="container-todo">
         <p>
-          <label for="new-task">Add Item</label><input id="new-task" type="text"><button>Add</button>
+          <label for="new-task">Add Item</label
+          ><input id="new-task" type="text" /><button>Add</button>
         </p>
-        
+
         <h3>Todo</h3>
         <ul id="incomplete-tasks">
-          <li><input type="checkbox"><label>Pay Bills</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
-          <li class="editMode"><input type="checkbox"><label>Go Shopping</label><input type="text" value="Go Shopping"><button class="edit">Save</button><button class="delete">Delete</button></li>
-          
+          <li>
+            <input type="checkbox" /><label>Pay Bills</label
+            ><input type="text" /><button class="edit">Edit</button
+            ><button class="delete">Delete</button>
+          </li>
+          <li class="editMode">
+            <input type="checkbox" /><label>Go Shopping</label
+            ><input type="text" value="Go Shopping" /><button class="edit">
+              Save</button
+            ><button class="delete">Delete</button>
+          </li>
         </ul>
-        
+
         <h3>Completed</h3>
         <ul id="completed-tasks">
-          <li><input type="checkbox" checked><label>See the Doctor</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+          <li>
+            <input type="checkbox" checked /><label>See the Doctor</label
+            ><input type="text" /><button class="edit">Edit</button
+            ><button class="delete">Delete</button>
+          </li>
         </ul>
       </div>
-  
-   
     </div>
     <div class="container">
       <footer class="footer">
@@ -331,28 +385,41 @@
         <div>
           <div class="quote"></div>
           <div class="author"></div>
-         
-          </div>
         </div>
         <div class="container under__footer">
           <div class="logo__rsschool">
-            <a href="https://rs.school/js/" class="footer__link"
-              ><img src="assets/svg/rs_school_js.svg" alt="logo"></a>
-            <h4 >2021</h4>
-            <a href="https://github.com/Olena-web" class="contacts__link">
-              <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M-4.37114e-07 9.99951C-1.95608e-07 15.5245 4.36167 19.9995 9.74107 19.9995C14.0457 19.9995 17.6962 17.1345 18.9832 13.162C19.0749 12.662 18.7734 12.4787 18.5148 12.4787C18.2835 12.4787 17.6706 12.487 16.8585 12.4912C17.4459 15.2728 15.5517 15.8595 15.5517 15.8595C14.4274 16.3145 14.1267 16.972 14.1267 16.972C13.5228 17.8778 13.5352 16.902 13.5352 16.902C13.603 15.8978 14.5389 15.3703 14.5389 15.3703C16.0283 14.4787 15.5979 13.0295 15.3493 12.4578C14.719 12.3678 14.2903 12.1103 14.0466 11.8245C13.8029 14.0453 12.9652 16.3795 9.23304 16.3795C8.16988 16.3795 7.30085 15.992 6.61933 15.3503C6.37316 15.4628 5.3827 15.8003 4.04116 15.2628C4.04116 15.2628 3.78012 14.4253 5.03988 12.5128C4.82345 11.7128 4.71606 10.8628 4.7111 10.0128C4.71606 9.16284 4.82345 8.31285 5.03988 7.51284C3.78012 5.61285 4.04116 4.77535 4.04116 4.77535C5.3827 4.23785 6.37316 4.57534 6.61933 4.67535C7.30085 4.03785 8.16988 3.65035 9.23304 3.65035C12.9752 3.65035 13.7987 5.98784 14.0383 8.21284C14.3307 7.86284 14.928 7.53784 15.8408 7.53784C17.1444 7.53784 18.1918 7.55034 18.5082 7.55034C18.7635 7.55034 19.0683 7.37534 18.9708 6.86284C17.692 2.86201 14.0391 -0.000488895 9.74107 -0.000488707C4.36167 -0.000488472 -6.7851e-07 4.47701 -4.37114e-07 9.99951Z" fill="#212121"/>
+            <div class="footer__link">
+              <a href="https://rs.school/js/">
+                <img src="assets/svg/rs_school_js.svg" alt="logo" />
+              </a>
+            </div>
+            <h4>2021</h4>
+            <div>
+              <a href="https://github.com/Olena-web" class="contacts__link">
+                <svg
+                  class="contacts__link"
+                  width="19"
+                  height="20"
+                  viewBox="0 0 19 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M-4.37114e-07 9.99951C-1.95608e-07 15.5245 4.36167 19.9995 9.74107 19.9995C14.0457 19.9995 17.6962 17.1345 18.9832 13.162C19.0749 12.662 18.7734 12.4787 18.5148 12.4787C18.2835 12.4787 17.6706 12.487 16.8585 12.4912C17.4459 15.2728 15.5517 15.8595 15.5517 15.8595C14.4274 16.3145 14.1267 16.972 14.1267 16.972C13.5228 17.8778 13.5352 16.902 13.5352 16.902C13.603 15.8978 14.5389 15.3703 14.5389 15.3703C16.0283 14.4787 15.5979 13.0295 15.3493 12.4578C14.719 12.3678 14.2903 12.1103 14.0466 11.8245C13.8029 14.0453 12.9652 16.3795 9.23304 16.3795C8.16988 16.3795 7.30085 15.992 6.61933 15.3503C6.37316 15.4628 5.3827 15.8003 4.04116 15.2628C4.04116 15.2628 3.78012 14.4253 5.03988 12.5128C4.82345 11.7128 4.71606 10.8628 4.7111 10.0128C4.71606 9.16284 4.82345 8.31285 5.03988 7.51284C3.78012 5.61285 4.04116 4.77535 4.04116 4.77535C5.3827 4.23785 6.37316 4.57534 6.61933 4.67535C7.30085 4.03785 8.16988 3.65035 9.23304 3.65035C12.9752 3.65035 13.7987 5.98784 14.0383 8.21284C14.3307 7.86284 14.928 7.53784 15.8408 7.53784C17.1444 7.53784 18.1918 7.55034 18.5082 7.55034C18.7635 7.55034 19.0683 7.37534 18.9708 6.86284C17.692 2.86201 14.0391 -0.000488895 9.74107 -0.000488707C4.36167 -0.000488472 -6.7851e-07 4.47701 -4.37114e-07 9.99951Z"
+                    fill="#212121"
+                  />
                 </svg>
-                
+              </a>
+            </div>
           </div>
         </div>
       </footer>
     </div>
-    <script  type = 'module' src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/todo.js"></script>
-    <script type = 'module' src="js/player.js"></script>
-    <script  type = 'module' src="js/translate.js"></script>
-    
+    <script type="module" src="js/player.js"></script>
+    <script type="module" src="js/translate.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
