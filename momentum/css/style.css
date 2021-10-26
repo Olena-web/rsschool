@@ -13,7 +13,7 @@
 }
 
 body {
-  min-width: 480px;
+  min-width: 300px;
   min-height: 100vh;
   font-family: "Arial", sans-serif;
   font-size: 16px;
@@ -301,9 +301,6 @@ input:invalid {
 }
 
 .settings-icon {
-  top: 48em;
-  left: 2em;
-  position: absolute;
   opacity: 0.6;
   cursor: pointer;
 }
@@ -314,10 +311,10 @@ input:invalid {
   display: flex;
   flex-direction: column;
   position: fixed;
-  overflow-y: scroll;
+  overflow: hidden;
   max-height: 270px;
-  width: 13%;
-  top: 30em;
+  width: 15%;
+  top: 23em;
   left: -100%;
   z-index: 10;
   visibility: hidden;
@@ -414,14 +411,17 @@ option:focus-visible {
 
 .hidden {
   opacity: 0;
+  visibility: hidden;
 }
 .logo__rsschool {
+  margin-right: 10em;
+  margin-left: 10em;
   margin-top: 15px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
-  gap: 25%;
+  gap: 7%;
 }
 .contacts__link {
   max-width: 100px;
@@ -432,5 +432,5 @@ option:focus-visible {
   fill: #ffff;
 }
 .footer__link {
-  width: 11em;
+  width: 5em;
 }
