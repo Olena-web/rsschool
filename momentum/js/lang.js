@@ -61,8 +61,8 @@ const langArr = {
     en: "save",
   },
   weather_error: {
-    ru: "введите город",
-    en: "enter city",
+    ru: "Ошибка! Город не найден для ",
+    en: "Error! City not found for ",
   },
   city: {
     ru: "Минск",

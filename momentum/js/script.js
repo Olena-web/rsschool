@@ -84,30 +84,29 @@ window.addEventListener("load", getLocalStorage);
 //   getWeather();
 // });
 
-//city.value = localStorage.getItem("Location");
-
 //weather
 async function getWeather() {
   if (city.value) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${hash}&appid=bcc33196cdb4397674f34d818b09afee&units=metric`;
     try {
-      const res = await fetch(url);
-      const data = await res.json();
+      let res = await fetch(url);
+      let data = await res.json();
       weatherIcon.className = "weather-icon owf";
       weatherIcon.classList.add(`owf-${data.weather[0].id}`);
       temperature.textContent = `${Math.round(data.main.temp)} °C`;
       weatherDescription.textContent = data.weather[0].description;
-      if (hash == "en") {
-        humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
-        wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
-      } else if (hash == "ru") {
+      weatherError.textContent = "";
+      humidity.textContent = `humidity ${Math.round(data.main.humidity)} %`;
+      wind.textContent = `wind speed  ${Math.round(data.wind.speed)}  m/c `;
+      if (hash == "ru") {
         humidity.textContent = `влажность ${Math.round(data.main.humidity)} %`;
         wind.textContent = `скорость ветра  ${Math.round(
           data.wind.speed
         )}  м/c `;
       }
-    } catch (error) {
-      weatherError.textContent = langArr.weather_error[hash];
+    } catch {
+      weatherError.textContent =
+        langArr.weather_error[hash] + `${city.value} !`;
       weatherIcon = "";
       temperature.textContent = "";
       weatherDescription.textContent = "";
@@ -116,6 +115,7 @@ async function getWeather() {
     }
   }
 }
+//getWeather();
 function setCity(event) {
   if (
     (event.code === "Enter" || event.code === "NumpadEnter") &&
@@ -126,7 +126,6 @@ function setCity(event) {
   }
 }
 city.addEventListener("keypress", setCity);
-
 //greeting
 
 function getTimeOfDay() {
