@@ -255,17 +255,29 @@ selectSource.addEventListener("change", showPicture);
 function showPicture() {
   let picture = selectSource.value;
   if (picture == "github") {
+    slideNext.removeEventListener("click", getLinkToUnsplash);
+    slidePrev.removeEventListener("click", getLinkToUnsplash);
+    slideNext.removeEventListener("click", getLinkToFlickr);
+    slidePrev.removeEventListener("click", getLinkToFlickr);
     picture = "github";
     setBg(bgNum);
     slideNext.addEventListener("click", getSlideNext);
     slidePrev.addEventListener("click", getSlidePrev);
   } else if (picture == "unsplash") {
+    slideNext.removeEventListener("click", getLinkToFlickr);
+    slidePrev.removeEventListener("click", getLinkToFlickr);
+    slideNext.removeEventListener("click", getSlideNext);
+    slidePrev.removeEventListener("click", getSlidePrev);
     window.addEventListener("load", getLinkToUnsplash);
     picture = "unsplash";
     getLinkToUnsplash();
     slideNext.addEventListener("click", getLinkToUnsplash);
     slidePrev.addEventListener("click", getLinkToUnsplash);
   } else if (picture == "flickr") {
+    slideNext.removeEventListener("click", getLinkToUnsplash);
+    slidePrev.removeEventListener("click", getLinkToUnsplash);
+    slideNext.removeEventListener("click", getSlideNext);
+    slidePrev.removeEventListener("click", getSlidePrev);
     window.addEventListener("load", getLinkToFlickr);
     picture = "flickr";
     getLinkToFlickr();
