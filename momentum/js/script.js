@@ -207,7 +207,7 @@ function setBg(bgNum) {
 
 function getSlideNext() {
   let bgNumInit = parseInt(bgNum) + 1;
-  if (bgNumInit == 20) {
+  if (bgNumInit == 21) {
     bgNum = "01";
     setBg(bgNum);
     return;
