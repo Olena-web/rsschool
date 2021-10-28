@@ -40,7 +40,7 @@ import langArr from "./lang.js";
 function showTime() {
   date = new Date();
   let currentDate = date.toLocaleDateString(`${hash}`, options);
-  const currentTime = date.toLocaleTimeString();
+  const currentTime = date.toLocaleTimeString("en-GB", { hour12: false });
   time.innerHTML = currentTime;
   dayOfWeek.textContent = currentDate;
   showGreeting();
