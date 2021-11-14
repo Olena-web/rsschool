@@ -1,0 +1,65 @@
+body {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-transform: uppercase;
+  background-color: #006666;
+  font-family: "Kanit", sans-serif;
+}
+
+img {
+  width: 90vw;
+  max-width: 256px;
+}
+.logo_start {
+  display: block;
+  width: 100px;
+  height: 63.64px;
+  left: 130px;
+  margin-top: 15px;
+}
+
+.artists_quiz {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 1s ease;
+  &:hover {
+    box-shadow: 5px 5px 35px rgba(0, 0, 0, 0.78);
+    cursor: pointer;
+  }
+  &:active {
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
+  }
+}
+.picture_quiz {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 1s ease;
+  &:hover {
+    box-shadow: 5px 5px 35px rgba(0, 0, 0, 0.78);
+    cursor: pointer;
+  }
+  &:active {
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.25);
+  }
+}
+.start_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+  display: none;
+}
