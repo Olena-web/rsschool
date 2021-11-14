@@ -99,20 +99,25 @@
           <div class="time_label">
             <img src="svg/timer-picture.svg" alt="time" />
           </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value="40"
-            class="progress"
-          />
+          <div class="time_range">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="40"
+              class="progress"
+            />
+            <div class="text timer-value">5</div>
+          </div>
+
           <input
             class="check check-time"
             id="check-time"
             type="checkbox"
             checked=""
           />
+
           <label for="check-time" class="label label-time"></label>
           <h4 class="text">on/off</h4>
           <h3 class="text">time</h3>
@@ -124,6 +129,7 @@
       </div>
     </main>
 
-    <script src="index.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <!-- <script src="js/settings.js"></script> -->
   </body>
 </html>
