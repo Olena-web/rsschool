@@ -17,18 +17,32 @@
 //render();
 "use strict";
 
-import settingsPage from "./settings.js";
+import { settingsPage } from "./settings.js";
+import { playBtn } from "./settings.js";
 settingsPage();
 document.addEventListener("DOMContentLoaded", () => {
   const settingsBtn = document.querySelectorAll(".settings_button");
   const startPage = document.querySelector(".start_page");
   const settingsPage = document.querySelector(".settings_page");
-  const logo = document.querySelectorAll(".logo");
+
+  const pickArtist = document.querySelector(".artists_quiz");
+  const artistPage = document.querySelector(".artists_page");
+  const homeBtn = document.querySelector(".home_button");
 
   settingsBtn.forEach(function (btn) {
     btn.addEventListener("click", () => {
       startPage.classList.toggle("hide");
       settingsPage.classList.toggle("hide");
     });
+  });
+  pickArtist.addEventListener("click", function () {
+    startPage.classList.add("hide");
+    artistPage.classList.remove("hide");
+    playBtn();
+  });
+  homeBtn.addEventListener("click", function () {
+    startPage.classList.remove("hide");
+    artistPage.classList.add("hide");
+    playBtn();
   });
 });

@@ -15,7 +15,7 @@
   </head>
   <body>
     <main>
-      <div class="start_page">
+      <div class="page start_page">
         <div class="logo_start">
           <svg
             width="100"
@@ -57,12 +57,12 @@
             <img src="images/pictures-quiz.png" alt="picture" />
           </div>
         </div>
-        <button class="settings_button">
+        <button class="button settings_button">
           <img src="svg/settings.svg" alt="btn" />
           <span>SETTINGS</span>
         </button>
       </div>
-      <div class="settings_page hide">
+      <div class="page settings_page hide">
         <div class="logo_settings">
           <img src="svg/logo.svg" alt="logo" />
         </div>
@@ -122,16 +122,30 @@
           <h4 class="text">on/off</h4>
           <h3 class="text">time</h3>
         </div>
-        <button class="settings_button">
+        <button class="button settings_button">
           <img src="svg/settings.svg" alt="btn" />
           <span>save</span>
         </button>
       </div>
+      <div class="page artists_page hide">
+        <div class="logo_settings">
+          <img src="svg/logo.svg" alt="logo" />
+        </div>
+        <h2>artists-quiz</h2>
+        <button class="button home_button">
+          <img src="svg/home.svg" alt="btn" />
+          <span>home</span>
+        </button>
+        <div class="picture_container">
+          <div>
+            <div class="title"></div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script type="module" src="js/index.js"></script>
-    <!-- <script src="js/settings.js"></script> -->
-    <script type="module" src="js/category.js"></script>
-    <script src="js/data.js"></script>
+    <script src="js/category.js"></script>
+    <script type="module" src="js/questions.js"></script>
   </body>
 </html>

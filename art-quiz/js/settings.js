@@ -16,16 +16,13 @@ function settingsPage() {
 
     labelVolume.addEventListener("click", function () {
       volumeRange.classList.toggle("non-active");
-      audioElement.play();
+      playBtn();
     });
     labelTime.addEventListener("click", function () {
       timeRange.classList.toggle("non-active");
-      audioElement.play();
+      playBtn();
     });
-    const audioElement = document.createElement("audio");
-    audioElement.setAttribute("src", "sounds/button.wav");
-    // play audio
-    // audioElement.play();
+
     // stop audio
     //audioElement.stop();
 
@@ -49,5 +46,10 @@ function settingsPage() {
     });
   });
 }
-
-export default settingsPage;
+function playBtn() {
+  const audioElement = document.createElement("audio");
+  audioElement.setAttribute("src", "sounds/button.wav");
+  audioElement.play();
+}
+export { settingsPage };
+export { playBtn };
