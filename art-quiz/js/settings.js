@@ -22,13 +22,32 @@ function settingsPage() {
       timeRange.classList.toggle("non-active");
       audioElement.play();
     });
+    const audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", "sounds/button.wav");
+    // play audio
+    // audioElement.play();
+    // stop audio
+    //audioElement.stop();
+
+    // soundVolume.addEventListener("input", function () {
+    //   AUDIO.volume = soundVolume.value;
+    //   if (AUDIO.volume == 0) {
+    //     muteButton.style.opacity = 0.4;
+    //   } else {
+    //     muteButton.style.opacity = 1;
+    //   }
+    // });
+    const muteButton = document.querySelector(".volume_off");
+    muteButton.addEventListener("click", () => {
+      //if (soundVolume.value == 0) {
+      // AUDIO.volume = restoreValue;
+      volumeRange.classList.toggle("non-active");
+      //} else {
+      //AUDIO.volume = 0;
+      //restoreValue = soundVolume.value;
+      // volumeRange.classList.remove("non-active");
+    });
   });
-  const audioElement = document.createElement("audio");
-  audioElement.setAttribute("src", "sounds/button.wav");
-  // play audio
-  // audioElement.play();
-  // stop audio
-  //audioElement.stop();
 }
 
 export default settingsPage;
