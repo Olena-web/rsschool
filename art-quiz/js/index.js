@@ -25,8 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const settingPage = document.querySelector('.settings_page');
 
   const pickArtist = document.querySelector('.artists_quiz');
+  const pickPicture = document.querySelector('.picture_quiz');
   const artistPage = document.querySelector('.artists_page');
-  const homeBtn = document.querySelector('.home_button');
+  const picturePage = document.querySelector('.picture_page');
+  const homeBtn = document.querySelectorAll('.home_button');
 
   settingsBtn.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -39,9 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
     artistPage.classList.remove('hide');
     playBtn();
   });
-  homeBtn.addEventListener('click', () => {
-    startPage.classList.remove('hide');
-    artistPage.classList.add('hide');
+  pickPicture.addEventListener('click', () => {
+    startPage.classList.add('hide');
+    picturePage.classList.remove('hide');
     playBtn();
   });
+  homeBtn.forEach((btn) =>
+    btn.addEventListener('click', () => {
+      startPage.classList.remove('hide');
+      artistPage.classList.add('hide');
+      picturePage.classList.add('hide');
+      playBtn();
+    })
+  );
 });
