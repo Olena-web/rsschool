@@ -24,7 +24,7 @@
     }
   }
   span {
-    font-family: "Kanit", sans-serif;
+    font-family: 'Kanit', sans-serif;
     font-size: 18px;
     color: white;
     text-transform: uppercase;
@@ -43,4 +43,8 @@
       transform: scale(1.1);
     }
   }
+}
+.small_button {
+  width: 20px;
+  height: 40px;
 }

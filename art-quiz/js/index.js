@@ -18,18 +18,23 @@
 
 import { settingsPage } from './settings.js';
 import { playBtn } from './settings.js';
+import startTimer from './timer.js';
+// import choosePicture from './picture.js';
+// choosePicture();
 settingsPage();
 document.addEventListener('DOMContentLoaded', () => {
   const settingsBtn = document.querySelectorAll('.settings_button');
   const startPage = document.querySelector('.start_page');
   const settingPage = document.querySelector('.settings_page');
 
-  const pickArtist = document.querySelector('.artists_quiz');
-  const pickPicture = document.querySelector('.picture_quiz');
+  const pickArtist = document.querySelector('.pick_artists_quiz');
+  const pickPicture = document.querySelector('.pick_picture_quiz');
   const artistPage = document.querySelector('.artists_page');
   const picturePage = document.querySelector('.picture_page');
+  const artistsQuiz = document.querySelector('.artists_quiz');
+  const pictureQuiz = document.querySelector('.picture_quiz');
   const homeBtn = document.querySelectorAll('.home_button');
-
+  const itemPicture = document.querySelectorAll('.item_picture');
   settingsBtn.forEach((btn) => {
     btn.addEventListener('click', () => {
       startPage.classList.toggle('hide');
@@ -51,7 +56,19 @@ document.addEventListener('DOMContentLoaded', () => {
       startPage.classList.remove('hide');
       artistPage.classList.add('hide');
       picturePage.classList.add('hide');
+      pictureQuiz.classList.add('hide');
       playBtn();
     })
   );
+
+  itemPicture.forEach((elem) => {
+    elem.addEventListener('click', () => {
+      pictureQuiz.classList.remove('hide');
+      picturePage.classList.add('hide');
+      playBtn();
+    });
+  });
+  const fiveMinutes = 60 * 5;
+  const display = document.querySelector('.timerdown');
+  startTimer(fiveMinutes, display);
 });

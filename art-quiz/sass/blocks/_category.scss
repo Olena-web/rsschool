@@ -1,3 +1,9 @@
+// .picture_page,
+// .artists_page {
+//   // animation-duration: 1s;
+//   // animation-name: slidein;
+// }
+
 .picture_container,
 .artists_container {
   display: flex;
@@ -6,7 +12,7 @@
   overflow-y: hidden;
   gap: 20px;
 
-  .item {
+  .item_picture {
     padding: 5px;
     display: inline-block;
     text-align: center;

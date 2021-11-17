@@ -42,7 +42,7 @@ function shuffle(array) {
 function createGallery(parent) {
   shuffle(images);
   images.forEach((img, i) => {
-    parent.innerHTML += `<div class = "item">
+    parent.innerHTML += `<div class = "item_picture">
   <div class = "wrapper">
   <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
   <div class = "counter">5</div>
