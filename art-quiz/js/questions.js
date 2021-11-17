@@ -1,4 +1,6 @@
 import data from './data.js';
+import shuffle from './category.js';
+const answersWrapper = document.querySelector('.answers_wrapper');
 
 const splitArr = (arr, chunks) => {
   [...Array(chunks)].map((_, c) => arr.filter((n, index) => index % chunks === c));
@@ -18,6 +20,7 @@ const uniqAnswersByAuthor = [...new Set(questionsByAuthor.map((item) => item.aut
 const uniqAnswersByPicture = [...new Set(questionsByPicture.map((item) => item.author))];
 const newquestionsByAuthor = splitArr(questionsByAuthor, 12);
 const newquestionsByPicture = splitArr(questionsByPicture, 12);
+
 const answers = {
   uniqAnswersByAuthor,
   uniqAnswersByPicture
@@ -26,5 +29,13 @@ const questions = {
   questionsByAuthor,
   questionsByPicture
 };
-console.log(questions);
-console.log(answers);
+function createAnswers() {
+  shuffle(uniqAnswersByPicture);
+  for (let i = 0; i < 4; i += 1) {
+    answersWrapper.innerHTML += `
+  <li class="variant">"${uniqAnswersByPicture[i]}"</li>
+ `;
+  }
+}
+
+createAnswers();

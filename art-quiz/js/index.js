@@ -19,8 +19,8 @@
 import { settingsPage } from './settings.js';
 import { playBtn } from './settings.js';
 import startTimer from './timer.js';
-// import choosePicture from './picture.js';
-// choosePicture();
+import choosePicture from './picture.js';
+choosePicture();
 settingsPage();
 document.addEventListener('DOMContentLoaded', () => {
   const settingsBtn = document.querySelectorAll('.settings_button');

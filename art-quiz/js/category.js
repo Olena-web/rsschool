@@ -54,3 +54,4 @@ function createGallery(parent) {
 
 createGallery(pictureContainer, images, titles);
 createGallery(artistsContainer, images, titles);
+export default shuffle;
