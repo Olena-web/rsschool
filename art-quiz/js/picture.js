@@ -9,15 +9,14 @@ function choosePicture() {
   }
   getRandomNum();
   const pictureImg = document.querySelector('.picture_img');
-  let bgNum = getRandomNum(1, 20).toString().padStart(2, '0');
-  async function setBg() {
+  let bgNum = getRandomNum(0, 119);
+  function setBg() {
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/full/${bgNum}full.webp`;
+    img.src = `https://github.com/Olena-web/image-data/blob/master/full/${bgNum}full.jpg`;
     img.addEventListener('load', () => {
       pictureImg.style.backgroundImage = `url(${img.src})`;
     });
-    console.log(`url(${img.src})`);
   }
-  setBg(bgNum);
+  setBg();
 }
 export default choosePicture;

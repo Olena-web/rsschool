@@ -56,15 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
       startPage.classList.remove('hide');
       artistPage.classList.add('hide');
       picturePage.classList.add('hide');
-      pictureQuiz.classList.add('hide');
+      artistsQuiz.classList.add('hide');
       playBtn();
     })
   );
 
   itemPicture.forEach((elem) => {
     elem.addEventListener('click', () => {
-      pictureQuiz.classList.remove('hide');
-      picturePage.classList.add('hide');
+      artistsQuiz.classList.remove('hide');
+      artistPage.classList.add('hide');
       playBtn();
     });
   });
