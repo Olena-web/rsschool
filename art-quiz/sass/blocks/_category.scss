@@ -12,7 +12,8 @@
   overflow-y: hidden;
   gap: 20px;
 
-  .item_picture {
+  .item_picture,
+  .item_picture_artists {
     padding: 5px;
     display: inline-block;
     text-align: center;

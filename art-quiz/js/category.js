@@ -31,7 +31,7 @@ let titles = [
 ];
 const pictureContainer = document.querySelector('.picture_container');
 const artistsContainer = document.querySelector('.artists_container');
-
+0;
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i -= 1) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -39,10 +39,10 @@ function shuffle(array) {
   }
 }
 
-function createGallery(parent) {
+function createGalleryPicture() {
   shuffle(images);
   images.forEach((img, i) => {
-    parent.innerHTML += `<div class = "item_picture">
+    pictureContainer.innerHTML += `<div class = "item_picture">
   <div class = "wrapper">
   <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
   <div class = "counter">5</div>
@@ -51,7 +51,20 @@ function createGallery(parent) {
   </div>`;
   });
 }
+createGalleryPicture();
 
-createGallery(pictureContainer, images, titles);
-createGallery(artistsContainer, images, titles);
+function createGalleryArtists() {
+  shuffle(images);
+  images.forEach((img, i) => {
+    artistsContainer.innerHTML += `<div class = "item_picture_artists">
+  <div class = "wrapper">
+  <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
+  <div class = "counter">5</div>
+  </div>
+  <img src = "${images[i]}"></img>
+  </div>`;
+  });
+}
+createGalleryArtists();
+
 export default shuffle;

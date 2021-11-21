@@ -7,8 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&display=swap" rel="stylesheet" />
-    <title>ART-QUIZ</title>
     <link rel="stylesheet" href="css/style.min.css" />
+    <link rel="shortcut icon" href="favicon.webp" />
+    <title>ART-QUIZ</title>
   </head>
   <body>
     <main>
@@ -122,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div class="page picture_quiz hide">
+      <div class="page artists_quiz hide">
         <div class="header">
           <div class="logo_small">
             <img src="svg/logo.svg" alt="logo" />
@@ -147,10 +148,34 @@
           <ul class="answers_wrapper"></ul>
         </div>
       </div>
+      <div class="page picture_quiz hide">
+        <div class="header">
+          <div class="logo_small">
+            <img src="svg/logo.svg" alt="logo" />
+          </div>
+          <div class="timer">
+            <div class="time_label">
+              <img src="svg/timer-picture.svg" alt="time" />
+              <span class="timerdown">05:00</span>
+            </div>
+          </div>
+          <button class="button home_button small_button">
+            <img src="svg/home.svg" alt="btn" />
+          </button>
+        </div>
+        <h3>Какую картину написал автор?</h3>
+        <div class="picture_images">
+          <div class="picture_question"></div>
+          <div class="picture_question"></div>
+          <div class="picture_question"></div>
+          <div class="picture_question"></div>
+        </div>
+      </div>
     </main>
 
     <script type="module" src="js/index.js"></script>
     <script type="module" src="js/category.js"></script>
     <script type="module" src="js/questions.js"></script>
+    <script src="js/picturequiz.js"></script>
   </body>
 </html>
