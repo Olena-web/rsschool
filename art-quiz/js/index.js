@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const settingsBtn = document.querySelectorAll('.settings_button');
   const startPage = document.querySelector('.start_page');
   const settingPage = document.querySelector('.settings_page');
-
   const pickArtist = document.querySelector('.pick_artists_quiz');
   const pickPicture = document.querySelector('.pick_picture_quiz');
   const artistPage = document.querySelector('.artists_page');
@@ -57,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       artistPage.classList.add('hide');
       picturePage.classList.add('hide');
       artistsQuiz.classList.add('hide');
+      pictureQuiz.classList.add('hide');
       playBtn();
     })
   );
@@ -68,6 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
       playBtn();
     });
   });
+  const artistsContainer = document.querySelector('.artists_container');
+  let itemArtists = artistsContainer.children;
+  for (let i = 1; i < itemArtists.length; i++) {
+    itemArtists[i].addEventListener('click', () => {
+      pictureQuiz.classList.remove('hide');
+      picturePage.classList.add('hide');
+      playBtn();
+    });
+  }
+
   const fiveMinutes = 60 * 5;
   const display = document.querySelector('.timerdown');
   startTimer(fiveMinutes, display);
