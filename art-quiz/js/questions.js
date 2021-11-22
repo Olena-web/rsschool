@@ -32,11 +32,31 @@ const questions = {
   questionsByAuthor,
   questionsByPicture
 };
+
+let randomNum;
+function getRandomNum(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomNum;
+}
+getRandomNum();
+const pictureImg = document.querySelector('.picture_img');
+let bgNum = getRandomNum(0, 119);
+function setBg() {
+  const img = new Image();
+  img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/full/${bgNum}full.jpg`;
+  img.addEventListener('load', () => {
+    pictureImg.style.backgroundImage = `url(${img.src})`;
+  });
+}
+setBg();
+
 function createAnswersPicture() {
   shuffle(uniqAnswersByPicture);
   for (let i = 0; i < 4; i += 1) {
     answersWrapper.innerHTML += `
-  <li class="variant">"${uniqAnswersByPicture[i]}"</li>
+  <li class="variant">"${data[(bgNum += 1)].author}"</li>
  `;
   }
 }

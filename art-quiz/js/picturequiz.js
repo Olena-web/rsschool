@@ -1,5 +1,7 @@
-const pictureQuestion = document.querySelectorAll('.picture_question');
+import data from './data.js';
 
+const pictureQuestion = document.querySelectorAll('.picture_question');
+const pictureQuizName = document.getElementById('author');
 let randomNum;
 function getRandomNum(min, max) {
   min = Math.ceil(min);
@@ -20,3 +22,8 @@ function setPictures() {
   }
 }
 setPictures();
+function setAuthor() {
+  pictureQuizName.innerHTML = `Kакую картину написал ${data[bgNum].author} `;
+}
+
+setAuthor();
