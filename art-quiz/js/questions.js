@@ -1,5 +1,8 @@
 import data from './data.js';
 import shuffle from './category.js';
+import choosePicture from './picture.js';
+choosePicture();
+
 const answersWrapper = document.querySelector('.answers_wrapper');
 
 const splitArr = (arr, chunks) => {
@@ -29,7 +32,7 @@ const questions = {
   questionsByAuthor,
   questionsByPicture
 };
-function createAnswers() {
+function createAnswersPicture() {
   shuffle(uniqAnswersByPicture);
   for (let i = 0; i < 4; i += 1) {
     answersWrapper.innerHTML += `
@@ -38,4 +41,4 @@ function createAnswers() {
   }
 }
 
-createAnswers();
+createAnswersPicture();

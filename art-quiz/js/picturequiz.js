@@ -1,4 +1,4 @@
-const pictureImages = document.querySelector('.picture_images');
+const pictureQuestion = document.querySelectorAll('.picture_question');
 
 let randomNum;
 function getRandomNum(min, max) {
@@ -12,22 +12,11 @@ getRandomNum();
 let bgNum = getRandomNum(0, 119);
 
 function setPictures() {
-  const img = new Image();
-  img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/img/${bgNum}full.jpg`;
-  img.addEventListener('load', () => {
-    for (let i = 0; i < 4; i += 1) {
-      pictureImages.innerHTML += `
-            <div class="picture_question>"></div>
-            `;
-    }
-  });
-  const pictureQuestion = document.querySelectorAll('.picture_question');
-  let elem;
-  pictureQuestion.forEach(elem, () => {
-    elem.addEventListener('load', () => {
-      elem.style.backgroundImage = `url(${img.src})`;
-    });
-  });
+  for (let i = 0; i < 4; i += 1) {
+    const img = new Image();
+    img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/img/${(bgNum += 1)}.jpg`;
+    img.addEventListener('load', () => {});
+    pictureQuestion[i].style.backgroundImage = `url(${img.src})`;
+  }
 }
-
 setPictures();
