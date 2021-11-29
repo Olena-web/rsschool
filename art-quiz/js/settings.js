@@ -4,7 +4,7 @@ const volumeRange = document.querySelector('.volume_range');
 const timeRange = document.querySelector('.time_range');
 const muteButton = document.querySelector('.volume_off');
 const audioElement = document.createElement('audio');
-
+let progress = document.querySelectorAll('.progress');
 function playBtn() {
   audioElement.setAttribute('src', 'sounds/button.wav');
   audioElement.play();
@@ -14,7 +14,7 @@ function forInput() {
   const value = this.value;
   volume = value;
   this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #c4c4c4 ${value}%, #c4c4c4 100%)`;
-  if (volume === 0) {
+  if (value === 0) {
     muteButton.style.opacity = 0.4;
   } else {
     muteButton.style.opacity = 1;
@@ -22,7 +22,6 @@ function forInput() {
 }
 function settingsPage() {
   document.addEventListener('DOMContentLoaded', () => {
-    let progress = document.querySelectorAll('.progress');
     progress.forEach((elem) => {
       elem.addEventListener('input', forInput);
     });
