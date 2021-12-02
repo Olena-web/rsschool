@@ -1,16 +1,16 @@
 import './news.css';
 
 class News {
-    draw(data) {
-        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    draw(data: string[]) {
+        const news: string[] = data.length >= 10 ? data.filter((_item: string, idx: number) => idx < 10) : data;
 
-        const fragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector('#newsItemTemp');
+        const fragment = (document.createDocumentFragment() as unknown) as HTMLTemplateElement;
+        const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
         news.forEach((item, idx) => {
-            const newsClone = newsItemTemp.content.cloneNode(true);
+            const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
-            if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
+            if (idx % 2) (newsClone.querySelector('.news__item') as HTMLDivElement).classList.add('alt');
 
             newsClone.querySelector('.news__meta-photo').style.backgroundImage = `url(${
                 item.urlToImage || 'img/news_placeholder.jpg'
@@ -22,7 +22,7 @@ class News {
                 .reverse()
                 .join('-');
 
-            newsClone.querySelector('.news__description-title').textContent = item.title;
+            (newsClone.querySelector('.news__description-title') as HTMLTitleElement).textContent = item.title;
             newsClone.querySelector('.news__description-source').textContent = item.source.name;
             newsClone.querySelector('.news__description-content').textContent = item.description;
             newsClone.querySelector('.news__read-more a').setAttribute('href', item.url);
@@ -30,8 +30,8 @@ class News {
             fragment.append(newsClone);
         });
 
-        document.querySelector('.news').innerHTML = '';
-        document.querySelector('.news').appendChild(fragment);
+        (document.querySelector('.news') as HTMLDivElement).innerHTML = '';
+        (document.querySelector('.news') as HTMLDivElement).appendChild(fragment);
     }
 }
 
