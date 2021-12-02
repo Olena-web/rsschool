@@ -10,10 +10,11 @@ class App {
     }
 
     start() {
-        (document.querySelector('.sources') as HTMLDivElement).addEventListener('click', (e) =>
-            this.controller.getNews(e, (data => this.view.drawNews(data)));
-            this.controller.getSources(data => this.view.drawSources(data))
-        )
-    }
+        (document.querySelector('.sources') as HTMLDivElement).addEventListener('click', (e: Event) =>
+            this.controller.getNews(e, (data) => this.view.drawNews(data))
+              this.controller.getSources((data) => this.view.drawSources(data));
+            
+         }
 }
 export default App;
+
