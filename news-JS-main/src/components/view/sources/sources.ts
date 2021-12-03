@@ -1,10 +1,24 @@
 import './sources.css';
-export interface MySource {
+ export interface Article {
+    author: string,
+    title: string,
+    description: string,
+    url: string|unknown,
+    urlToImage: string| unknown,
+    publishedAt: string,
+    content: string
+    }
+
+export interface APISource {
     id: string;
     name: string;
+    status:string,
+    totalResults:number,
+    articles?: [Article],
+    
 }
 class Sources {
-    draw(data: MySource[]) {
+    draw(data: APISource[]) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 

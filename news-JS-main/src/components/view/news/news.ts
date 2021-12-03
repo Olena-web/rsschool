@@ -1,7 +1,7 @@
 import './news.css';
 
 class News {
-    draw(data: object) {
+    draw(data: string[]) {
         const news = data.length >= 10 ? data.filter((_item: string, idx: number) => idx < 10) : data;
 
         const fragment = (document.createDocumentFragment() as unknown) as HTMLTemplateElement;
