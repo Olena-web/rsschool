@@ -1,22 +1,31 @@
 import './sources.css';
- export interface Article {
+ type Article = {
     author: string,
     title: string,
     description: string,
-    url: string|unknown,
-    urlToImage: string| unknown,
+    url: string,
+    urlToImage: string,
     publishedAt: string,
-    content: string
+    content: string,
+    source:{
+        name: string,
+        id: string,
     }
-
+    }
+export type Source = {
+    id: string,
+    name: string,
+}
 export interface APISource {
-    id: string;
-    name: string;
     status:string,
     totalResults:number,
-    articles?: [Article],
+    id: string,
+    name: string,
+    articles?: Article[],
+    sources?:Source[],
     
 }
+
 class Sources {
     draw(data: APISource[]) {
         const fragment = document.createDocumentFragment();
