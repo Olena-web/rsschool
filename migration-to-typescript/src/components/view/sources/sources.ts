@@ -33,16 +33,18 @@ class Sources {
     data.forEach((item) => {
       const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLTemplateElement;
       if (sourceClone !== null) {
-        (sourceClone.querySelector('.source__item-name') as HTMLSpanElement).textContent = item.name;
-        (sourceClone.querySelector('.source__item') as HTMLDivElement).setAttribute('data-source-id', item.id);
-
+        const itemName = sourceClone.querySelector('.source__item-name') as HTMLSpanElement;
+        const itemSource = sourceClone.querySelector('.source__item') as HTMLDivElement;
+        itemName.textContent = item.name;
+        itemSource.setAttribute('data-source-id', item.id);
         fragment.append(sourceClone);
       }
     });
-    if ((document.querySelector('.sources')as HTMLDivElement).textContent == '') {
-    (document.querySelector('.sources') as HTMLDivElement).append(fragment);
+    const sources = document.querySelector('.sources') as HTMLDivElement;
+    if (sources.textContent == '') {
+      sources.append(fragment);
+    }
   }
-}
 }
 
 export default Sources;

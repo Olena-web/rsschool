@@ -6,8 +6,8 @@
             "prettier",
             "eslint:recommended",
             "plugin:@typescript-eslint/recommended",
-            "plugin:@typescript-eslint/recommended-requiring-type-checking",
-            "./tsconfig.json"
+            "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            
         ],
         "parserOptions": {
             "ecmaVersion": 2020,

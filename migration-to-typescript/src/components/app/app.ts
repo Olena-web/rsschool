@@ -1,5 +1,5 @@
 import AppController from '../controller/controller';
-import  AppView  from '../view/appView';
+import AppView from '../view/appView';
 
 class App {
   controller: AppController;
@@ -14,10 +14,8 @@ class App {
       this.controller.getNews(e, (data) => this.view.drawNews(data))
     ),
       this.controller.getSources((data) => {
-        console.log(typeof data);
         return this.view.drawSources(data);
       });
   }
 }
 export default App;
-
