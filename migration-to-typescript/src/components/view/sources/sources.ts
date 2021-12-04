@@ -39,9 +39,10 @@ class Sources {
         fragment.append(sourceClone);
       }
     });
-
+    if ((document.querySelector('.sources')as HTMLDivElement).textContent == '') {
     (document.querySelector('.sources') as HTMLDivElement).append(fragment);
   }
+}
 }
 
 export default Sources;

@@ -1,4 +1,4 @@
-{
+
     {
         "plugins": ["prettier", "import","@typescript-eslint"],
         "extends": [
