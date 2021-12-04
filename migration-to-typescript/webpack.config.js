@@ -15,7 +15,7 @@ const baseConfig = {
             {
                 test: /\.(ts|tsx)$/i,
                 use: 'ts-loader',
-                exclude:['/node_modules/'],
+                exclude: ['/node_modules/'],
             },
         ],
     },
@@ -29,7 +29,7 @@ const baseConfig = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
-            filename: './dist/index.html',
+            filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
     ],
