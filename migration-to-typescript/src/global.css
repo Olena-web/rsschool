@@ -20,7 +20,6 @@ main{
     flex-wrap: wrap;  
 }
 footer {
-    
     display: flex;
     flex-direction:row;
     align-items: center;
@@ -28,15 +27,22 @@ footer {
 }
 footer .copyright {
     font-size: 14px;
-    color: #333;
+    color: #ffff;
+    opacity: 0.8;
     text-align: center;
 }
 footer .copyright a {
-    color: #444;
+    color: #ffff;
 }
 footer .copyright a:hover {
-    color: #555;
+    color: rgb(139, 123, 28);
 }
 footer .copyright:before {
     content: '©';
+}
+footer a svg path{
+    fill:#ffff;
+    }
+footer a svg path:hover{
+fill:rgb(139, 123, 28)
 }
