@@ -1,5 +1,7 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
+// import APISource from '../view/news/news';
+// import Article from '../view/news/news';
 
 class App {
   controller: AppController;
@@ -11,9 +13,11 @@ class App {
 
   start() {
     (document.querySelector('.sources') as HTMLDivElement).addEventListener('click', (e: Event) =>
-      this.controller.getNews(e, (data) => this.view.drawNews(data))
+      this.controller.getNews(e, (data?: { articles: [] }) => {
+        return this.view.drawNews(data);
+      })
     ),
-      this.controller.getSources((data) => {
+      this.controller.getSources((data?: { sources: [] }) => {
         return this.view.drawSources(data);
       });
   }

@@ -1,5 +1,5 @@
 import './sources.css';
-type Article = {
+export type Article = {
   author: string;
   title: string;
   description: string;
