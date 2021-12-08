@@ -8,10 +8,12 @@ const baseConfig = {
     mode: 'development',
     module: {
         rules: [
+
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                test: /\.(scss|css)$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
+
             {
                 test: /\.(ts|tsx)$/i,
                 use: {
@@ -51,6 +53,7 @@ const baseConfig = {
 
         }),
         new CleanWebpackPlugin(),
+
     ],
 };
 
