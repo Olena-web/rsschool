@@ -1,2 +1,2 @@
 
-import "./sass/style.scss";
+import "./css/style.min.css";

@@ -33,17 +33,19 @@ const baseConfig = {
                 type: 'asset/resource',
             },
             {
-                test: /\.(woff(2)?|eot|ttf|otf)$/i,
-                type: 'asset/resource',
+                test: /\.(woff(2)?|eot|ttf|otf|svg)$/i,
+                type: 'asset/inline',
             },
+
         ],
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx'],
     },
     output: {
-        filename: 'index.js',
         path: path.resolve(__dirname, './dist'),
+        filename: 'index.js',
+        assetModuleFilename: 'assets/[hash][ext][query]',
     },
     plugins: [
         new HtmlWebpackPlugin({
