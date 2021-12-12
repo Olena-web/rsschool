@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+footer {
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    left: 0px;
+    background-color: #121C1E;
+
+}
+
+.logo {
+    position: absolute;
+    right: 84px; 
+    svg {
+    width: 234px;
+    height: 87px;
+    }
+
+}
+

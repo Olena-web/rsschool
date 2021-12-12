@@ -1,0 +1,28 @@
+.start-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    title {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      width: 423px;
+      height: 116px;
+      font-family: Neucha;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 53px;
+      line-height: 58px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #FFFFFF;
+  }
+      .background-image {
+          height: 100%;
+          position: relative;
+          z-index: -1;
+          img {
+              width: 100%;
+          }
+      }
+  }
