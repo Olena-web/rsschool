@@ -175,16 +175,16 @@ aside {
     
     .toys-page__container {
       margin-top: 30px;
-        display: flex;
-        flex-wrap: wrap;
-        height: 100vh;
-        overflow: auto;
-        gap: 20px;
-        justify-content: flex-start;
-        width: 100%;
-        max-width: 1600px;
-        margin: 0 auto;
-        padding-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      height: 100vh;
+      overflow: auto;
+      gap: 20px;
+      justify-content: flex-start;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding-bottom: 40px;
 
   .toys_item   {
     position: relative;
@@ -217,13 +217,14 @@ aside {
     padding-left: 10px;
     pointer-events: none;
     color: #fff;
-    font-size: 12px;
+    font-size: 18px;
     }
     .ribbon {
         width: 150px;
         height: 150px;
         overflow: hidden;
         position: absolute;
+        color:  #3FB8AF;
       }
       .ribbon::before,
       .ribbon::after {
@@ -231,7 +232,7 @@ aside {
         z-index: -1;
         content: '';
         display: block;
-        border: 5px solid #2980b9;
+        border: 5px solid #3FB8AF;
       }
       .ribbon span {
         position: absolute;
@@ -244,24 +245,24 @@ aside {
       .ribbon-active span {
         background-color: goldenrod; 
       }
-      .ribbon-bottom-right {
+      .ribbon {
         bottom: -10px;
         right: -10px;
       }
-      .ribbon-bottom-right::before,
-      .ribbon-bottom-right::after {
+      .ribbon::before,
+      .ribbon::after {
         border-bottom-color: transparent;
         border-right-color: transparent;
       }
-      .ribbon-bottom-right::before {
+      .ribbon::before {
         bottom: 0;
         left: 0;
       }
-      .ribbon-bottom-right::after {
+      .ribbon::after {
         top: 0;
         right: 0;
       }
-      .ribbon-bottom-right span {
+      .ribbon span {
         left: -25px;
         bottom: 30px;
         transform: rotate(-225deg);

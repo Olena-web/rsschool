@@ -9,11 +9,10 @@ interface dataItem {
   shape: string;
   color: string;
   size: string;
-  favorite: boolean;
+  favorite: string;
   isChecked?: boolean;
 }
 
-//const sortedData = ;
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 
 function createToysContainer() {
@@ -22,7 +21,7 @@ function createToysContainer() {
   } else {
     data.forEach((item, i) => {
       toysContainer.innerHTML += `<div class = "toys_item">
-    <div class="ribbon ribbon-bottom-right ribbon-active">
+    <div class="ribbon">
     <span></span></div>
   <div class="title">${data[i].name}</div>
   <img src="assets/toys/${data[i].num}.png" alt="toy">
@@ -40,8 +39,8 @@ function createToysContainer() {
 
       toysItem.forEach((item) => {
         item.addEventListener('click', () => {
-          const ribbon = item.querySelector<HTMLDivElement>('.ribbon span');
-          if (ribbon) ribbon.classList.toggle('active');
+          const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
+          if (ribbon) ribbon.classList.toggle('ribbon-active');
         });
       });
     });

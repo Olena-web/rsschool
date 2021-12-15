@@ -1,48 +1,51 @@
 import noUiSlider, { API } from '../node_modules/nouislider/dist/nouislider';
 
 export default noUiSlider;
-
 interface TargetElement extends HTMLElement {
-    noUiSlider: API;
+  noUiSlider: API;
 }
-export function createSlider (){
+export function createSlider() {
+  const slider = document.getElementById('slider') as TargetElement;
+  const sliderTwo = document.getElementById('slider-two') as TargetElement;
 
-const slider = document.getElementById('slider') as TargetElement;
-const sliderTwo = document.getElementById('slider-two') as TargetElement;
-
-noUiSlider.create(slider, {
-    start: [2, 11], 
+  noUiSlider.create(slider, {
+    start: [2, 11],
     connect: true,
     range: {
-        'min': 1,
-        'max': 12
+      min: 1,
+      max: 12,
     },
-   
-});
+    step: 1,
+  });
 
+  const leftOutput = document.querySelector<HTMLOutputElement>('.left');
+  const rightOutput = document.querySelector<HTMLOutputElement>('.right');
+  slider.noUiSlider.on('update', () => {
+    const outputValue = slider.noUiSlider.get() as string[];
+    if (outputValue && leftOutput && rightOutput) {
+      leftOutput.innerHTML = parseInt(outputValue[0]).toString();
+      rightOutput.innerHTML = parseInt(outputValue[1]).toString();
+    }
+  });
 
-noUiSlider.create(sliderTwo, {
-    start: [1950, 2010], 
+  noUiSlider.create(sliderTwo, {
+    start: [1950, 2010],
     connect: true,
     range: {
-        'min': 1940,
-        'max': 2020
+      min: 1940,
+      max: 2020,
     },
     behaviour: 'drag-tap',
-    
-});
-const nodes = [
-    document.getElementById('lower-value'), // 0
-    document.getElementById('upper-value')  // 1
-];
-console.log(nodes[0]?.innerText);
-// Display the slider value and how far the handle moved
-// from the left edge of the slider.
-// slider.noUiSlider?.on('update', function (values:string, handle:number, unencoded:number[], isTap:boolean, positions:number[]) {
-//     if(nodes=== null && nodes[handle] === null){
-//         throw Error
-//         } else {nodes[handle].innerHTML = values[handle] + ', ' + positions[handle].toFixed(0);};
-// });
-
+    step: 1,
+  });
+  const startOutput = document.querySelector<HTMLOutputElement>('.forty');
+  const endOutput = document.querySelector<HTMLOutputElement>('.end');
+  sliderTwo.noUiSlider.on('update', () => {
+    const outputValue = sliderTwo.noUiSlider.get() as string[];
+    if (outputValue && startOutput && endOutput) {
+      startOutput.innerHTML = parseInt(outputValue[0]).toString();
+      endOutput.innerHTML = parseInt(outputValue[1]).toString();
+    }
+  });
 }
-createSlider ();
+createSlider();
