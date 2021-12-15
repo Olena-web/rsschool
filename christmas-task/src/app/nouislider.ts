@@ -1,4 +1,4 @@
-import noUiSlider, { API } from '../node_modules/nouislider/dist/nouislider';
+import noUiSlider, { API } from '../../node_modules/nouislider/dist/nouislider';
 
 export default noUiSlider;
 interface TargetElement extends HTMLElement {

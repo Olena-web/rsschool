@@ -1,17 +1,4 @@
-import Control from '../common/control';
 import data from '../data.js';
-
-interface dataItem {
-  num: string;
-  name: string;
-  count: string;
-  year: string;
-  shape: string;
-  color: string;
-  size: string;
-  favorite: string;
-  isChecked?: boolean;
-}
 
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 
