@@ -1,16 +1,5 @@
-import './css/style.min.css';
-import './nouislider';
-import Control from './common/control';
-
-// export class App extends Control{
-//     constructor(parentNode:HTMLElement){
-//         super(parentNode);
-//         const startPage = new startPage(this.node);
-//         return startPage;
-// }
-// }
-// const app = new App(document.body);
-import data from './data.js';
+import Control from '../common/control';
+import data from '../data.js';
 
 interface dataItem {
   num: string;
@@ -20,7 +9,7 @@ interface dataItem {
   shape: string;
   color: string;
   size: string;
-  favorite: string;
+  favorite: boolean;
   isChecked?: boolean;
 }
 
