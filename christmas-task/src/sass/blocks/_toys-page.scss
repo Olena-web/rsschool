@@ -174,16 +174,16 @@ aside {
     //toys-container
     
     .toys-page__container {
+      margin: 0 auto;
       margin-top: 30px;
       display: flex;
       flex-wrap: wrap;
-      height: 100vh;
+      height: 90vh;
       overflow: auto;
       gap: 20px;
       justify-content: flex-start;
       width: 100%;
       max-width: 1600px;
-      margin: 0 auto;
       padding-bottom: 40px;
 
   .toys_item   {
