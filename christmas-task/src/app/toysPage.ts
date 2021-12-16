@@ -1,5 +1,20 @@
 import data from '../data.js';
-
+const isSelected = false;
+interface selectedItem {
+  num: string;
+  name: string;
+  count: string;
+  year: string;
+  shape: string;
+  color: string;
+  size: string;
+  favorite: string;
+  isChecked?: boolean;
+}
+interface selectedItems {
+  [index: number]: string;
+  selectedItem?: selectedItem[];
+}
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 
 function createToysContainer() {
@@ -21,16 +36,36 @@ function createToysContainer() {
   <div class="favorite">Любимая: ${data[i].favorite} </div>
   </div>;
   `;
-
       const toysItem = document.querySelectorAll<HTMLDivElement>('.toys_item');
+      const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
+      const selectedItems: string[] = [];
+      toysItem.forEach((item, i) => {
+        const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
 
-      toysItem.forEach((item) => {
-        item.addEventListener('click', () => {
-          const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
-          if (ribbon) ribbon.classList.toggle('ribbon-active');
-        });
+        if (!isSelected) {
+          item.addEventListener(
+            'click',
+            () => {
+              if (ribbon) ribbon.classList.add('ribbon-active');
+              const selectedItem = data[i];
+              selectedItems.push(JSON.stringify(selectedItem));
+              if (selectedSpan !== null) selectedSpan.innerHTML = selectedItems.length.toString();
+              console.log(selectedItems);
+            },
+            { once: true }
+          );
+        } else {
+          if (ribbon && ribbon.classList.contains('ribbon-active')) {
+            item.addEventListener('click', () => {
+              ribbon.classList.remove('ribbon-active');
+              selectedItems.pop();
+              if (selectedSpan !== null) selectedSpan.innerHTML = selectedItems.length.toString();
+            });
+          }
+        }
       });
     });
   }
 }
+
 createToysContainer();

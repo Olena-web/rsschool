@@ -1,6 +1,6 @@
 import data from '../data.js';
 
-interface IDataItem {
+export default interface IDataItem {
   num: string;
   name: string;
   count: string;
