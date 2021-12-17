@@ -29,21 +29,28 @@ function createToysContainer() {
       const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
       const selectedItems: string[] = [];
       const selectedItem = data[i];
-      let count = parseInt(data[i].count);
+
       toysItem.forEach((item, i) => {
         const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
-        const selectedToy = document.querySelectorAll<HTMLDivElement>('.selected-toy');
+        const selectedToy = item.querySelectorAll<HTMLDivElement>('.selected-toy');
+        const countDescr = item.querySelector<HTMLDivElement>('.count');
+        let countToys = parseInt(data[i].count);
+        let countSelectedToys = 0;
         function addToy() {
-          item.classList.toggle('selected-toy');
-          if (ribbon) ribbon.classList.toggle('ribbon-active');
+          if (countToys == 0) return;
+          if (countSelectedToys == 20) return;
+          countToys--;
+          item.classList.add('selected-toy');
+          if (ribbon) ribbon.classList.add('ribbon-active');
           selectedItems.push(JSON.stringify(selectedItem));
-          count = selectedItems.length;
-          if (selectedSpan !== null) selectedSpan.innerHTML = count.toString();
+          countSelectedToys = selectedItems.length;
+          if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+          if (countDescr) countDescr.innerText = `Количество: ${countToys.toString()}`;
         }
 
         function removeToy() {
-          count = selectedItems.length;
-          if (selectedSpan !== null) selectedSpan.innerHTML = count.toString();
+          countSelectedToys--;
+          if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
         }
 
         item.addEventListener('click', () => {
