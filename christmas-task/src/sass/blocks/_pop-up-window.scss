@@ -29,6 +29,10 @@
     background-position: center center;
     background-image: url(../assets/svg/snowflake.svg);
     cursor: pointer;
+    transition:.5s;
+}
+.close:hover{
+    transform:scale(1.2);
 }
 .open {
     display: block;

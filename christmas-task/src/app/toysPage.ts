@@ -53,9 +53,9 @@ export function createToysContainer(): void {
       const toysItem = document.querySelectorAll<HTMLDivElement>('.toys_item');
       const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
       const selectedItems: string[] = [];
-      const selectedItem = data[i];
 
       toysItem.forEach((item, i) => {
+        const selectedItem = data[i];
         const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
         const selectedToy = item.querySelectorAll<HTMLDivElement>('.selected-toy');
         const countDescr = item.querySelector<HTMLDivElement>('.count');
@@ -70,6 +70,7 @@ export function createToysContainer(): void {
             countSelectedToys = 5;
             countSelectedToys = selectedItems.length;
             if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+
             return;
           }
 
@@ -78,6 +79,7 @@ export function createToysContainer(): void {
           if (ribbon) ribbon.classList.add('ribbon-active');
           selectedItems.push(JSON.stringify(selectedItem));
           countSelectedToys = selectedItems.length;
+          console.log(selectedItems);
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
           if (countDescr) countDescr.innerText = `Количество: ${countToys.toString()}`;
         }
@@ -103,9 +105,9 @@ export function createToysContainer(): void {
 
         if (selectedSpan !== null) selectedSpan.innerHTML = selectedItems.length.toString();
 
-        const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
-        if (resetBtn === null) throw Error;
-        resetBtn.addEventListener('click', () => {
+        const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
+        if (resetBtnToys === null) throw Error;
+        resetBtnToys.addEventListener('click', () => {
           removeAllToy();
         });
       });
