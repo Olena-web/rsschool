@@ -1,0 +1,22 @@
+.pop-up-window {
+    margin: 0;
+    display: none;
+    position: fixed;
+    top: 400px;
+    right: 430px;
+    width: 400px;
+    height: 400px;
+    background-color: aqua;
+    z-index: 5;
+    font-family: Neucha;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 53px;
+      line-height: 108px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #FFFFFF;
+}
+.open {
+    display: block;
+}

@@ -1,8 +1,24 @@
 import data from '../data.js';
-
+import Control from '../common/control';
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 
-function createToysContainer() {
+class Window extends Control {
+  constructor(parentNode: HTMLElement) {
+    super(parentNode);
+    const Window = new Control(this.node, 'div', 'pop-up-window', 'Извините, все слоты заполнены');
+    return Window;
+  }
+}
+function createWindow() {
+  if (toysContainer) {
+    const window = new Window(toysContainer);
+    toysContainer.append(window.node);
+    const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
+    openWindow?.classList.add('open');
+  }
+}
+
+export function createToysContainer(): void {
   if (toysContainer === null) {
     throw Error;
   } else {
@@ -36,9 +52,18 @@ function createToysContainer() {
         const countDescr = item.querySelector<HTMLDivElement>('.count');
         let countToys = parseInt(data[i].count);
         let countSelectedToys = 0;
+
         function addToy() {
           if (countToys == 0) return;
-          if (countSelectedToys == 20) return;
+
+          if (selectedItems.length == 5) {
+            createWindow();
+            countSelectedToys = 5;
+            countSelectedToys = selectedItems.length;
+            if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+            return;
+          }
+
           countToys--;
           item.classList.add('selected-toy');
           if (ribbon) ribbon.classList.add('ribbon-active');
@@ -48,24 +73,32 @@ function createToysContainer() {
           if (countDescr) countDescr.innerText = `Количество: ${countToys.toString()}`;
         }
 
-        function removeToy() {
-          countSelectedToys--;
-          if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+        function removeToy(): void {
+          if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+          if (selectedSpan !== null) selectedSpan.innerHTML = '0';
+          if (countDescr !== null) countDescr.innerText = `Количество: ${data[i].count}`;
+          selectedItems.length = 0;
         }
 
         item.addEventListener('click', () => {
           addToy();
         });
-        selectedToy.forEach((toy) => {
-          toy.addEventListener('click', () => {
-            removeToy();
-          });
-        });
+        // selectedToy.forEach((toy) => {
+        //   toy.addEventListener('click', () => {
+        //     removeToy();
+        //   });
+        // });
         if (data[i].num == selectedItem.num) {
           selectedItems.toString().replace(selectedItem.toString(), '');
         }
 
         if (selectedSpan !== null) selectedSpan.innerHTML = selectedItems.length.toString();
+
+        const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
+        if (resetBtn === null) throw Error;
+        resetBtn.addEventListener('click', () => {
+          removeToy();
+        });
       });
     });
   }
