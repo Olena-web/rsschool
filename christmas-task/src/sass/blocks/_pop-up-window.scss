@@ -17,6 +17,19 @@
       text-transform: uppercase;
       color: #FFFFFF;
 }
+.close {
+    display: block;
+    position: relative;
+    top: 96px;
+    left: 122px;
+    height: 70px;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(../assets/svg/snowflake.svg);
+    cursor: pointer;
+}
 .open {
     display: block;
 }

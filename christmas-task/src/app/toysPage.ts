@@ -5,16 +5,25 @@ const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__c
 class Window extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
-    const Window = new Control(this.node, 'div', 'pop-up-window', 'Извините, все слоты заполнены');
+    const Window = new Control(this.node, 'div', 'pop-up-window', `Извините, все слоты заполнены`);
+    const closeBtn = new Control(this.node, 'div', 'close', ``);
+    Window.node.append(closeBtn.node);
     return Window;
   }
 }
 function createWindow() {
   if (toysContainer) {
     const window = new Window(toysContainer);
-    toysContainer.append(window.node);
+    toysContainer.prepend(window.node);
     const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
-    openWindow?.classList.add('open');
+    if (openWindow !== null) {
+      openWindow.classList.add('open');
+      const closeBtn = openWindow.querySelector<HTMLButtonElement>('.close');
+      if (closeBtn)
+        closeBtn.addEventListener('click', () => {
+          openWindow?.classList.remove('open');
+        });
+    }
   }
 }
 
@@ -73,7 +82,7 @@ export function createToysContainer(): void {
           if (countDescr) countDescr.innerText = `Количество: ${countToys.toString()}`;
         }
 
-        function removeToy(): void {
+        function removeAllToy(): void {
           if (ribbon !== null) ribbon.classList.remove('ribbon-active');
           if (selectedSpan !== null) selectedSpan.innerHTML = '0';
           if (countDescr !== null) countDescr.innerText = `Количество: ${data[i].count}`;
@@ -97,7 +106,7 @@ export function createToysContainer(): void {
         const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
         if (resetBtn === null) throw Error;
         resetBtn.addEventListener('click', () => {
-          removeToy();
+          removeAllToy();
         });
       });
     });
