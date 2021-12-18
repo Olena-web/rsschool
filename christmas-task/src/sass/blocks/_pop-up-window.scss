@@ -1,39 +1,42 @@
 .pop-up-window {
-    margin: 0;
-    display: none;
-    position: fixed;
-    top: 400px;
-    right: 430px;
-    width: 400px;
-    height: 400px;
-    background-color: aqua;
-    z-index: 5;
-    font-family: Neucha;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 53px;
-      line-height: 108px;
-      text-align: center;
-      text-transform: uppercase;
-      color: #FFFFFF;
+  margin: 0;
+  display: none;
+  position: fixed;
+  top: 400px;
+  right: 430px;
+  width: 400px;
+  height: 400px;
+  background-color: aqua;
+  z-index: 5;
+  font-family: Neucha, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 53px;
+  line-height: 108px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffff;
 }
+
 .close {
-    display: block;
-    position: relative;
-    top: 96px;
-    left: 122px;
-    height: 70px;
-    background-color: transparent;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-image: url(../assets/svg/snowflake.svg);
-    cursor: pointer;
-    transition:.5s;
+  display: block;
+  position: relative;
+  top: 96px;
+  left: 122px;
+  height: 70px;
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("../assets/svg/snowflake.svg");
+  cursor: pointer;
+  transition: 0.5s;
 }
-.close:hover{
-    transform:scale(1.2);
+
+.close:hover {
+  transform: scale(1.2);
 }
+
 .open {
-    display: block;
+  display: block;
 }

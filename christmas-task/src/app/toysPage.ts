@@ -1,4 +1,5 @@
-import data from '../data.js';
+import data from '../data';
+
 import Control from '../common/control';
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 

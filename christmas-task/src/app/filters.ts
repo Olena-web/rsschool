@@ -1,4 +1,4 @@
-import data from '../data.js';
+import data from '../data';
 
 export default interface IDataItem {
   num: string;
