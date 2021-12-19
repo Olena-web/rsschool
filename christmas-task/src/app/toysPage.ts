@@ -3,7 +3,6 @@ import { MESSAGE } from '../constants/messages.constants';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 import Control from '../common/control';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
-//import { addEventListener } from '../common/signal';
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
 const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
@@ -36,6 +35,7 @@ export function createToysContainer(): void {
   if (toysContainer === null) {
     throw Error;
   } else {
+    toysContainer.innerHTML = '';
     data.forEach((item, i) => {
       toysContainer.innerHTML += `<div class = "toys_item">\n
     <div class="ribbon">
@@ -58,13 +58,11 @@ export function createToysContainer(): void {
       const toysItem = document.querySelectorAll<HTMLDivElement>('.toys_item');
       const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
       const selectedItems: string[] = [];
-
       toysItem.forEach((item: HTMLDivElement, i: number) => {
         const selectedItem = data[i];
-        const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
-        //const selectedToy = item.querySelectorAll<HTMLDivElement>('.selected-toy');
-        const countDescr = item.querySelector<HTMLDivElement>('.count');
         let toysCount = parseInt(data[i].count);
+        const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
+        const countDescr = item.querySelector<HTMLDivElement>('.count');
         let countSelectedToys = 0;
         const maxCountToys = 5; //for test, after change to 20;
 
@@ -78,8 +76,8 @@ export function createToysContainer(): void {
             if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
             return;
           }
-
           toysCount--;
+
           item.classList.add('selected-toy');
           if (ribbon) ribbon.classList.add('ribbon-active');
           selectedItems.push(JSON.stringify(selectedItem));
@@ -118,12 +116,12 @@ export function createToysContainer(): void {
         resetBtnToys.addEventListener('click', () => {
           removeAllToy();
         });
-        if (resetBtn === null) throw Error;
-        // resetBtn.addEventListener('click', () => {
-        //   removeToy();
-        // });
       });
     });
   }
 }
 createToysContainer();
+if (resetBtn)
+  resetBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+  });

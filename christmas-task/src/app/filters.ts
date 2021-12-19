@@ -1,19 +1,33 @@
 import data from '../data';
+import { createToysContainer } from './toysPage';
 
 function sortNameAZ() {
   const sortAz = data.sort((a, b) => a.name.localeCompare(b.name));
   return sortAz;
 }
-console.log(sortNameAZ());
 
 function sortNameZA() {
   const sortZa = data.sort((a, b) => b.name.localeCompare(a.name));
   return sortZa;
 }
-console.log(sortNameZA());
-// const sortZa = () => data.sort((a, b) => b.name.localeCompare(a.name));
-// console.log(sortZa());
+function changeOption() {
+  const select = document.querySelector<HTMLSelectElement>('.select');
+  if (select) {
+    select.addEventListener('change', () => {
+      const index = select.selectedIndex;
+      if (index === 0) {
+        sortNameAZ();
+        createToysContainer();
+      }
+      if (index === 1) {
+        sortNameZA();
+        createToysContainer();
+      }
+    });
+  }
+}
 
+changeOption();
 // export default interface IDataItem {
 //   num: string;
 //   name: string;
