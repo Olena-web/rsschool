@@ -10,6 +10,14 @@ function sortNameZA() {
   const sortZa = data.sort((a, b) => b.name.localeCompare(a.name));
   return sortZa;
 }
+function sortMax() {
+  const sortFromMax = data.sort((a, b) => b.year.localeCompare(a.year));
+  return sortFromMax;
+}
+function sortMin() {
+  const sortFromMin = data.sort((a, b) => a.year.localeCompare(b.year));
+  return sortFromMin;
+}
 function changeOption() {
   const select = document.querySelector<HTMLSelectElement>('.select');
   if (select) {
@@ -21,6 +29,14 @@ function changeOption() {
       }
       if (index === 1) {
         sortNameZA();
+        createToysContainer();
+      }
+      if (index === 2) {
+        sortMin();
+        createToysContainer();
+      }
+      if (index === 3) {
+        sortMax();
         createToysContainer();
       }
     });
