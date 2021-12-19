@@ -3,6 +3,7 @@ import { MESSAGE } from '../constants/messages.constants';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 import Control from '../common/control';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
+
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
 const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
@@ -15,6 +16,7 @@ class Window extends Control {
     return Window;
   }
 }
+
 function createWindow(): void {
   if (toysContainer) {
     const window = new Window(toysContainer);
@@ -27,6 +29,10 @@ function createWindow(): void {
         closeBtn.addEventListener('click', () => {
           openWindow?.classList.remove('open');
         });
+      if (resetBtnToys === null) throw Error;
+      resetBtnToys.addEventListener('click', () => {
+        openWindow?.classList.remove('open');
+      });
     }
   }
 }
@@ -92,7 +98,10 @@ export function createToysContainer(): void {
           if (selectedSpan !== null) selectedSpan.innerHTML = '0';
           if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
           selectedItems.length = 0;
-          if (openWindow) openWindow.classList.remove('open');
+          if (openWindow) {
+            console.log(openWindow.classList);
+            openWindow.classList.remove('open');
+          }
         }
 
         // function removeToy(): void {
@@ -121,7 +130,8 @@ export function createToysContainer(): void {
   }
 }
 createToysContainer();
-if (resetBtn)
-  resetBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-  });
+if (resetBtn === null) throw Error;
+resetBtn.addEventListener('click', () => {
+  window.location.reload();
+  //createToysContainer();
+});
