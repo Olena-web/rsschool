@@ -2,8 +2,11 @@ import data from '../data';
 import { MESSAGE } from '../constants/messages.constants';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 import Control from '../common/control';
+export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
+//import { addEventListener } from '../common/signal';
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
-
+const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
+const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
 class Window extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
@@ -13,7 +16,7 @@ class Window extends Control {
     return Window;
   }
 }
-function createWindow() {
+function createWindow(): void {
   if (toysContainer) {
     const window = new Window(toysContainer);
     toysContainer.prepend(window.node);
@@ -56,16 +59,16 @@ export function createToysContainer(): void {
       const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
       const selectedItems: string[] = [];
 
-      toysItem.forEach((item, i) => {
+      toysItem.forEach((item: HTMLDivElement, i: number) => {
         const selectedItem = data[i];
         const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
-        const selectedToy = item.querySelectorAll<HTMLDivElement>('.selected-toy');
+        //const selectedToy = item.querySelectorAll<HTMLDivElement>('.selected-toy');
         const countDescr = item.querySelector<HTMLDivElement>('.count');
         let toysCount = parseInt(data[i].count);
         let countSelectedToys = 0;
         const maxCountToys = 5; //for test, after change to 20;
 
-        function addToy() {
+        function addToy(): void {
           if (toysCount === 0) return;
 
           if (selectedItems.length === maxCountToys) {
@@ -73,7 +76,6 @@ export function createToysContainer(): void {
             countSelectedToys = maxCountToys;
             countSelectedToys = selectedItems.length;
             if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
-
             return;
           }
 
@@ -84,35 +86,42 @@ export function createToysContainer(): void {
           countSelectedToys = selectedItems.length;
           console.log(selectedItems);
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
-          if (countDescr) countDescr.innerText = `Количество: ${toysCount.toString()}`;
+          if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
 
         function removeAllToy(): void {
           if (ribbon !== null) ribbon.classList.remove('ribbon-active');
           if (selectedSpan !== null) selectedSpan.innerHTML = '0';
-          if (countDescr !== null) countDescr.innerText = `Количество: ${data[i].count}`;
+          if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
           selectedItems.length = 0;
+          if (openWindow) openWindow.classList.remove('open');
         }
+
+        // function removeToy(): void {
+        //   selectedItems.forEach((item, i) => {
+        //     if (data[i].num === item[i].num) {
+        //       toysCount++;
+        //       selectedItems.toString().replace(selectedItem.toString(), '');
+        //       console.log(selectedItems);
+        //       countSelectedToys = selectedItems.length;
+        //       if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+        //       if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
+        //       if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+        //     }
+        //   });
+        // }
 
         item.addEventListener('click', () => {
           addToy();
         });
-        // selectedToy.forEach((toy) => {
-        //   toy.addEventListener('click', () => {
-        //     removeToy();
-        //   });
-        // });
-        if (data[i].num == selectedItem.num) {
-          selectedItems.toString().replace(selectedItem.toString(), '');
-        }
-
-        if (selectedSpan !== null) selectedSpan.innerHTML = selectedItems.length.toString();
-
-        const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
         if (resetBtnToys === null) throw Error;
         resetBtnToys.addEventListener('click', () => {
           removeAllToy();
         });
+        if (resetBtn === null) throw Error;
+        // resetBtn.addEventListener('click', () => {
+        //   removeToy();
+        // });
       });
     });
   }

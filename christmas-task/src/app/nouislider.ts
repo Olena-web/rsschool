@@ -4,7 +4,7 @@ export default noUiSlider;
 interface TargetElement extends HTMLElement {
   noUiSlider: API;
 }
-export function createSlider() {
+export function createSlider(): void {
   const slider = document.getElementById('slider') as TargetElement;
   const sliderTwo = document.getElementById('slider-two') as TargetElement;
 

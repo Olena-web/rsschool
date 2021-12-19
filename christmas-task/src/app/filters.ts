@@ -1,26 +1,40 @@
 import data from '../data';
 
-export default interface IDataItem {
-  num: string;
-  name: string;
-  count: string;
-  year: string;
-  shape: string;
-  color: string;
-  size: string;
-  favorite: string;
-  isChecked?: boolean;
+function sortNameAZ() {
+  const sortAz = data.sort((a, b) => a.name.localeCompare(b.name));
+  return sortAz;
 }
-interface data {
-  data: IDataItem[];
+console.log(sortNameAZ());
+
+function sortNameZA() {
+  const sortZa = data.sort((a, b) => b.name.localeCompare(a.name));
+  return sortZa;
 }
+console.log(sortNameZA());
+// const sortZa = () => data.sort((a, b) => b.name.localeCompare(a.name));
+// console.log(sortZa());
+
+// export default interface IDataItem {
+//   num: string;
+//   name: string;
+//   count: string;
+//   year: string;
+//   shape: string;
+//   color: string;
+//   size: string;
+//   favorite: string;
+//   isChecked?: boolean;
+// }
+// interface data {
+//   data: IDataItem[];
+// }
 //TO-DO  filters and filterForm  must get the same argument's value
-const filterForm = {
-  color: 'белый',
-  shape: 'снежинка',
-  size: 'большой',
-  year: '2020',
-};
+// const filterForm = {
+//   color: string = data[i].color,
+//   shape: 'снежинка',
+//   size: 'большой',
+//   year: '2020',
+// };
 
 // const filters = [
 //   (_data, _filterForm) => (_filterForm.favorite ? _data.filter((obj) => obj.favorite) : _data),
