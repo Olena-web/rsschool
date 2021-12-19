@@ -46,7 +46,7 @@ footer {
   transition: 0.3s;  
 }
 
-.active::after {
+.on::after {
   content: "";
   position: absolute;
   bottom: 15px;
@@ -90,7 +90,7 @@ footer {
   background-image: url("../assets/svg/search.svg");
   background-size: 20px;
   background-repeat: no-repeat;
-  background-position: 330px center;
+  background-position: 6px center;
   backdrop-filter: blur(6px); 
 }
 

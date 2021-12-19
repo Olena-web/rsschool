@@ -1,5 +1,26 @@
 import data from '../data';
 import { createToysContainer } from './toysPage';
+const favoriteBtn = document.querySelector<HTMLButtonElement>('.lovely');
+if (favoriteBtn)
+  favoriteBtn.addEventListener('click', () => {
+    favoriteBtn.classList.toggle('active');
+    findFavorite();
+    //createToysContainer();
+  });
+
+export function findFavorite() {
+  const favoriteToys = data;
+  for (let i = 0; i < data.length; i++) {
+    const favoriteToyAnswer = data[i].favorite;
+    const favoriteToy = data[i];
+    if (favoriteToyAnswer === 'да') {
+      favoriteToys.push(favoriteToy);
+    }
+  }
+  console.log(favoriteToys);
+  return favoriteToys;
+}
+//findFavorite();
 
 function sortNameAZ() {
   const sortAz = data.sort((a, b) => a.name.localeCompare(b.name));
@@ -44,20 +65,7 @@ function changeOption() {
 }
 
 changeOption();
-// export default interface IDataItem {
-//   num: string;
-//   name: string;
-//   count: string;
-//   year: string;
-//   shape: string;
-//   color: string;
-//   size: string;
-//   favorite: string;
-//   isChecked?: boolean;
-// }
-// interface data {
-//   data: IDataItem[];
-// }
+
 //TO-DO  filters and filterForm  must get the same argument's value
 // const filterForm = {
 //   color: string = data[i].color,

@@ -2,6 +2,7 @@ import data from '../data';
 import { MESSAGE } from '../constants/messages.constants';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 import Control from '../common/control';
+import { findFavorite } from './filters';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
 
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
@@ -55,9 +56,7 @@ export function createToysContainer(): void {
       <div class="shape"> ${SHAPE} ${data[i].shape}</div>
       <div class="color">${COLOR} ${data[i].color}</div>
       <div class="size">${SIZE} ${data[i].size}</div>
-      <div class="favorite">${FAVORITE} ${
-        data[i].favorite.toString() === 'false' ? (data[i].favorite = 'нет') : 'да'
-      }</div>
+      <div class="favorite">${FAVORITE} ${data[i].favorite}</div>
     </div>
   </div>;
   `;
