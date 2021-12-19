@@ -207,6 +207,24 @@ aside {
   max-width: 1600px;
   padding-bottom: 40px;
 
+  .card-wrapper {
+    gap: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .minus-button {
+    background-image: url("../assets/svg/arrow-down.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    border: 1px solid #278d9f;
+    background-color: rgba(31 112 127 /30%);
+    background-position-x: 4px;
+  }
+
   .toys_item {
     position: relative;
     display: flex;

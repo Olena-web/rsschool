@@ -4,7 +4,7 @@ const favoriteBtn = document.querySelector<HTMLButtonElement>('.lovely');
 if (favoriteBtn)
   favoriteBtn.addEventListener('click', () => {
     favoriteBtn.classList.toggle('active');
-    findFavorite();
+    //findFavorite();
     //createToysContainer();
   });
 

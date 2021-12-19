@@ -48,8 +48,11 @@ export function createToysContainer(): void {
     <div class="ribbon">
       <span></span>
     </div>
-    <div class="title">${data[i].name}</div>
-    <img src="assets/toys/${data[i].num}.png" alt="${data[i].name}">
+    <wrapper class = "card-wrapper">
+      <div class="title">${data[i].name}</div>
+      <button class="small minus-button"></button>
+    </wrapper>  
+    <img src="assets/toys/${data[i].num}.png" alt="${data[i].name}">    
     <div class = "description">
       <div class="count"> ${COUNT} ${data[i].count}</div>
       <div class="year"> ${YEAR} ${data[i].year}</div>
