@@ -94,6 +94,7 @@ export function createToysContainer(): void {
         }
 
         function removeAllToy(): void {
+          toysCount = parseInt(data[i].count);
           if (ribbon !== null) ribbon.classList.remove('ribbon-active');
           if (selectedSpan !== null) selectedSpan.innerHTML = '0';
           if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
