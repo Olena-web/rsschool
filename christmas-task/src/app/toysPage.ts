@@ -93,7 +93,7 @@ export function createToysContainer(): void {
           if (ribbon) ribbon.classList.add('ribbon-active');
           selectedItems.push(JSON.stringify(selectedItem));
           countSelectedToys = selectedItems.length;
-          console.log(selectedItems);
+
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
           if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
@@ -105,7 +105,6 @@ export function createToysContainer(): void {
           if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
           selectedItems.length = 0;
           if (openWindow) {
-            console.log(openWindow.classList);
             openWindow.classList.remove('open');
           }
         }
@@ -116,7 +115,7 @@ export function createToysContainer(): void {
             toysCount++;
             selectedItems.length--;
             selectedItems.toString().replace(item[i].toString(), '');
-            console.log(selectedItems);
+            //console.log(selectedItems);
             countSelectedToys = selectedItems.length;
             if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
             if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
@@ -124,26 +123,20 @@ export function createToysContainer(): void {
           });
         }
 
-        item.addEventListener(
-          'click',
-          (e) => {
-            if (e.target == e.currentTarget) {
-              console.log('click');
-              // e.preventDefault();
-              addToy();
-            }
+        item.addEventListener<'click'>('click', (e: MouseEvent): void => {
+          if (e.target == e.currentTarget) {
+            addToy();
           }
-          //{ capture: true }
-        );
+        });
         if (resetBtnToys === null) throw Error;
-        resetBtnToys.addEventListener('click', () => {
+        resetBtnToys.addEventListener<'click'>('click', () => {
           removeAllToy();
         });
         const minusBtn = document.querySelectorAll<HTMLButtonElement>('.minus-button');
         if (minusBtn !== null) {
           minusBtn.forEach((btn: HTMLButtonElement) => {
             if (btn !== null) {
-              btn.addEventListener('click', (e) => {
+              btn.addEventListener<'click'>('click', (e: MouseEvent): void => {
                 if (e.target == e.currentTarget) {
                   removeToy();
                   e.stopPropagation();

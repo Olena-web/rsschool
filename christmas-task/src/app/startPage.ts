@@ -1,6 +1,6 @@
 import Control from '../common/control';
 import { TOYS, TREE } from '../constants/startPage.constants';
-export class StartPage extends Control {
+export class Header extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
     const header = new Control(this.node, 'header', 'header', '');
@@ -19,12 +19,35 @@ export class StartPage extends Control {
         <span>0</span>
       </div>`
     );
-    document.body.prepend(header.node);
     header.node.append(headerContainer.node);
     headerContainer.node.append(navBar.node);
     navBar.node.append(linkStart.node);
     navBar.node.append(linkToToys.node);
     navBar.node.append(linkToTree.node);
     navBar.node.append(headerSearch.node);
+    return header;
   }
 }
+
+function createHeader(): void {
+  const body = document.querySelector<HTMLElement>('app');
+  if (body) {
+    const header = new Header(body);
+    body.prepend(header.node);
+  }
+}
+createHeader();
+
+const start = document.querySelector('.start');
+const startPage = document.getElementById('start');
+const toysPage = document.getElementById('toys');
+start?.addEventListener('click', () => {
+  startPage?.classList.remove('hide');
+  toysPage?.classList.add('hide');
+});
+
+const toys = document.querySelector('.on');
+toys?.addEventListener('click', () => {
+  startPage?.classList.add('hide');
+  toysPage?.classList.remove('hide');
+});
