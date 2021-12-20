@@ -26,6 +26,16 @@ footer {
   background-color: #192f2d;
 }
 
+footer{
+  display: flex;
+  align-items: flex-start;
+  p {
+    font-size: 28px;
+    color: #fff;
+    text-transform: uppercase; 
+  }
+}
+
 .header__container,
 .header__search,
 .header__navbar,
