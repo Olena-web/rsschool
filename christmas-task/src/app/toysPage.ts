@@ -8,6 +8,7 @@ export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
 const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
+const minusBtn = document.querySelectorAll<HTMLButtonElement>('.minus-button');
 class Window extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
@@ -90,7 +91,7 @@ export function createToysContainer(): void {
           if (ribbon) ribbon.classList.add('ribbon-active');
           selectedItems.push(JSON.stringify(selectedItem));
           countSelectedToys = selectedItems.length;
-          console.log(selectedItems);
+          //console.log(selectedItems);
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
           if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
@@ -107,34 +108,56 @@ export function createToysContainer(): void {
           }
         }
 
-        // function removeToy(): void {
-        //   selectedItems.forEach((item, i) => {
-        //     if (data[i].num === item[i].num) {
-        //       toysCount++;
-        //       selectedItems.toString().replace(selectedItem.toString(), '');
-        //       console.log(selectedItems);
-        //       countSelectedToys = selectedItems.length;
-        //       if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
-        //       if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
-        //       if (ribbon !== null) ribbon.classList.remove('ribbon-active');
-        //     }
-        //   });
-        // }
+        function removeToy(): void {
+          selectedItems.forEach((item, i) => {
+            selectedItems.length--;
+            toysCount++;
+            selectedItems.toString().replace(item[i].toString(), '');
+            console.log(selectedItems);
+            countSelectedToys = selectedItems.length;
+            if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+            if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
+            if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+          });
+        }
 
-        item.addEventListener('click', () => {
-          addToy();
-        });
+        item.addEventListener(
+          'click',
+          (e) => {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+            addToy();
+          },
+          { capture: true }
+        );
         if (resetBtnToys === null) throw Error;
         resetBtnToys.addEventListener('click', () => {
           removeAllToy();
         });
+
+        if (minusBtn !== null) {
+          minusBtn.forEach((btn) => {
+            btn.addEventListener(
+              'click',
+              () => {
+                console.log('click');
+                item.removeEventListener('click', () => {
+                  addToy;
+                });
+                removeToy();
+              },
+              { capture: true }
+            );
+          });
+        }
       });
     });
   }
 }
 createToysContainer();
+
 if (resetBtn === null) throw Error;
 resetBtn.addEventListener('click', () => {
   window.location.reload();
-  //createToysContainer();
 });
