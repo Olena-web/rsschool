@@ -2,13 +2,12 @@ import data from '../data';
 import { MESSAGE } from '../constants/messages.constants';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 import Control from '../common/control';
-import { findFavorite } from './filters';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
 
 const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
 const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
-const minusBtn = document.querySelectorAll<HTMLButtonElement>('.minus-button');
+
 class Window extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
@@ -51,7 +50,9 @@ export function createToysContainer(): void {
     </div>
     <wrapper class = "card-wrapper">
       <div class="title">${data[i].name}</div>
-      <button class="small minus-button"></button>
+      <button
+      /* .onclick = "function(){console.log('click button')}"*/ 
+      class="small minus-button"></button>
     </wrapper>  
     <img src="assets/toys/${data[i].num}.png" alt="${data[i].name}">    
     <div class = "description">
@@ -85,13 +86,14 @@ export function createToysContainer(): void {
             if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
             return;
           }
+
           toysCount--;
 
           item.classList.add('selected-toy');
           if (ribbon) ribbon.classList.add('ribbon-active');
           selectedItems.push(JSON.stringify(selectedItem));
           countSelectedToys = selectedItems.length;
-          //console.log(selectedItems);
+          console.log(selectedItems);
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
           if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
@@ -110,8 +112,9 @@ export function createToysContainer(): void {
 
         function removeToy(): void {
           selectedItems.forEach((item, i) => {
-            selectedItems.length--;
+            //if (toysCount === item.count );
             toysCount++;
+            selectedItems.length--;
             selectedItems.toString().replace(item[i].toString(), '');
             console.log(selectedItems);
             countSelectedToys = selectedItems.length;
@@ -124,37 +127,36 @@ export function createToysContainer(): void {
         item.addEventListener(
           'click',
           (e) => {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-            addToy();
-          },
-          { capture: true }
+            if (e.target == e.currentTarget) {
+              console.log('click');
+              // e.preventDefault();
+              addToy();
+            }
+          }
+          //{ capture: true }
         );
         if (resetBtnToys === null) throw Error;
         resetBtnToys.addEventListener('click', () => {
           removeAllToy();
         });
-
+        const minusBtn = document.querySelectorAll<HTMLButtonElement>('.minus-button');
         if (minusBtn !== null) {
-          minusBtn.forEach((btn) => {
-            btn.addEventListener(
-              'click',
-              () => {
-                console.log('click');
-                item.removeEventListener('click', () => {
-                  addToy;
-                });
-                removeToy();
-              },
-              { capture: true }
-            );
+          minusBtn.forEach((btn: HTMLButtonElement) => {
+            if (btn !== null) {
+              btn.addEventListener('click', (e) => {
+                if (e.target == e.currentTarget) {
+                  removeToy();
+                  e.stopPropagation();
+                }
+              });
+            }
           });
         }
       });
     });
   }
 }
+
 createToysContainer();
 
 if (resetBtn === null) throw Error;
