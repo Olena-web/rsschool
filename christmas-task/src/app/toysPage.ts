@@ -4,7 +4,7 @@ import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage
 import Control from '../common/control';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
 
-const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
+export const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
 const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
 
@@ -44,21 +44,19 @@ export function createToysContainer(): void {
   } else {
     toysContainer.innerHTML = '';
     data.forEach((item, i) => {
-      toysContainer.innerHTML += `<div class = "toys_item">\n
+      toysContainer.innerHTML += `<div class = "toys_item ${data[i].shape}">\n
     <div class="ribbon">
       <span></span>
     </div>
     <wrapper class = "card-wrapper">
       <div class="title">${data[i].name}</div>
-      <button
-      /* .onclick = "function(){console.log('click button')}"*/ 
-      class="small minus-button"></button>
+      <button class="small minus-button"></button>
     </wrapper>  
     <img src="assets/toys/${data[i].num}.png" alt="${data[i].name}">    
     <div class = "description">
       <div class="count"> ${COUNT} ${data[i].count}</div>
       <div class="year"> ${YEAR} ${data[i].year}</div>
-      <div class="shape"> ${SHAPE} ${data[i].shape}</div>
+      <div class="${SHAPE}"> ${SHAPE} ${data[i].shape}</div>
       <div class="color">${COLOR} ${data[i].color}</div>
       <div class="size">${SIZE} ${data[i].size}</div>
       <div class="favorite">${FAVORITE} ${data[i].favorite}</div>

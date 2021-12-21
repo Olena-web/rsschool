@@ -44,10 +44,14 @@ const toysPage = document.getElementById('toys');
 start?.addEventListener('click', () => {
   startPage?.classList.remove('hide');
   toysPage?.classList.add('hide');
+  start.classList.add('on');
+  toys?.classList.remove('on');
 });
 
-const toys = document.querySelector('.on');
+const toys = document.querySelector('.toys');
 toys?.addEventListener('click', () => {
   startPage?.classList.add('hide');
   toysPage?.classList.remove('hide');
+  start?.classList.remove('on');
+  toys.classList.add('on');
 });

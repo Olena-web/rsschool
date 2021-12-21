@@ -307,3 +307,15 @@ aside {
     right: 0;
   } 
 }
+.pick {
+  box-shadow: 6px 13px 35px rgb(152 218 151 / 81%);
+  }
+
+  button[data-filter="шар"]:focus ~ div:not([class*="шар"]) {
+    display:none;
+  }
+
+  button[data-filter="шишка"]:focus ~ div:not([class*="шишка"]) {
+    display:none;
+  }
+

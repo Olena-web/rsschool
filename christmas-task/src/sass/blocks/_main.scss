@@ -59,7 +59,7 @@ footer{
 .on::after {
   content: "";
   position: absolute;
-  bottom: 15px;
+  bottom: -15px;
   left: 15px;
   right: 15px;
   height: 3px;
