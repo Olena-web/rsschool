@@ -1,30 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import data from '../data';
 import { createToysContainer, toysContainer } from './toysPage';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 const favoriteBtn = document.querySelector<HTMLButtonElement>('.lovely');
-
 const buttonShape = document.querySelectorAll<HTMLButtonElement>('.shape');
-
-if (favoriteBtn)
-  favoriteBtn.addEventListener('click', () => {
-    favoriteBtn.classList.toggle('active');
-  });
-
-// export function findFavorite() {
-//   const favoriteToys = data;
-//   for (let i = 0; i < data.length; i++) {
-//     const favoriteToyAnswer = data[i].favorite;
-//     const favoriteToy = data[i];
-//     if (favoriteToyAnswer === true) {
-//       favoriteToys.push(favoriteToy);
-//     }
-//   }
-//   console.log(favoriteToys);
-//   return favoriteToys;
-// }
-//findFavorite();
 
 function sortNameAZ() {
   const sortAz = data.sort((a, b) => a.name.localeCompare(b.name));
@@ -71,20 +49,18 @@ function changeOption() {
 changeOption();
 
 //TO-DO  filters and filterForm  must get the same argument's value
-interface filterForm {
-  num: string;
-  name: string;
-  count: string;
-  year: string;
-  shape: string;
-  color: string;
-  size: string;
-  //favorite: string;
-  //maxYear: string;
-  // minYear: string;
-}
-
-//class Data {Array<IDataItem>};
+// interface filterForm {
+//   num: string;
+//   name: string;
+//   count: string;
+//   year: string;
+//   shape: string;
+//   color: string;
+//   size: string;
+//favorite: string;
+//maxYear: string;
+// minYear: string;
+//}
 
 // const filterForm = {
 //   num: '9',
@@ -94,7 +70,7 @@ interface filterForm {
 //   shape: 'колокольчик',
 //   color: 'белый',
 //   size: 'большой',
-//   //favorite: 'нет',
+//   favorite: 'нет',
 // };
 
 // const filters = [
@@ -118,7 +94,21 @@ interface filterForm {
 type filterShape = {
   shape: string;
 };
+type filterFavorite = {
+  favorite: string;
+};
+
 export type IDataItem = {
+  num: string;
+  name: string;
+  count: string;
+  year: string;
+  shape: string;
+  color: string;
+  size: string;
+  favorite: string;
+};
+export type filteredData = {
   num: string;
   name: string;
   count: string;
@@ -133,6 +123,8 @@ export interface IData {
 }
 
 let filterShape = { shape: 'шар' };
+const filterFavorite = { favorite: 'да' };
+
 export function findShape() {
   const filters = [
     (_data: IDataItem[], _filterShape: filterShape) => _data.filter((obj) => obj.shape.includes(_filterShape.shape)),
@@ -155,25 +147,30 @@ function pickShape() {
           btn.classList.add('pick');
           filterShape = { shape: 'шишка' };
           findShape();
+          filteredData = findShape();
           changeContainer();
         } else if (btn.classList.contains('ball')) {
           btn.classList.add('pick');
           filterShape = { shape: 'шар' };
+          filteredData = findShape();
           findShape();
           changeContainer();
         } else if (btn.classList.contains('bell')) {
           btn.classList.add('pick');
           filterShape = { shape: 'колокольчик' };
+          filteredData = findShape();
           findShape();
           changeContainer();
         } else if (btn.classList.contains('toy')) {
           btn.classList.add('pick');
           filterShape = { shape: 'фигурка' };
+          filteredData = findShape();
           findShape();
           changeContainer();
         } else if (btn.classList.contains('snowflake')) {
           btn.classList.add('pick');
           filterShape = { shape: 'снежинка' };
+          filteredData = findShape();
           findShape();
           changeContainer();
         }
@@ -182,10 +179,11 @@ function pickShape() {
   }
 }
 pickShape();
+let filteredData = findShape();
+
 function changeContainer() {
   if (toysContainer) {
     toysContainer.innerHTML = '';
-    const filteredData = findShape();
     filteredData.forEach((item, i) => {
       if (toysContainer)
         toysContainer.innerHTML += `<div class = "toys_item">\n
@@ -228,3 +226,30 @@ function changeContainer() {
 //     });
 //   });
 // }
+function pickFavorite() {
+  function filterAllFavorite() {
+    const filters = [
+      (_data: IDataItem[], _filterFavorite: filterFavorite) =>
+        _data.filter((obj) => obj.favorite.includes(_filterFavorite.favorite)),
+    ];
+    let displayedItems = data;
+    for (let i = 0; i < filters.length; i++) {
+      displayedItems = filters[i](displayedItems, filterFavorite);
+    }
+    return displayedItems;
+  }
+  filterAllFavorite();
+  if (favoriteBtn)
+    favoriteBtn.addEventListener('click', () => {
+      if (favoriteBtn.classList.contains('active')) {
+        favoriteBtn.classList.remove('active');
+        createToysContainer();
+      } else {
+        favoriteBtn.classList.add('active');
+        pickFavorite();
+        filteredData = filterAllFavorite();
+        changeContainer();
+      }
+    });
+}
+pickFavorite();
