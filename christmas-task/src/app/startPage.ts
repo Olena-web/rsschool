@@ -41,17 +41,33 @@ createHeader();
 const start = document.querySelector('.start');
 const startPage = document.getElementById('start');
 const toysPage = document.getElementById('toys');
+const treePage = document.getElementById('tree');
+const toys = document.querySelector('.toys');
+const tree = document.querySelector('.tree');
+
 start?.addEventListener('click', () => {
   startPage?.classList.remove('hide');
   toysPage?.classList.add('hide');
+  treePage?.classList.add('.hide');
   start.classList.add('on');
   toys?.classList.remove('on');
+  tree?.classList.remove('on');
 });
 
-const toys = document.querySelector('.toys');
 toys?.addEventListener('click', () => {
   startPage?.classList.add('hide');
+  treePage?.classList.add('hide');
   toysPage?.classList.remove('hide');
   start?.classList.remove('on');
+  tree?.classList.remove('on');
   toys.classList.add('on');
+});
+
+tree?.addEventListener('click', () => {
+  startPage?.classList.add('hide');
+  toysPage?.classList.add('hide');
+  treePage?.classList.remove('hide');
+  start?.classList.remove('on');
+  toys?.classList.remove('on');
+  tree.classList.add('on');
 });
