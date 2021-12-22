@@ -1,8 +1,11 @@
 import data from '../data';
-import { createToysContainer, toysContainer } from './toysPage';
+import { createToysContainer, toysContainer, resetBtnToys, createWindow } from './toysPage';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 const favoriteBtn = document.querySelector<HTMLButtonElement>('.lovely');
 const buttonShape = document.querySelectorAll<HTMLButtonElement>('.shape');
+const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
+const buttonColor = document.querySelectorAll<HTMLButtonElement>('.color');
+const buttonSize = document.querySelectorAll<HTMLButtonElement>('.size');
 
 function sortNameAZ() {
   const sortAz = data.sort((a, b) => a.name.localeCompare(b.name));
@@ -98,6 +101,13 @@ type filterFavorite = {
   favorite: string;
 };
 
+type filterColor = {
+  color: string;
+};
+type filterSize = {
+  size: string;
+};
+
 export type IDataItem = {
   num: string;
   name: string;
@@ -121,9 +131,11 @@ export type filteredData = {
 export interface IData {
   items: IDataItem[];
 }
-
+let filterColor = { color: 'белый' };
 let filterShape = { shape: 'шар' };
+let filterSize = { size: 'большой' };
 const filterFavorite = { favorite: 'да' };
+let filteredData = findColor();
 
 export function findShape() {
   const filters = [
@@ -179,7 +191,6 @@ function pickShape() {
   }
 }
 pickShape();
-let filteredData = findShape();
 
 function changeContainer() {
   if (toysContainer) {
@@ -206,26 +217,90 @@ function changeContainer() {
   </div>;
   `;
     });
+    const toysItem = document.querySelectorAll<HTMLDivElement>('.toys_item');
+    const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
+    const selectedItems: string[] = [];
+    toysItem.forEach((item: HTMLDivElement, i: number) => {
+      const selectedItem = data[i];
+      let toysCount = parseInt(data[i].count);
+      const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
+      const countDescr = item.querySelector<HTMLDivElement>('.count');
+      let countSelectedToys = 0;
+      const maxCountToys = 20;
+
+      function addToy(): void {
+        if (toysCount === 0) return;
+
+        if (selectedItems.length === maxCountToys) {
+          createWindow();
+          countSelectedToys = maxCountToys;
+          countSelectedToys = selectedItems.length;
+          if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+          return;
+        }
+
+        toysCount--;
+
+        item.classList.add('selected-toy');
+        if (ribbon) ribbon.classList.add('ribbon-active');
+        selectedItems.push(JSON.stringify(selectedItem));
+        countSelectedToys = selectedItems.length;
+
+        if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+        if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
+      }
+
+      function removeAllToy(): void {
+        toysCount = parseInt(data[i].count);
+        if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+        if (selectedSpan !== null) selectedSpan.innerHTML = '0';
+        if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
+        selectedItems.length = 0;
+        if (openWindow) {
+          openWindow.classList.remove('open');
+        }
+      }
+
+      function removeToy(): void {
+        selectedItems.forEach((item, i) => {
+          //if (toysCount === item.count );
+          toysCount++;
+          selectedItems.length--;
+          selectedItems.toString().replace(item[i].toString(), '');
+          //console.log(selectedItems);
+          countSelectedToys = selectedItems.length;
+          if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
+          if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
+          if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+        });
+      }
+
+      item.addEventListener<'click'>('click', (e: MouseEvent): void => {
+        if (e.target == e.currentTarget) {
+          addToy();
+        }
+      });
+      if (resetBtnToys === null) throw Error;
+      resetBtnToys.addEventListener<'click'>('click', () => {
+        removeAllToy();
+      });
+      const minusBtn = document.querySelectorAll<HTMLButtonElement>('.minus-button');
+      if (minusBtn !== null) {
+        minusBtn.forEach((btn: HTMLButtonElement) => {
+          if (btn !== null) {
+            btn.addEventListener<'click'>('click', (e: MouseEvent): void => {
+              if (e.target == e.currentTarget) {
+                removeToy();
+                e.stopPropagation();
+              }
+            });
+          }
+        });
+      }
+    });
   }
 }
 
-// if (buttonShape) {
-//   buttonShape.forEach((btn) => {
-//     btn.addEventListener('click', (e): void => {
-//       if (e.target == e.currentTarget && e.target !== null) {
-//         const cards = document.querySelectorAll('.toys_item');
-//         const filter = e.target.dataset.filter;
-//         if (filter === '*') {
-//           cards.forEach((card) => card.classList.remove('hide'));
-//         } else {
-//           cards.forEach((card) => {
-//             card.classList.contains(filter) ? card.classList.remove('hide') : card.classList.add('hide');
-//           });
-//         }
-//       }
-//     });
-//   });
-// }
 function pickFavorite() {
   function filterAllFavorite() {
     const filters = [
@@ -253,3 +328,99 @@ function pickFavorite() {
     });
 }
 pickFavorite();
+
+export function findColor() {
+  const filters = [
+    (_data: IDataItem[], _filterColor: filterColor) => _data.filter((obj) => obj.color.includes(_filterColor.color)),
+  ];
+  let displayedItems = data;
+  for (let i = 0; i < filters.length; i++) {
+    displayedItems = filters[i](displayedItems, filterColor);
+  }
+  return displayedItems;
+}
+function pickColor() {
+  if (buttonColor) {
+    buttonColor.forEach((btn) => {
+      btn.addEventListener('click', (): void => {
+        if (btn.classList.contains('active')) {
+          btn.classList.remove('active');
+          createToysContainer();
+        } else if (btn.classList.contains('white')) {
+          btn.classList.add('active');
+          filterColor = { color: 'белый' };
+          findColor();
+          filteredData = findColor();
+          changeContainer();
+        } else if (btn.classList.contains('red')) {
+          btn.classList.add('active');
+          filterColor = { color: 'красный' };
+          findColor();
+          filteredData = findColor();
+          changeContainer();
+        } else if (btn.classList.contains('yellow')) {
+          btn.classList.add('active');
+          filterColor = { color: 'желтый' };
+          findColor();
+          filteredData = findColor();
+          changeContainer();
+        } else if (btn.classList.contains('green')) {
+          btn.classList.add('active');
+          filterColor = { color: 'зелёный' };
+          findColor();
+          filteredData = findColor();
+          changeContainer();
+        } else if (btn.classList.contains('blue')) {
+          btn.classList.add('active');
+          filterColor = { color: 'синий' };
+          findColor();
+          filteredData = findColor();
+          changeContainer();
+        }
+      });
+    });
+  }
+}
+pickColor();
+
+export function findSize() {
+  const filters = [
+    (_data: IDataItem[], _filterSize: filterSize) => _data.filter((obj) => obj.size.includes(_filterSize.size)),
+  ];
+  let displayedItems = data;
+  for (let i = 0; i < filters.length; i++) {
+    displayedItems = filters[i](displayedItems, filterSize);
+  }
+  return displayedItems;
+}
+function pickSize() {
+  if (buttonSize) {
+    buttonSize.forEach((btn) => {
+      btn.addEventListener('click', (): void => {
+        if (btn.classList.contains('pick')) {
+          btn.classList.remove('pick');
+          createToysContainer();
+        } else if (btn.classList.contains('big')) {
+          btn.classList.add('pick');
+          filterSize = { size: 'большой' };
+          findColor();
+          filteredData = findSize();
+          changeContainer();
+        } else if (btn.classList.contains('medium')) {
+          btn.classList.add('pick');
+          filterSize = { size: 'средний' };
+          findColor();
+          filteredData = findSize();
+          changeContainer();
+        } else if (btn.classList.contains('small')) {
+          btn.classList.add('pick');
+          filterSize = { size: 'малый' };
+          findColor();
+          filteredData = findSize();
+          changeContainer();
+        }
+      });
+    });
+  }
+}
+pickSize();

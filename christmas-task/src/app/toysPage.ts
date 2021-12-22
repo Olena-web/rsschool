@@ -5,10 +5,10 @@ import Control from '../common/control';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
 
 export const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
-const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
-const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
+export const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
+export const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
 
-class Window extends Control {
+export class Window extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
     const Window = new Control(this.node, 'div', 'pop-up-window', MESSAGE);
@@ -18,7 +18,7 @@ class Window extends Control {
   }
 }
 
-function createWindow(): void {
+export function createWindow(): void {
   if (toysContainer) {
     const window = new Window(toysContainer);
     toysContainer.prepend(window.node);
