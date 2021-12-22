@@ -6,7 +6,7 @@ const buttonShape = document.querySelectorAll<HTMLButtonElement>('.shape');
 const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
 const buttonColor = document.querySelectorAll<HTMLButtonElement>('.color');
 const buttonSize = document.querySelectorAll<HTMLButtonElement>('.size');
-
+const resetBtn = document.querySelector<HTMLButtonElement>('.reset');
 function sortNameAZ() {
   const sortAz = data.sort((a, b) => a.name.localeCompare(b.name));
   return sortAz;
@@ -424,3 +424,18 @@ function pickSize() {
   }
 }
 pickSize();
+
+if (resetBtn === null) throw Error;
+resetBtn.addEventListener('click', () => {
+  buttonShape.forEach((btn) => {
+    btn.classList.remove('pick');
+  });
+  buttonColor.forEach((btn) => {
+    btn.classList.remove('active');
+  });
+  buttonSize.forEach((btn) => {
+    btn.classList.remove('pick');
+  });
+  if (favoriteBtn) favoriteBtn.classList.remove('active');
+  createToysContainer();
+});
