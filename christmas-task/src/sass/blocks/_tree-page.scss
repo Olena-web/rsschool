@@ -1,0 +1,53 @@
+
+  .tree-page__wrapper {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    justify-items: center;
+    background: rgba(22 41 41 / 50%);
+    height: 100%;
+    min-height: calc(100vh - 140px);
+    width: 100%;
+    }
+  
+    .play button {
+      width: 42px;
+      height: 42px;
+      margin: 10px 7px;
+      border: 0;
+      outline: 0;
+      background-color: transparent;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+  
+    .music {
+      background-image: url("../assets/svg/audio.svg");
+  }  
+    .snow-flake {
+      background-image: url("../assets/svg/snow.svg"); 
+   }
+  
+   .menu-tree {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-bottom: 20px;
+   }
+
+   .menu-tree_item {
+    width: 115px;
+    height: 115px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, .5);
+    background-size: auto 110px;
+     img {
+       width: 100%;
+     }
+   }

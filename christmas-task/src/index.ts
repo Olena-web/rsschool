@@ -5,4 +5,5 @@ import './app/toysPage';
 import './app/filters';
 import './app/startPage';
 import './app/search';
-import './estimate';
+//import './estimate';
+import './app/audio';
