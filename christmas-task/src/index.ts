@@ -8,3 +8,4 @@ import './app/search';
 //import './estimate';
 import './app/audio';
 import './app/treePage';
+import './app/snow';

@@ -1,22 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 .fa-snowflake {
-  font-family: 'Muli', sans-serif;
-  color: #fff;
+  color: white;
   position: absolute;
-  top: -20px;
   animation: fall linear forwards;
-  z-index: 10;
+  z-index: 100;
 }
 
 @keyframes fall {
   to {
-	transform: translateY(105vh);
+	transform: translateY(100vh);
   }
 }
 
 .countdown-container {
   display: flex;
+  height: calc(100vh - 140px);
+  width: 800px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  margin-left: -400px;
+  pointer-events: none;
 }
 
 
