@@ -91,6 +91,13 @@ export function createToysContainer(): void {
           selectedItems.push(JSON.stringify(selectedItem));
           countSelectedToys = selectedItems.length;
 
+          console.log(selectedItems);
+          function setLocalStorage() {
+            localStorage.setItem('selectedToys', JSON.stringify(selectedItems));
+          }
+          setLocalStorage();
+          window.addEventListener('beforeunload', setLocalStorage);
+
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
           if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
