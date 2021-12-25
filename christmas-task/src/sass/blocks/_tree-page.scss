@@ -49,12 +49,13 @@
     background-color: rgba(255, 255, 255, .5);
     background-size: auto 110px;
 		background-repeat: no-repeat;
+    cursor: pointer;
    }
+
    .tree-page__main {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    //background-image: url("../assets/bg/4.jpg");
     background-size: cover;
     background-position: center;
     height: calc(100vh - 140px);
@@ -62,6 +63,12 @@
     width: 800px;
     padding-bottom: 20px;
     overflow: hidden;
+   }
+
+   .main-tree__container {
+    display: block;
+    width: 500px;
+    height: 714px;
    }
 
 	 .menu-tree_item:nth-child(1) {
