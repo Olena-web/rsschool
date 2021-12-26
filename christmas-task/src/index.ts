@@ -9,3 +9,4 @@ import './app/search';
 import './app/audio';
 import './app/treePage';
 import './app/snow';
+import './app/drag-and-drop';

@@ -1,39 +1,42 @@
 import data from '../data';
 const treeItem = document.querySelectorAll<HTMLDivElement>('.menu-tree_item');
 const bgItem = document.querySelectorAll<HTMLDivElement>('.menu-bg__item');
-const mainTree = document.querySelector<HTMLDivElement>('.tree-page__main');
+const treePageMain = document.querySelector<HTMLDivElement>('.tree-page__main');
 const treeConytainer = document.querySelector<HTMLDivElement>('.main-tree__container');
 const pickToys = document.querySelector<HTMLDivElement>('.pick-toys');
-import { IDataItem } from './filters';
+const mainTree = document.querySelector<HTMLImageElement>('.main-tree');
 
 let bgNum;
 
 const img = new Image();
-img.src = `../assets/bg/5.jpg`;
+img.src = `../assets/bg/2.jpg`;
 img.addEventListener('load', () => {
-  if (mainTree) mainTree.style.backgroundImage = `url(${img.src})`;
+  if (treePageMain) treePageMain.style.backgroundImage = `url(${img.src})`;
 });
 
-if (bgItem !== null && mainTree !== null) {
+if (bgItem !== null && treePageMain !== null) {
   for (let i = 0; i < bgItem.length; i++) {
     bgNum = i + 1;
     const img = new Image();
     img.src = `../assets/bg/${bgNum}.jpg`;
     bgItem[i].addEventListener('click', () => {
-      if (mainTree) mainTree.style.backgroundImage = `url(${img.src})`;
+      if (treePageMain) treePageMain.style.backgroundImage = `url(${img.src})`;
     });
   }
 }
 
-if (treeItem !== null && mainTree !== null) {
+if (treeItem !== null && treePageMain !== null) {
   for (let i = 0; i < treeItem.length; i++) {
     bgNum = i + 1;
     const img = new Image();
+    img.classList.add('main-tree');
     img.src = `../assets/tree/${bgNum}.png`;
     treeItem[i].addEventListener('click', () => {
       if (treeConytainer !== null) {
-        treeConytainer.innerHTML = '';
-        treeConytainer.appendChild(img);
+        treeConytainer.style.backgroundImage = `url(${img.src})`;
+
+        //treeConytainer.innerHTML = '';
+        //treeConytainer.appendChild(img);
       }
     });
   }
@@ -43,20 +46,24 @@ function getLocalStorage() {
     localStorage.getItem('selectedToys');
   }
 }
-//const selectedItems: IDataItem[] = JSON.parse(getLocalStorage());
+
 window.addEventListener('load', getLocalStorage);
 
-export function createPickToysContainer(): void {
+console.log(getLocalStorage());
+
+const selectedToys = getLocalStorage();
+
+console.log(selectedToys);
+export function createPickToysContainer() {
   if (pickToys === null) {
     throw Error;
   } else {
-    //const data = selectedItems;
     pickToys.innerHTML = '';
-
-    data.splice(0, 20).forEach((item, i) => {
-      pickToys.innerHTML += `<div class = "pick-toys__item ${data[i].shape}">
-         <img src="assets/toys/${data[i].num}.png" alt="${data[i].name}">
-         <div class="count"> ${data[i].count}</div>
+    data.length = 20;
+    data.forEach((item) => {
+      pickToys.innerHTML += `<div class = "pick-toys__item "${item.shape}"">
+         <img class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
+         <div class="count"> ${item.count}</div>
        </div>;
      `;
     });
@@ -64,3 +71,39 @@ export function createPickToysContainer(): void {
 }
 
 createPickToysContainer();
+
+// const dragAndDrop = () => {
+//   if (toys !== null) {
+//     toys.forEach((toy) => {
+//       const dragStart = function () {
+//         setTimeout(() => {
+//           toy.classList.add('hide');
+//         }, 0);
+//       };
+
+//       const dragEnd = function () {
+//         toy.classList.remove('hide');
+//       };
+//       const dragOver = function (e: Event) {
+//         e.preventDefault();
+//       };
+//       const dragEnter = function (e: Event) {
+//         e.preventDefault();
+//       };
+//       // const dragLeave = function () {
+//       //   console.log('leave');
+//       // };
+//       const dragDrop = function () {
+//         if (mainTree !== null) mainTree.appendChild(toy);
+//         console.log('drop');
+//       };
+//       toy.addEventListener('dragstart', dragStart);
+//       toy.addEventListener('dragend', dragEnd);
+//       if (mainTree !== null) mainTree.addEventListener('dragover', dragOver);
+//       if (mainTree !== null) mainTree.addEventListener('dragenter', dragEnter);
+//       //treeConytainer?.addEventListener('dragleave', dragLeave);
+//       if (mainTree !== null) mainTree.addEventListener('drop', dragDrop);
+//     });
+//   }
+// };
+// dragAndDrop();

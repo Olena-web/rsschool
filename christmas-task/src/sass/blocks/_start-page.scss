@@ -1,14 +1,17 @@
 .start-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   
   h1 {
-    display: block;
-    position: absolute;
-    z-index: 2;
-    width: 423px;
-    height: 116px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 600px;
+    height: 250px;
     font-family: Neucha, sans-serif;
     font-style: normal;
     font-weight: normal;
@@ -17,6 +20,12 @@
     text-align: center;
     text-transform: uppercase;
     color: #ffff;
+    border: 3px solid #278D9F;
+    border-radius: 25px;
+    background-color: rgba(31, 112, 127, .3);
+    backdrop-filter: blur(6px);
+    font-size: 48px;
+    margin-bottom: 80px;
   }
 
   .background-image {
@@ -27,5 +36,54 @@
     img {
       width: 100%;
     }
+  }
+
+  .to-game {
+    width: 260px;
+    height: 100px;
+  }
+
+  .ball {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .ball1 {
+    width: 500px;
+    height: 500px;
+    left: calc(50% - 550px);
+    top: 310px;
+    background-image: url(../assets/ball/1.png);
+  }
+
+  .ball2 {
+    width: 300px;
+    height: 300px;
+    left: calc(50% + 150px);
+    top: 303px;
+    background-image: url(../assets/ball/2.png);
+  }
+
+  .ball::before {
+    content: "";
+    position: absolute;
+    background-color: #aaa;
+  }
+
+  .ball1::before {
+    top: -210px;
+    left: calc(50% - 47px);
+    width: 4px;
+    height: 220px;
+    width: 5px;
+}
+
+  .ball2::before {
+    top: -205px;
+    left: calc(50% - 32px);
+    width: 4px;
+    height: 210px;
+    width: 5px;
   }
 }
