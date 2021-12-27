@@ -4,7 +4,7 @@ const playBtn = document.querySelector<HTMLButtonElement>('.music');
 let isPlay = false;
 
 function playAudio() {
-  audio.src = '../assets/audio/audio.mp3';
+  audio.src = './assets/audio/audio.mp3';
   audio.currentTime = 0;
   if (!isPlay && audio !== null) {
     playBtn?.classList.add('pick');

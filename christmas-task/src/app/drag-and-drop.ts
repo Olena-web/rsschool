@@ -1,5 +1,5 @@
 import { getRandomNum } from '../app/snow';
-
+const countToys = document.querySelectorAll<HTMLDivElement>('.count');
 /* draggable element */
 const toys = document.querySelectorAll<HTMLImageElement>('.toy-image');
 
@@ -14,18 +14,17 @@ const handleDragStart = (e: DragEvent) => {
 
 const handleDrop = (e: DragEvent) => {
   const id = (e.dataTransfer as DataTransfer).getData('id');
-
   const element = document.getElementById(id);
-
-  const copy = element?.cloneNode(true);
-
+  const copy = (element as HTMLElement).cloneNode(true);
   (copy as HTMLElement).style.position = 'absolute';
+  (copy as HTMLElement).setAttribute('draggable', 'true');
   // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
   (copy as HTMLElement).style.left = e.x + 'px';
   // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
   (copy as HTMLElement).style.top = e.y + 'px';
   if (mainTree) mainTree.appendChild(copy as HTMLElement);
 };
+
 const handleDragOver = (e: DragEvent) => e.preventDefault();
 
 if (mainTree) mainTree.addEventListener('dragover', handleDragOver);

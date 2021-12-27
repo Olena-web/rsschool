@@ -3,7 +3,6 @@ import { MESSAGE } from '../constants/messages.constants';
 import { COUNT, YEAR, SHAPE, COLOR, SIZE, FAVORITE } from '../constants/toysPage.constants';
 import Control from '../common/control';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
-
 export const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 export const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
 
