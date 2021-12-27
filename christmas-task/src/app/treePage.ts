@@ -35,34 +35,37 @@ if (treeItem !== null && treePageMain !== null) {
       if (treeConytainer !== null) {
         treeConytainer.style.backgroundImage = `url(${img.src})`;
 
-        //treeConytainer.innerHTML = '';
-        //treeConytainer.appendChild(img);
+        // treeConytainer.innerHTML = '';
+        // treeConytainer.appendChild(img);
       }
     });
   }
 }
 function getLocalStorage() {
   if (localStorage.getItem('selectedToys')) {
-    localStorage.getItem('selectedToys');
+    const selectedToysForTree = localStorage.getItem('selectedToys');
+    if (selectedToysForTree) {
+      //selectedItems = JSON.parse(selectedToysForTree);
+    }
   }
 }
 
 window.addEventListener('load', getLocalStorage);
 
-console.log(getLocalStorage());
+//console.log(getLocalStorage());
 
 const selectedToys = getLocalStorage();
 
-console.log(selectedToys);
+//console.log(selectedToys);
 export function createPickToysContainer() {
   if (pickToys === null) {
     throw Error;
   } else {
     pickToys.innerHTML = '';
     data.length = 20;
-    data.forEach((item) => {
-      pickToys.innerHTML += `<div class = "pick-toys__item "${item.shape}"">
-         <img class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
+    data.forEach((item, i) => {
+      pickToys.innerHTML += `<div class = "pick-toys__item ${item.shape}">
+         <img id = "${i}" class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
          <div class="count"> ${item.count}</div>
        </div>;
      `;

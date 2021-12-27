@@ -2,65 +2,93 @@ import { getRandomNum } from '../app/snow';
 
 /* draggable element */
 const toys = document.querySelectorAll<HTMLImageElement>('.toy-image');
+
 /* drop targets */
-const mainTree = document.querySelector<HTMLImageElement>('.main-tree__container');
-console.log(mainTree);
+const mainTree = document.querySelector<HTMLDivElement>('.main-tree__container');
+
+const pickToys = document.querySelectorAll<HTMLDivElement>('.pick-toys__item');
+
+const handleDragStart = (e: DragEvent) => {
+  (e.dataTransfer as DataTransfer).setData('id', (e.target as Element).id);
+};
+
+const handleDrop = (e: DragEvent) => {
+  const id = (e.dataTransfer as DataTransfer).getData('id');
+
+  const element = document.getElementById(id);
+
+  const copy = element?.cloneNode(true);
+
+  (copy as HTMLElement).style.position = 'absolute';
+  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+  (copy as HTMLElement).style.left = e.x + 'px';
+  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+  (copy as HTMLElement).style.top = e.y + 'px';
+  if (mainTree) mainTree.appendChild(copy as HTMLElement);
+};
+const handleDragOver = (e: DragEvent) => e.preventDefault();
+
+if (mainTree) mainTree.addEventListener('dragover', handleDragOver);
+if (mainTree) mainTree.addEventListener('drop', handleDrop);
 
 toys.forEach((toy) => {
-  toy.addEventListener('dragstart', dragStart);
-  toy.addEventListener('dragend', dragEnd);
+  toy.addEventListener('dragstart', handleDragStart);
 });
 
-function dragStart(e: DragEvent) {
-  if (e !== null) {
-    (e.dataTransfer as DataTransfer).setData('text/plain', (e.target as Element).id);
-  }
-  setTimeout(() => {
-    (e.target as Element).classList.add('hide');
-  }, 0);
-}
+// toys.forEach((toy) => {
+//   toy.addEventListener('dragstart', dragStart);
+//   //toy.addEventListener('dragend', dragEnd);
+// });
 
-if (mainTree) {
-  mainTree.addEventListener('dragenter', dragEnter);
-  mainTree.addEventListener('dragover', dragOver);
-  mainTree.addEventListener('dragleave', dragLeave);
-  mainTree.addEventListener('drop', drop);
-}
+// function dragStart(e: DragEvent) {
+//   if (e !== null) {
+//     (e.dataTransfer as DataTransfer).setData('text/plain', (e.target as Element).id);
+//   }
+//   setTimeout(() => {
+//     //(e.target as Element).classList.add('hide');
+//   }, 0);
+// }
 
-function dragEnter(e: DragEvent) {
-  e.preventDefault();
-  (e.target as Element).classList.add('drag-over');
-}
+// if (mainTree) {
+//   mainTree.addEventListener('dragover', dragOver);
+//   mainTree.addEventListener('drop', drop);
+// }
 
-function dragOver(e: DragEvent) {
-  e.preventDefault();
-  (e.target as Element).classList.add('drag-over');
-}
+// function dragEnter(e: DragEvent) {
+//   e.preventDefault();
+//   (e.target as Element).classList.add('drag-enter');
+// }
 
-function dragLeave(e: DragEvent) {
-  (e.target as Element).classList.remove('drag-over');
-}
-function dragEnd(e: DragEvent) {
-  (e.target as Element).classList.remove('hide');
-  console.log('end');
-}
+// function dragOver(e: DragEvent) {
+//   e.preventDefault();
+//   //(e.target as Element).classList.add('drag-over');
+// }
 
-function drop(e: DragEvent) {
-  (e.target as Element).classList.remove('drag-over');
-  // get the draggable element
-  const id = (e.dataTransfer as DataTransfer).getData('text/plain');
-  const draggable = document.getElementById(id);
-  console.log(id);
-  // add it to the drop target
-  if ((e.target as Element) && draggable) {
-    //draggable.style.bottom = `${getRandomNum(1, 550)}px`;
-    //draggable.style.marginLeft = `${getRandomNum(1, 600)}px`;
-    const img = new Image();
-    img.src = `${id}`;
-    console.log(e.target);
-    (e.target as Element).appendChild(img);
-  }
-  // display the draggable element
-  if (draggable) draggable.classList.remove('hide');
-  console.log('drop');
-}
+// function dragLeave(e: DragEvent) {
+//   (e.target as Element).classList.add('drag-leave');
+// }
+// function dragEnd(e: DragEvent) {
+//   (e.target as Element).classList.remove('hide');
+//   console.log('end');
+// }
+
+// function drop(e: DragEvent) {
+//   // get the draggable element
+//   const id = (e.dataTransfer as DataTransfer).getData('id');
+//   const draggable = document.getElementById(id);
+
+//   const copy = draggable?.cloneNode(true);
+//   // add it to the drop target
+//   if ((e.target as Element) && copy) {
+//     (copy as HTMLElement).style.position = 'absolute';
+//     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+//     (copy as HTMLElement).style.left = e.x + 'px';
+//     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+//     (copy as HTMLElement).style.top = e.x + 'px';
+//     (e.target as Element).appendChild(copy);
+//   }
+// display the draggable element
+// if (draggable) draggable.classList.remove('hide');
+// (e.target as Element).classList.remove('drag-enter');
+// (e.target as Element).classList.add('drop');
+//}

@@ -1,6 +1,6 @@
-$globe-width:   16px;
-$globe-height:  18px;
-$globe-spacing: 40px;
+$globe-width:   10px;
+$globe-height:  10px;
+$globe-spacing: 20px;
 $globe-spread: 3px;
 $light-off-opacity: 0.4;
 
@@ -8,11 +8,11 @@ $light-off-opacity: 0.4;
     display: flex;
     justify-content: center;
     height: calc(100vh - 140px);
-    width: 800px;
+    width: 440px;
     position: absolute;
-    top: 20px;
+    top: 112px;
     left: 50%;
-    margin-left: -400px;
+    margin-left: -318px;
     pointer-events: none;
     z-index: 90;
     overflow: hidden;
@@ -33,10 +33,21 @@ $light-off-opacity: 0.4;
   pointer-events: none;
   width: 100%;
   transform: rotate(
-65deg
-) translate(60px) rotate(
--65deg
-);
+10deg) translate(73px) rotate(
+-65deg);
+}
+.lightrope {
+  margin-top: 533px;
+}
+
+.lightrope1 {
+  margin-top: 670px;
+}
+
+.lightrope2 {
+  margin-top: 850px;
+}
+
   li {
     position: relative;
     animation-fill-mode: both; 
@@ -79,42 +90,11 @@ $light-off-opacity: 0.4;
     &:nth-child(3n+1) {
       animation-duration: 1.4s;
     }
-    &:before {
-      content: "";
-      position: absolute;
-      background: #222;
-      width: ($globe-width - 2);
-      height: $globe-height/3;
-      border-radius: 3px;
-      top: (0 - ($globe-height/6));
-      left: 1px;
-    }
-    &:after {
-      content: "";
-      top: (0 - $globe-height/2);
-      left: $globe-width - 3;
-      position: absolute;
-      width: $globe-spacing + 12;
-      height: ($globe-height/3 * 2);
-      border-bottom: solid #222 2px;
-      border-radius: 50%;
-    }
-    &:last-child:after {
-      content: none;
-    }
+   
     &:first-child {
       margin-left: -$globe-spacing;
     }
   }
-}
-
-.lightrope1 {
-    margin: -30px 0 0 0;
-  }
-
-.lightrope2 {
-  margin: -45px 0 0 0;
-}
 
 @keyframes flash-1 { 
     0%, 100% { background: rgb(247, 243, 0);

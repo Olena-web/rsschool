@@ -10,3 +10,4 @@ import './app/audio';
 import './app/treePage';
 import './app/snow';
 import './app/drag-and-drop';
+import './app/light';
