@@ -87,7 +87,11 @@ toGame?.addEventListener('click', (): void => {
 
 function toStartPage(): void {
   startPage?.classList.remove('hide');
+  startPage?.classList.add('home');
   toysPage?.classList.add('hide');
+  if (startPage?.classList.contains('home')) {
+    treePage?.classList.toggle('.hide');
+  }
   treePage?.classList.add('.hide');
   headerSearch?.classList.remove('visible');
   start?.classList.add('on');

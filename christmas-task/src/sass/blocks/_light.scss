@@ -7,10 +7,10 @@ $light-off-opacity: 0.4;
 .light-container {
     display: flex;
     justify-content: center;
-    height: calc(100vh - 140px);
+    height: 100vh;
     width: 440px;
     position: absolute;
-    top: 112px;
+    top: -237px;
     left: 50%;
     margin-left: -318px;
     pointer-events: none;
@@ -38,17 +38,6 @@ $light-off-opacity: 0.4;
 10deg) translate(73px) rotate(
 -65deg);
 }
-// .lightrope {
-//   margin-top: 533px;
-// }
-
-// .lightrope1 {
-//   margin-top: 670px;
-// }
-
-// .lightrope2 {
-//   margin-top: 850px;
-// }
 
   .li {
     position: relative;
@@ -62,16 +51,16 @@ $light-off-opacity: 0.4;
     height: $globe-height;
     border-radius: 50%;
     margin: $globe-spacing/2;
-    display: inline-block;
-    
+    display: inline-block;    
     background: rgb(247, 243, 0);
     box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(247, 243, 0);
     animation-name: yellow;
     animation-duration: 2s;
+
     &:nth-child(2n+1) {
       background: rgba(0,255,255,1);
       box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,255,255,0.5);
-      animation-name: blue;
+      animation-name: green;
       animation-duration: 0.4s;
     }
     &:nth-child(4n+2) {
@@ -83,7 +72,7 @@ $light-off-opacity: 0.4;
     &:nth-child(3n+1) {
         background: rgb(16, 0, 247);
         box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(16, 0, 247);
-        animation-name: dark-blue;
+        animation-name: blue;
         animation-duration: 1.1s;
       }
     &:nth-child(odd) {
@@ -98,17 +87,18 @@ $light-off-opacity: 0.4;
     }
   }
 
+    
 @keyframes yellow { 
-    0%, 100% { background: rgb(247, 243, 0);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247, 243, 1);} 
-    50% { background: rgba(0,247,165,$light-off-opacity);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(244, 247, 67, 0.856);}
+    0%, 100% { background: rgb(247, 243, 0, 1);
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(247, 243, 0);} 
+    50% { background: rgba(247,243,0, $light-off-opacity);
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247, 243, 1, 0.2);}
 }
 @keyframes green { 
     0%, 100% { background: rgba(0,255,255,1);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,255,255,1);} 
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(0, 255, 179);} 
     50% { background: rgba(0,255,255,$light-off-opacity);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,255,255,0.2);}
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(0,255,179,0.2);}
 }
 
 @keyframes red { 
@@ -117,11 +107,11 @@ $light-off-opacity: 0.4;
     50% { background: rgba(247,0,148,$light-off-opacity);
     box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247,0,148,0.2);}
 }
-@keyframes dark-blue { 
+@keyframes blue { 
     0%, 100% { background: rgb(16, 0, 247);
     box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(16, 0, 247);} 
-    50% { background: rgba(247,0,148,$light-off-opacity);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247,0,148,0.2);}
+    50% { background: rgba(16,0,247,$light-off-opacity);
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(16, 0, 247, 0.2);}
 }
 .hidden {
   opacity: 0;

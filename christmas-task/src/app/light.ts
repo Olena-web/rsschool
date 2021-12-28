@@ -43,9 +43,10 @@ if (multiColor)
 if (redBtn)
   redBtn.addEventListener('click', () => {
     console.log('click');
-    li.forEach((li) => {
-      li.classList.add('hidden');
-      li.style.animation = 'none';
-      li.style.animationName = 'red';
+    lightRope.forEach((rope) => {
+      if (rope.classList.contains('hidden')) {
+        rope.classList.remove('hidden');
+      }
+      rope.classList.add('red');
     });
   });

@@ -1,0 +1,52 @@
+@media (max-width: 1200px) {
+
+.logo svg {
+	width: 138px;
+}
+
+.start-page {
+
+  .ball1 {
+	  width: 350px;
+    height: 474px;
+    left: calc(50% - 350px);
+    top: 310px;
+  }
+
+  .ball1::before {
+	  left: calc(50% - 5px);
+  }
+}
+
+.tree-page__wrapper {
+	display: flex;
+    flex-direction: column;
+  }
+
+	.tree-page__main {
+		max-width: 690px;
+	}
+
+	.countdown-container {
+		width: 640px;		
+		top: 910px;	
+	}
+
+	.toys-page__wrapper {
+		grid-template-columns: 1fr;
+
+		aside {
+			margin: 0 auto;
+		}
+
+		.toys-page__container {
+			margin-top: 12px;
+			gap: 14px;
+		}
+
+		.toys_item{
+			width: 300px;
+			height: 218px;	
+		}
+	}
+}
