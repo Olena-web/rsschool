@@ -48,7 +48,6 @@ export function createToysContainer(): void {
     </div>
     <wrapper class = "card-wrapper">
       <div class="title">${data[i].name}</div>
-      <button class="small minus-button"></button>
     </wrapper>  
     <img src="assets/toys/${data[i].num}.png" alt="${data[i].name}">    
     <div class = "description">
@@ -64,17 +63,16 @@ export function createToysContainer(): void {
       const toysItem = document.querySelectorAll<HTMLDivElement>('.toys_item');
       const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
       const selectedItems: string[] = [];
-      toysItem.forEach((item: HTMLDivElement, i: number) => {
+
+      toysItem.forEach((item: HTMLDivElement, i: number): void => {
         const selectedItem = data[i];
-        let toysCount = parseInt(data[i].count);
+        //let toysCount = parseInt(data[i].count);
         const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
         const countDescr = item.querySelector<HTMLDivElement>('.count');
         let countSelectedToys = 0;
         const maxCountToys = 20;
 
         function addToy(): void {
-          if (toysCount === 0) return;
-
           if (selectedItems.length === maxCountToys) {
             createWindow();
             countSelectedToys = maxCountToys;
@@ -83,12 +81,20 @@ export function createToysContainer(): void {
             return;
           }
 
-          toysCount--;
+          if (!item.classList.contains('selected-toy') && !ribbon?.classList.contains('ribbon-active')) {
+            item.classList.add('selected-toy');
+            ribbon?.classList.add('ribbon-active');
+            selectedItems.push(JSON.stringify(selectedItem));
+            countSelectedToys = selectedItems.length;
+          } else {
+            item.classList.remove('selected-toy');
+            if (ribbon) ribbon.classList.remove('ribbon-active');
+            selectedItems.pop();
+            countSelectedToys = selectedItems.length;
+          }
 
-          item.classList.add('selected-toy');
-          if (ribbon) ribbon.classList.add('ribbon-active');
-          selectedItems.push(JSON.stringify(selectedItem));
-          countSelectedToys = selectedItems.length;
+          //selectedItems.push(JSON.stringify(selectedItem));
+          //countSelectedToys--;
 
           function setLocalStorage() {
             localStorage.setItem('selectedToys', JSON.stringify(selectedItems));
@@ -97,56 +103,26 @@ export function createToysContainer(): void {
           window.addEventListener('beforeunload', setLocalStorage);
 
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
-          if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
+          //if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
 
         function removeAllToy(): void {
-          toysCount = parseInt(data[i].count);
           if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+          item.classList.remove('selected-toy');
           if (selectedSpan !== null) selectedSpan.innerHTML = '0';
-          if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
           selectedItems.length = 0;
           if (openWindow) {
             openWindow.classList.remove('open');
           }
         }
 
-        function removeToy(): void {
-          selectedItems.forEach((item, i) => {
-            //if (toysCount === item.count );
-            toysCount++;
-            selectedItems.length--;
-            selectedItems.toString().replace(item[i].toString(), '');
-            //console.log(selectedItems);
-            countSelectedToys = selectedItems.length;
-            if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
-            if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
-            if (ribbon !== null) ribbon.classList.remove('ribbon-active');
-          });
-        }
-
-        item.addEventListener<'click'>('click', (e: MouseEvent): void => {
-          if (e.target == e.currentTarget) {
-            addToy();
-          }
+        item.addEventListener<'click'>('click', (): void => {
+          addToy();
         });
         if (resetBtnToys === null) throw Error;
         resetBtnToys.addEventListener<'click'>('click', () => {
           removeAllToy();
         });
-        const minusBtn = document.querySelectorAll<HTMLButtonElement>('.minus-button');
-        if (minusBtn !== null) {
-          minusBtn.forEach((btn: HTMLButtonElement) => {
-            if (btn !== null) {
-              btn.addEventListener<'click'>('click', (e: MouseEvent): void => {
-                if (e.target == e.currentTarget) {
-                  removeToy();
-                  e.stopPropagation();
-                }
-              });
-            }
-          });
-        }
       });
     });
   }
