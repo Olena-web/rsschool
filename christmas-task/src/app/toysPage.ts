@@ -5,7 +5,8 @@ import Control from '../common/control';
 export const openWindow = document.querySelector<HTMLDivElement>('.pop-up-window');
 export const toysContainer = document.querySelector<HTMLTemplateElement>('.toys-page__container');
 export const resetBtnToys = document.querySelector<HTMLButtonElement>('.reset-toys');
-
+import { tree } from './startPage';
+import { filteredData } from './filters';
 export class Window extends Control {
   constructor(parentNode: HTMLElement) {
     super(parentNode);
@@ -62,7 +63,7 @@ export function createToysContainer(): void {
   `;
       const toysItem = document.querySelectorAll<HTMLDivElement>('.toys_item');
       const selectedSpan = document.querySelector<HTMLSpanElement>('.selected span');
-      const selectedItems: string[] = [];
+      const selectedItems = [] as filteredData[];
 
       toysItem.forEach((item: HTMLDivElement, i: number): void => {
         const selectedItem = data[i];
@@ -83,7 +84,7 @@ export function createToysContainer(): void {
           if (!item.classList.contains('selected-toy') && !ribbon?.classList.contains('ribbon-active')) {
             item.classList.add('selected-toy');
             ribbon?.classList.add('ribbon-active');
-            selectedItems.push(JSON.stringify(selectedItem));
+            selectedItems.push(selectedItem);
             countSelectedToys = selectedItems.length;
           } else {
             item.classList.remove('selected-toy');
@@ -96,6 +97,11 @@ export function createToysContainer(): void {
             localStorage.setItem('selectedToys', JSON.stringify(selectedItems));
           }
           setLocalStorage();
+
+          tree?.addEventListener('click', () => {
+            setLocalStorage();
+            localStorage.getItem('selectedToys');
+          });
           window.addEventListener('beforeunload', setLocalStorage);
 
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
@@ -109,7 +115,7 @@ export function createToysContainer(): void {
           if (openWindow) {
             openWindow.classList.remove('open');
           }
-          localStorage.clear();
+          localStorage.removeItem('selectedToys');
         }
 
         item.addEventListener<'click'>('click', (): void => {

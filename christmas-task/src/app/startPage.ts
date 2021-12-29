@@ -44,7 +44,7 @@ const startPage = document.getElementById('start');
 const toysPage = document.getElementById('toys');
 const treePage = document.getElementById('tree');
 const toys = document.querySelector<HTMLLinkElement>('.toys');
-const tree = document.querySelector<HTMLLinkElement>('.tree');
+export const tree = document.querySelector<HTMLLinkElement>('.tree');
 const headerSearch = document.querySelector<HTMLDivElement>('.header__search');
 const toGame = document.querySelector<HTMLButtonElement>('.to-game');
 

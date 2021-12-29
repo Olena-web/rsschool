@@ -221,9 +221,7 @@ function changeContainer() {
     const selectedItems: string[] = [];
     toysItem.forEach((item: HTMLDivElement, i: number) => {
       const selectedItem = data[i];
-      let toysCount = parseInt(data[i].count);
       const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
-      const countDescr = item.querySelector<HTMLDivElement>('.count');
       let countSelectedToys = 0;
       const maxCountToys = 20;
 
@@ -264,15 +262,14 @@ function changeContainer() {
       window.addEventListener('beforeunload', setLocalStorage);
 
       function removeAllToy(): void {
-        toysCount = parseInt(data[i].count);
         if (ribbon !== null) ribbon.classList.remove('ribbon-active');
+        item.classList.remove('selected-toy');
         if (selectedSpan !== null) selectedSpan.innerHTML = '0';
-        if (countDescr !== null) countDescr.innerText = `${COUNT} ${data[i].count}`;
         selectedItems.length = 0;
         if (openWindow) {
           openWindow.classList.remove('open');
         }
-        localStorage.clear();
+        localStorage.removeItem('selectedToys');
       }
 
       function getLocalStorage() {
