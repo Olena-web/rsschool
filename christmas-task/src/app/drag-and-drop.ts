@@ -1,14 +1,15 @@
 const countToys = document.querySelectorAll<HTMLDivElement>('.count');
 /* draggable element */
-const toys = document.querySelectorAll<HTMLImageElement>('.toy-image');
+export const toys = document.querySelectorAll<HTMLImageElement>('.toy-image');
 
 /* drop targets */
-const mainTree = document.querySelector<HTMLDivElement>('.main-tree__container');
+export const mainTree = document.querySelector<HTMLDivElement>('.main-tree__container');
 
-const pickToys = document.querySelectorAll<HTMLDivElement>('.pick-toys__item');
+export const pickToys = document.querySelectorAll<HTMLDivElement>('.pick-toys__item');
 
 const handleDragStart = (e: DragEvent) => {
   (e.dataTransfer as DataTransfer).setData('id', (e.target as Element).id);
+  console.log('start');
 };
 
 const handleDrop = (e: DragEvent) => {
@@ -34,19 +35,37 @@ const handleDrop = (e: DragEvent) => {
   });
 
   const copy = (element as HTMLElement).cloneNode(true);
-  (copy as HTMLElement).style.position = 'absolute';
-  (copy as HTMLElement).setAttribute('draggable', 'true');
-  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-  (copy as HTMLElement).style.left = e.x + 'px';
-  // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-  (copy as HTMLElement).style.top = e.y + 'px';
-  if (mainTree) mainTree.appendChild(copy as HTMLElement);
+  if (copy) {
+    (copy as HTMLElement).style.position = 'absolute';
+    (copy as HTMLElement).setAttribute('draggable', 'true');
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+    (copy as HTMLElement).style.left = e.x + 'px';
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+    (copy as HTMLElement).style.top = e.y + 'px';
+    (copy as HTMLElement).addEventListener('dragstart', handleDragStart);
+    if (mainTree) {
+      mainTree.appendChild(copy as HTMLElement);
+    }
+    if (pickToys) {
+      pickToys.forEach((item) => {
+        item.appendChild(copy as HTMLElement);
+      });
+    }
+  }
+  console.log('drop');
 };
 
 const handleDragOver = (e: DragEvent) => e.preventDefault();
 
 if (mainTree) mainTree.addEventListener('dragover', handleDragOver);
 if (mainTree) mainTree.addEventListener('drop', handleDrop);
+
+if (pickToys) {
+  pickToys.forEach((item) => {
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+  });
+}
 
 toys.forEach((toy) => {
   toy.addEventListener('dragstart', handleDragStart);

@@ -109,6 +109,7 @@ export function createToysContainer(): void {
           if (openWindow) {
             openWindow.classList.remove('open');
           }
+          localStorage.clear();
         }
 
         item.addEventListener<'click'>('click', (): void => {

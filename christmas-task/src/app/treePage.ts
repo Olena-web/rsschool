@@ -37,6 +37,7 @@ if (treeItem !== null && treePageMain !== null) {
     });
   }
 }
+
 function getLocalStorage() {
   if (localStorage.getItem('selectedToys')) {
     const selectedToysForTree = localStorage.getItem('selectedToys');
@@ -48,19 +49,15 @@ function getLocalStorage() {
 
 window.addEventListener('load', getLocalStorage);
 
-//console.log(getLocalStorage());
-
-//console.log(selectedToys);
 export function createPickToysContainer() {
   if (pickToys === null) {
     throw Error;
   } else {
-    pickToys.innerHTML = '';
     data.splice(0, 20).forEach((item, i) => {
       pickToys.innerHTML += `<div class = "pick-toys__item ${item.shape}">
          <img id = "${i}" class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
          <div data-index = "${i}" class="count"> ${item.count}</div>
-       </div>;
+       </div>
      `;
     });
   }
