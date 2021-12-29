@@ -9,24 +9,24 @@ export const pickToys = document.querySelectorAll<HTMLDivElement>('.pick-toys__i
 
 const handleDragStart = (e: DragEvent) => {
   (e.dataTransfer as DataTransfer).setData('id', (e.target as Element).id);
-  console.log('start');
 };
 
 const handleDrop = (e: DragEvent) => {
   const id = (e.dataTransfer as DataTransfer).getData('id');
   const element = document.getElementById(id);
-  for (let i = 0; i < countToys.length; i++) {
-    if (id === countToys[i].dataset.index) {
-      let toysCount: number = parseInt(countToys[i].innerText);
-      toysCount--;
-      if (toysCount < 0) {
-        if (element !== null) {
-          return;
+  if (element !== null)
+    for (let i = 0; i < countToys.length; i++) {
+      if (id === countToys[i].dataset.index) {
+        let toysCount: number = parseInt(countToys[i].innerText);
+        toysCount--;
+        if (toysCount < 0) {
+          if (element !== null) {
+            return;
+          }
         }
+        countToys[i].innerText = toysCount.toString();
       }
-      countToys[i].innerText = toysCount.toString();
     }
-  }
 
   toys.forEach((toy) => {
     for (let i = 0; i < countToys.length; i++) {
@@ -52,7 +52,6 @@ const handleDrop = (e: DragEvent) => {
       });
     }
   }
-  console.log('drop');
 };
 
 const handleDragOver = (e: DragEvent) => e.preventDefault();

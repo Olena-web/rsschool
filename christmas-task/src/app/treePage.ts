@@ -4,8 +4,10 @@ const bgItem = document.querySelectorAll<HTMLDivElement>('.menu-bg__item');
 const treePageMain = document.querySelector<HTMLDivElement>('.tree-page__main');
 const treeConytainer = document.querySelector<HTMLDivElement>('.main-tree__container');
 const pickToys = document.querySelector<HTMLDivElement>('.pick-toys');
+const clearStorage = document.querySelector<HTMLButtonElement>('.clear');
 import { filteredData } from './filters';
 import { tree } from './startPage';
+import './toysPage';
 let bgNum;
 
 const img = new Image();
@@ -39,23 +41,22 @@ if (treeItem !== null && treePageMain !== null) {
   }
 }
 
-// function getLocalStorage() {
-//   if (localStorage.getItem('selectedToys')) {
-
-//     if (selectedToysForTree) {
-
-//       const selectedItems = JSON.parse(selectedToysForTree);
-
-//     }
-//   }
-
-window.addEventListener('load', () => {
-  localStorage.getItem('selectedToys');
-});
+// window.addEventListener('load', () => {
+//   localStorage.getItem('selectedToys');
+// });
 
 tree?.addEventListener('click', () => {
-  localStorage.getItem('selectedToys');
+  localStorage.setItem('selectedToys', JSON.stringify(selectedItems));
+  if (localStorage['selectedToys']) {
+    localStorage.getItem('selectedToys');
+    toysOnTree = toysOnTreeSelect;
+    //createPickToysContainer();
+  }
 });
+if (clearStorage)
+  clearStorage.addEventListener('click', () => {
+    localStorage.clear();
+  });
 
 let selectedItems = [] as filteredData[];
 if (localStorage['selectedToys']) {
@@ -64,15 +65,14 @@ if (localStorage['selectedToys']) {
   selectedItems = JSON.parse(newData);
 }
 const toysOnTreeDefault = data.splice(0, 20);
-export function createPickToysContainer(x = toysOnTreeDefault) {
+const toysOnTreeSelect = selectedItems;
+let toysOnTree = toysOnTreeDefault || toysOnTreeSelect;
+
+export function createPickToysContainer() {
   if (pickToys === null) {
     throw Error;
   } else {
-    const toysOnTreeSelect = selectedItems;
-    let toysOnTree = toysOnTreeSelect;
-    window.addEventListener('load', () => {
-      toysOnTree = x;
-    });
+    toysOnTree = toysOnTreeDefault;
     if (toysOnTree !== null)
       toysOnTree.forEach((item, i) => {
         pickToys.innerHTML += `<div class = "pick-toys__item ${item.shape}">
@@ -85,3 +85,8 @@ export function createPickToysContainer(x = toysOnTreeDefault) {
 }
 
 createPickToysContainer();
+
+// window.addEventListener('load', () => {
+//   toysOnTree = toysOnTreeDefault;
+//   createPickToysContainer();
+// });
