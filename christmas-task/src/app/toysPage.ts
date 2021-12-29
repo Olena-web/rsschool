@@ -68,7 +68,6 @@ export function createToysContainer(): void {
         const selectedItem = data[i];
 
         const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
-        const countDescr = item.querySelector<HTMLDivElement>('.count');
         let countSelectedToys = 0;
         const maxCountToys = 20;
 
