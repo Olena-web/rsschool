@@ -66,7 +66,7 @@ export function createToysContainer(): void {
 
       toysItem.forEach((item: HTMLDivElement, i: number): void => {
         const selectedItem = data[i];
-        //let toysCount = parseInt(data[i].count);
+
         const ribbon = item.querySelector<HTMLDivElement>('.ribbon');
         const countDescr = item.querySelector<HTMLDivElement>('.count');
         let countSelectedToys = 0;
@@ -93,9 +93,6 @@ export function createToysContainer(): void {
             countSelectedToys = selectedItems.length;
           }
 
-          //selectedItems.push(JSON.stringify(selectedItem));
-          //countSelectedToys--;
-
           function setLocalStorage() {
             localStorage.setItem('selectedToys', JSON.stringify(selectedItems));
           }
@@ -103,7 +100,6 @@ export function createToysContainer(): void {
           window.addEventListener('beforeunload', setLocalStorage);
 
           if (selectedSpan !== null) selectedSpan.innerHTML = countSelectedToys.toString();
-          //if (countDescr) countDescr.innerText = `${COUNT} ${toysCount.toString()}`;
         }
 
         function removeAllToy(): void {

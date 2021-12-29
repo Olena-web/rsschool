@@ -10,14 +10,13 @@ $light-off-opacity: 0.4;
     height: 100vh;
     width: 440px;
     position: absolute;
-    top: -237px;
+    top: -97px;
     left: 50%;
     margin-left: -318px;
     pointer-events: none;
     z-index: 90;
     overflow: hidden;
     pointer-events: none;
-
 }
 
 .lightrope {
@@ -115,4 +114,24 @@ $light-off-opacity: 0.4;
 }
 .hidden {
   opacity: 0;
+}
+
+.red-light {
+  position: relative;
+    animation-fill-mode: both; 
+    animation-iteration-count:infinite;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: $globe-width;
+    height: $globe-height;
+    border-radius: 50%;
+    margin: $globe-spacing/2;
+    display: inline-block;    
+    background: rgba(247,0,148,1);
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247,0,148,1);
+    animation-name: red;
+    animation-duration: 1.1s;
+
 }

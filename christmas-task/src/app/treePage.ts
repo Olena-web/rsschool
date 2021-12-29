@@ -33,9 +33,6 @@ if (treeItem !== null && treePageMain !== null) {
     treeItem[i].addEventListener('click', () => {
       if (treeConytainer !== null) {
         treeConytainer.style.backgroundImage = `url(${img.src})`;
-
-        // treeConytainer.innerHTML = '';
-        // treeConytainer.appendChild(img);
       }
     });
   }
@@ -62,7 +59,7 @@ export function createPickToysContainer() {
     data.splice(0, 20).forEach((item, i) => {
       pickToys.innerHTML += `<div class = "pick-toys__item ${item.shape}">
          <img id = "${i}" class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
-         <div class="count"> ${item.count}</div>
+         <div data-index = "${i}" class="count"> ${item.count}</div>
        </div>;
      `;
     });

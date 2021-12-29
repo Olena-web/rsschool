@@ -90,9 +90,9 @@ function toStartPage(): void {
   startPage?.classList.add('home');
   toysPage?.classList.add('hide');
   if (startPage?.classList.contains('home')) {
-    treePage?.classList.toggle('.hide');
+    treePage?.classList.toggle('hide');
   }
-  treePage?.classList.add('.hide');
+  treePage?.classList.add('hide');
   headerSearch?.classList.remove('visible');
   start?.classList.add('on');
   toys?.classList.remove('on');

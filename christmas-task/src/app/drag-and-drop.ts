@@ -1,4 +1,3 @@
-import { getRandomNum } from '../app/snow';
 const countToys = document.querySelectorAll<HTMLDivElement>('.count');
 /* draggable element */
 const toys = document.querySelectorAll<HTMLImageElement>('.toy-image');
@@ -15,6 +14,21 @@ const handleDragStart = (e: DragEvent) => {
 const handleDrop = (e: DragEvent) => {
   const id = (e.dataTransfer as DataTransfer).getData('id');
   const element = document.getElementById(id);
+
+  for (let i = 0; i < countToys.length; i++) {
+    if (id === countToys[i].dataset.index) {
+      let toysCount: number = parseInt(countToys[i].innerText);
+      toysCount--;
+      if (toysCount < 0) {
+        if (element !== null) pickToys[i].classList.add('hide');
+        console.log(pickToys[i]);
+        return;
+      }
+      countToys[i].innerText = toysCount.toString();
+      console.log(countToys[i].innerText);
+    }
+  }
+
   const copy = (element as HTMLElement).cloneNode(true);
   (copy as HTMLElement).style.position = 'absolute';
   (copy as HTMLElement).setAttribute('draggable', 'true');
