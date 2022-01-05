@@ -16,7 +16,7 @@ export class Header extends Control {
       'header__search visible',
       `<input type="search" class="search" autocomplete="off">
       <div class="selected">
-        <span>0</span>
+        0
       </div>`
     );
     header.node.append(headerContainer.node);

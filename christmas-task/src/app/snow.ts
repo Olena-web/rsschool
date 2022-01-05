@@ -1,5 +1,5 @@
 const snowContainer = document.querySelector<HTMLDivElement>('.countdown-container');
-const snowBtn = document.querySelector<HTMLButtonElement>('.snow-flake');
+export const snowBtn = document.querySelector<HTMLButtonElement>('.snow-flake');
 let isSnow = false;
 
 function createSnowFlake() {

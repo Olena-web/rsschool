@@ -28,12 +28,17 @@ export function createSlider(): void {
     }
   });
 
+  const minYear = 1940;
+  const maxYear = 2020;
+  const startRangeYear = 1950;
+  const endRangeYear = 2010;
+
   noUiSlider.create(sliderTwo, {
-    start: [1950, 2010],
+    start: [startRangeYear, endRangeYear],
     connect: true,
     range: {
-      min: 1940,
-      max: 2020,
+      min: minYear,
+      max: maxYear,
     },
     behaviour: 'drag-tap',
     step: 1,

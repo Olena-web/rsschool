@@ -5,19 +5,20 @@ const redBtn = document.querySelector<HTMLButtonElement>('.red-btn');
 const li = document.querySelectorAll<HTMLElement>('.li');
 
 function createLights(): void {
+  const minimumLigths = 15;
+  const maximumLights = 45;
   if (lightRope !== null) {
-    for (let amountLights = 15; amountLights < 45; amountLights++) {
+    for (let amountLights = minimumLigths; amountLights < maximumLights; amountLights++) {
       lightRope[0].innerHTML += '<li class = "li"></li>';
       lightRope[1].innerHTML += '<li class = "li"></li>';
       lightRope[2].innerHTML += '<li class = "li"></li>';
     }
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    lightRope[0].style.marginTop = 533 + 'px';
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    lightRope[1].style.marginTop = 670 + 'px';
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    lightRope[2].style.marginTop = 850 + 'px';
-    //const li = document.querySelectorAll<HTMLLIElement>('.li');
+
+    lightRope[0].style.marginTop = '533px';
+
+    lightRope[1].style.marginTop = '670px';
+
+    lightRope[2].style.marginTop = '850px';
   }
 }
 createLights();
