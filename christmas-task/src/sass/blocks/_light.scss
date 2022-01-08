@@ -10,9 +10,9 @@ $light-off-opacity: 0.4;
     height: 100vh;
     width: 440px;
     position: absolute;
-    transform: rotate(-24deg);
+    transform: rotate(-19deg);
     top: -97px;
-    left: 46%;
+    left: 47%;
     margin-left: -318px;
     pointer-events: none;
     z-index: 90;
@@ -117,6 +117,12 @@ $light-off-opacity: 0.4;
     50% { background: rgba(16,0,247,$light-off-opacity);
     box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(16, 0, 247, 0.2);}
 }
+@keyframes orange { 
+  0%, 100% { background: rgb(247, 152, 0);
+  box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(247, 152, 0);} 
+  50% { background: rgba(247,152,0, $light-off-opacity);
+  box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247, 152, 1, 0.2);}
+}
 .hidden {
   display: none;
 }
@@ -165,13 +171,17 @@ $light-off-opacity: 0.4;
   }
 }
 .yellow-light {
+    background: rgb(247, 152, 0);
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(247, 152, 0); 
+    animation-name: orange;
+    animation-duration: 1s;
   &:nth-child(2n+1),
   &:nth-child(4n+2),
   &:nth-child(3n+1) {
-    background: rgb(247, 243, 0);
-    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgb(247, 243, 0);
-    animation-name: yellow;
-    animation-duration: 1s;
+    background: rgb(247, 152, 1);
+    box-shadow: 0px $globe-height/6 $globe-width*2 $globe-spread rgba(247, 99, 0, 0.5);
+    animation-name: orange;
+    animation-duration: 0.5s;
   }
 }
 

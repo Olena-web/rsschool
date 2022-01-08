@@ -49,7 +49,7 @@ tree?.addEventListener('click', () => {
   localStorage.setItem('selectedToys', JSON.stringify(selectedItems));
   if (localStorage['selectedToys']) {
     localStorage.getItem('selectedToys');
-    toysOnTree = toysOnTreeSelect;
+    toysOnTree = toysOnTreeSelect === [] ? toysOnTreeDefault : toysOnTreeSelect;
     //createPickToysContainer();
   }
 });
@@ -66,7 +66,8 @@ if (localStorage['selectedToys']) {
 }
 const toysOnTreeDefault = data.splice(0, 20);
 const toysOnTreeSelect = selectedItems;
-let toysOnTree = toysOnTreeDefault || toysOnTreeSelect;
+let toysOnTree: filteredData[] = [];
+toysOnTree = toysOnTreeSelect === [] ? toysOnTreeDefault : toysOnTreeSelect;
 
 export function createPickToysContainer() {
   if (pickToys === null) {
@@ -76,8 +77,8 @@ export function createPickToysContainer() {
     if (toysOnTree !== null)
       toysOnTree.forEach((item, i) => {
         pickToys.innerHTML += `<div class = "pick-toys__item ${item.shape}">
-         <img id = "${i}" class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
-         <div data-index = "${i}" class="count"> ${item.count}</div>
+         <img id = "${item.num}" class = "toy-image" draggable = "true" src="assets/toys/${item.num}.png" alt="${item.name}">
+         <div data-index = "${item.num}" class="count"> ${item.count}</div>
        </div>
      `;
       });
