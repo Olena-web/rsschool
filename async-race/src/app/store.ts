@@ -1,43 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="./assets/favicon.ico" />
-		<title>Async-race</title>
-	</head>
-	<body>
-		<section class="garage-page">
-			<div class="page-buttons">
-				<button class="garage-page__button">to garage</button>
-				<button class="winners-page__button">to winners</button>
-			</div>
-			<div class="create-cars">
-				<input type="text" id="car-name">
-				<input type="color" id="colorWell">
-				<label for = "colorWell"></label>
-				<button class="create-cars__button">create</button>
-			</div>
-			<div class="update-cars">
-				<input type="text" id="car-new-name">
-				<input type="color" id="color-new-Well">
-				<label for = "color-new-Well"></label>
-				<button class="update-cars__button">update</button>
-			</div>
-			<div class="game-buttons">
-				<button class="race">race</button>
-				<button class="reset">reset</button>
-				<button class="generate">generate cars</button>
-			</div>
-			<h2>Garage <span class = "cars-number">(`${number}`)</span></h2>
-			<h4>Page # 1</h4>
-		
-			<div class="road">
-				<div class="general-buttons">
+import { getCars} from './api';
+import { carsInGarage } from './garage-view';
+import brandsCars from './brands-cars';
+import modelsCars from './models-cars';
+
+const generateBtn = document.querySelector<HTMLButtonElement>('.generate');
+const road = document.querySelector<HTMLDivElement>('.road');
+const maxCreateNumber = 10;
+
+export function getRandomNum(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return randomNum;
+}
+
+
+function createRandomCars (): string {
+	const carBrand = brandsCars[getRandomNum(1, brandsCars.length)];
+	const carModel = modelsCars[getRandomNum(1, modelsCars.length)];
+	const carName = carBrand + " " + carModel;
+	return carName;
+}
+
+createRandomCars ();
+
+function createRandomColor (): string {
+const colorR = getRandomNum(0, 255);
+const colorG = getRandomNum(0, 255);
+const colorB = getRandomNum(0, 255);
+const style = `rgb(${colorR}, ${colorG}, ${colorB})`;
+return style;
+}
+
+
+function createCarsStore (){
+	let newGarage = [];
+	for (let i = 0; i < maxCreateNumber; i+=1){
+		const newCarName = createRandomCars ();
+		const newCarColor = createRandomColor ();
+		const newCar = {
+			name:newCarName,
+			color: newCarColor,
+			id: i
+		}
+  newGarage.push(newCar);
+	}
+	return newGarage;
+}
+ function addRandomCar () : void {
+	 for (let i =0; i <  maxCreateNumber; i+=1) {
+		 const id = i;
+	 if (road) road.innerHTML +=
+	 `
+	 <div class="general-buttons">
 					<button class="select-button" id="select-car ${id}">select</button>
 					<button class="remove-button" id="remove-car ${id}">remove</button>
-					<span class="car-name">${name}</span>
+					<span class="car-name">${createRandomCars ()}</span>
 				</div>
 				<div class="control-panel">
 					<button class="start-button">A</button>
@@ -68,7 +86,7 @@
 							c0,8.585,1.947,16.721,5.414,24H138.586c3.467-7.279,5.414-15.415,5.414-24c0-30.878-25.122-56-56-56s-56,25.122-56,56
 							c0,3.313,0.306,6.554,0.86,9.711C27.217,304.609,24,298.428,24,291.5z M48,299.5c0-22.056,17.944-40,40-40s40,17.944,40,40
 							s-17.944,40-40,40S48,321.556,48,299.5z M416,339.5c-22.056,0-40-17.944-40-40s17.944-40,40-40s40,17.944,40,40
-							S438.056,339.5,416,339.5z" style = "fill: `${color}`" />
+							S438.056,339.5,416,339.5z" style = "fill: ${createRandomColor()}" />
 							<path d="M112,291.5c-4.418,0-8,3.582-8,8c0,8.822-7.178,16-16,16s-16-7.178-16-16s7.178-16,16-16c4.418,0,8-3.582,8-8s-3.582-8-8-8
 							c-17.645,0-32,14.355-32,32s14.355,32,32,32s32-14.355,32-32C120,295.082,116.418,291.5,112,291.5z"/>
 							<path d="M440,291.5c-4.418,0-8,3.582-8,8c0,8.822-7.178,16-16,16s-16-7.178-16-16s7.178-16,16-16c4.418,0,8-3.582,8-8s-3.582-8-8-8
@@ -383,14 +401,10 @@
 					</div>
 					<div class="road-race"></div>
 
-				</div>
-			</div>
-			<div class="pagination-buttons">
-				<button id="prev">prev</button>
-				<button id="next">next</button>
-			</div>
-		</section>
-		<section class="winners-page"></section>
-		
-	</body>
-</html>
+	 `
+	}
+ }
+
+ if (generateBtn) generateBtn.addEventListener('click', () => {
+	 addRandomCar ()
+	})

@@ -1,4 +1,6 @@
 import './css/style.min.css';
-import './app/color-move-car.ts';
-import './app/api.ts';
+import './app/color-car';
+import './app/api';
 import './app/race';
+import './app/garage-view';
+import './app/store';

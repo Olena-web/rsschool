@@ -1,12 +1,25 @@
 body {
-    background-color: #e4f3d9;
+  background-color: #e4f3d9;
+}
+.wrapper-road {
+	display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .race-car {
-    width: 140px;
-    position: absolute;
+  width: 140px;
+  position: relative;}
+.road-race {
+  display: block;
+  margin-top: -37px;
+  border-bottom: green dotted;
+  height: 3px;
+  left: 0;
+  width: 100%;
+}
+.flag {
+	position: relative;
+	left: 590px;
+  width: 118px;
 }
 
-// #Capa_1 > g:nth-child(1) > path:nth-child(2) {
-//       fill: #0000ff;
-// }
- 
