@@ -25,6 +25,7 @@
         "@typescript-eslint/no-explicit-any": "error" ,               
         "require-await": "off",
         "@typescript-eslint/require-await": "error"
+        //"@typescript-eslint/rule-name": "error"
     },
   
     "parser": "@typescript-eslint/parser"

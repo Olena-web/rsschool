@@ -3,7 +3,6 @@ const defaultColor = '#0000ff';
 
 export const carColor = document.querySelector<HTMLElement>('#Capa_1 > g:nth-child(1) > path:nth-child(2)');
 
-
 function updateFirst(ev: Event) {
   if (carColor) {
     carColor.style.fill = (ev.target as HTMLInputElement).value;
@@ -22,5 +21,3 @@ function startup(): void {
   }
 }
 window.addEventListener('load', startup, false);
-
-

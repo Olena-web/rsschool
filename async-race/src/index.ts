@@ -4,3 +4,4 @@ import './app/api';
 import './app/race';
 import './app/garage-view';
 import './app/store';
+import './app/svg';
