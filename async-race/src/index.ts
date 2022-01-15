@@ -5,3 +5,4 @@ import './app/race';
 import './app/garage-view';
 import './app/store';
 import './app/svg';
+import './app/pagination';

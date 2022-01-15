@@ -22,4 +22,15 @@ body {
 	left: 590px;
   width: 118px;
 }
+.hide {
+  display: none;
+}
+.page-number {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.opacity {
+  opacity: 0.5;
+}
 

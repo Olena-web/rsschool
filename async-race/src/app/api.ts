@@ -3,6 +3,8 @@ const base = 'http://localhost:3000';
 const garage = `${base}/garage`;
 const engine = `${base}/engine`;
 const winners = `${base}/winners`;
+const params = `?_limit=7&_page=3`;
+const page = garage + params;
 
 type BODY = {
   name: string;
@@ -44,8 +46,8 @@ export const updateCar = async (id: number, body: BODY) =>
   ).json();
 
 export const deleteCar = async (id: number) => (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();
-// for (let i = 10; i < 67; i += 1) {
-//   deleteCar(i);
+// for (let i = 6; i < 55; i += 1) {
+//   void deleteCar(i);
 // }
 
 export const createCar = async (body: BODY) =>
@@ -59,11 +61,11 @@ export const createCar = async (body: BODY) =>
     })
   ).json();
 
-export const startEngine = async (id: number) => (await fetch(`${engine}?id = {id}&status = started`)).json();
+export const startEngine = async () => (await fetch(`${engine}?id = {id}&status = started`)).json();
 
-export const stopEngine = async (id: number) => (await fetch(`${engine}?id = {id}&status = stopped`)).json();
+export const stopEngine = async () => (await fetch(`${engine}?id = {id}&status = stopped`)).json();
 
-export const drive = async (id: number) => {
-  const res = await fetch(`${engine}?id = {id}&status=drive`).catch();
+export const drive = async () => {
+  const res: Response = await fetch(`${engine}?id = {id}&status=drive`).catch();
   return res.status !== 200 ? { success: false } : { ...(await res.json()) };
 };

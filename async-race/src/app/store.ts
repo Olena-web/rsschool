@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
-import { createCar } from './api';
-import { carsInGarage } from './garage-view';
+import { createCar, getCars } from './api';
+import { carsNumber, carsInGarage } from './garage-view';
 import brandsCars from './brands-cars';
 import modelsCars from './models-cars';
+import { numPages } from './pagination';
 
 const generateBtn = document.querySelector<HTMLButtonElement>('.generate');
 export const road = document.querySelector<HTMLDivElement>('.road');
@@ -30,7 +31,7 @@ function createRandomColor(): string {
   return style;
 }
 
-function createNewGarage() {
+async function createNewGarage() {
   const newGarage = [];
   for (let i = 0; i < maxCreateNumber; i += 1) {
     const newCarName = createRandomCars();
@@ -42,12 +43,17 @@ function createNewGarage() {
     void createCar(body);
     newGarage.push(body);
   }
-  return newGarage;
+  const a = await getCars();
+  if (carsNumber && a) {
+    carsNumber.innerText = (a.length + newGarage.length).toString();
+    return newGarage;
+  }
 }
-
 if (generateBtn) {
   generateBtn.addEventListener('click', () => {
-    createNewGarage();
+    void createNewGarage();
+    void numPages();
     void carsInGarage();
+    window.location.reload();
   });
 }
