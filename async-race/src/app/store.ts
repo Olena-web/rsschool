@@ -4,6 +4,7 @@ import { carsNumber, carsInGarage } from './garage-view';
 import brandsCars from './brands-cars';
 import modelsCars from './models-cars';
 import { numPages } from './pagination';
+import {currentPage, carOnPage} from './pagination'
 
 const generateBtn = document.querySelector<HTMLButtonElement>('.generate');
 export const road = document.querySelector<HTMLDivElement>('.road');
@@ -43,9 +44,9 @@ async function createNewGarage() {
     void createCar(body);
     newGarage.push(body);
   }
-  const a = await getCars();
+  const a = await getCars(currentPage, carOnPage);
   if (carsNumber && a) {
-    carsNumber.innerText = (a.length + newGarage.length).toString();
+    carsNumber.innerText = (a.count + newGarage.length).toString();
     return newGarage;
   }
 }
@@ -53,7 +54,7 @@ if (generateBtn) {
   generateBtn.addEventListener('click', () => {
     void createNewGarage();
     void numPages();
-    void carsInGarage();
+    void carsInGarage(currentPage);
     window.location.reload();
   });
 }

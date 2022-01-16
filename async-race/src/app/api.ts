@@ -18,20 +18,32 @@ export interface CAR {
 }
 
 export type GARAGE = {
-  items: CAR;
+  items: CAR[];
   count: number;
-  name: string;
-  color: string;
-  id: number;
-}[];
-
-export const getCars = async (): Promise<GARAGE | null> => {
-  const response: Response = await fetch(garage);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const items: GARAGE = await response.json();
-  return items;
+  // name: string;
+  // color: string;
+  // id: number;
 };
-void getCars();
+
+export const getCars = async (page: number, limit: number): Promise<GARAGE> => {
+  const response: Response = await fetch(garage + `?_limit=${limit}&_page=${page}`);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const items: CAR[] = await response.json();
+  const count = response.headers.get('X-Total-Count');
+  if (count)
+    return {
+      items,
+      count: Number(count),
+    };
+  else {
+    return {
+      items,
+      count: 0,
+    };
+  }
+};
+// const GARAGE = getCars(1, 5);
+
 export const getCar = async (id: number) => (await fetch(`${garage}/${id}`)).json();
 
 export const updateCar = async (id: number, body: BODY) =>
@@ -61,11 +73,13 @@ export const createCar = async (body: BODY) =>
     })
   ).json();
 
-export const startEngine = async () => (await fetch(`${engine}?id = {id}&status = started`)).json();
+export const startEngine = async (id: number) =>
+  (await fetch(`${engine}?id = ${id}&status = started`, { method: 'PATCH' })).json();
 
-export const stopEngine = async () => (await fetch(`${engine}?id = {id}&status = stopped`)).json();
+export const stopEngine = async (id: number) =>
+  (await fetch(`${engine}?id = ${id}&status = stopped`, { method: 'PATCH' })).json();
 
-export const drive = async () => {
-  const res: Response = await fetch(`${engine}?id = {id}&status=drive`).catch();
+export const drive = async (id: number) => {
+  const res: Response = await fetch(`${engine}?id = ${id}&status=drive`, { method: 'PATCH' }).catch();
   return res.status !== 200 ? { success: false } : { ...(await res.json()) };
 };

@@ -3,20 +3,24 @@ import { createFlag } from './svg';
 import { road } from './store';
 import { carOnPage } from './pagination';
 
+const pageNumber = document.querySelector<HTMLElement>('.page-number');
 export const carsNumber = document.querySelector<HTMLSpanElement>('.cars-number');
 //const carName = document.querySelector<HTMLSpanElement>('.car-name');
 
-export const carsInGarage = async () => {
-  const a = await getCars();
+export const carsInGarage = async (page: number) => {
+  const a = await getCars(page, carOnPage);
   if (carsNumber && a) {
-    carsNumber.innerText = a.length.toString();
+    carsNumber.innerText = a.count.toString();
+    if (road) road.innerHTML = '';
     for (let i = 0; i < carOnPage; i += 1) {
-      const id = i;
-      const name = a[i].name;
-      const color = a[i].color;
+      const id = a.items[i].id;
+      console.log(id);
+      const name = a.items[i].name;
+      const color = a.items[i].color;
       if (road)
         road.innerHTML += `
-      <div class="general-buttons">
+      <div class="roadtrack-${id}">
+        <div class="general-buttons">
         <button class="select-button" id="select-car ${id}">select</button>
         <button class="remove-button" id="remove-car ${id}">remove</button>
         <span class="car-name">${name}</span>
@@ -92,11 +96,16 @@ export const carsInGarage = async () => {
         <div class="flag">${createFlag()}</div>
     	  <div class="road-race">
       </div>
+    </div>
      `;
+     if (pageNumber) {
+      pageNumber.innerHTML =
+        '<h4  id = "number-current-page' + `${page}` + '"> Page #' + `${page}` + '</h4>';
+    }
     }
   }
 };
-void carsInGarage();
+void carsInGarage(1);
 
 // export const newCar = async () => {
 //   const a = await getCar(5);
