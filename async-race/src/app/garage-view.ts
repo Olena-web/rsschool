@@ -20,16 +20,16 @@ export const carsInGarage = async (page: number) => {
         road.innerHTML += `
       <div class="roadtrack-${id}">
         <div class="general-buttons">
-        <button class="select-button" id="select-car ${id}">select</button>
-        <button class="remove-button" id="remove-car ${id}">remove</button>
+        <button class="select-button" id='select-car-${id}'>select</button>
+        <button class="remove-button" id='remove-car-${id}'>remove</button>
         <span class="car-name">${name}</span>
       </div>
       <div class="control-panel">
-        <button class="start-button">A</button>
-        <button class="stop-button">B</button>
+        <button class="start-button" id='start-button-${id}'>A</button>
+        <button id="stop-button-${id}">B</button>
       </div>
       <div class="wrapper-road">
-        <div id ="car- ${id}" class="race-car">
+        <div id ="car-${id}" class="race-car">
         <svg  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 511 511" style="enable-background:new 0 0 511 511;" xml:space="preserve">
         eslint-disable-next-line max-len

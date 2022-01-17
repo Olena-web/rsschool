@@ -17,6 +17,11 @@ export interface CAR {
   id: number;
 }
 
+export type respDrive = {
+  velocity: number;
+  distance: number;
+};
+
 export type GARAGE = {
   items: CAR[];
   count: number;
@@ -42,7 +47,6 @@ export const getCars = async (page: number, limit: number): Promise<GARAGE> => {
     };
   }
 };
-// const GARAGE = getCars(1, 5);
 
 export const getCar = async (id: number) => (await fetch(`${garage}/${id}`)).json();
 
@@ -74,12 +78,18 @@ export const createCar = async (body: BODY) =>
   ).json();
 
 export const startEngine = async (id: number) =>
-  (await fetch(`${engine}?id = ${id}&status = started`, { method: 'PATCH' })).json();
+  (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
 
 export const stopEngine = async (id: number) =>
-  (await fetch(`${engine}?id = ${id}&status = stopped`, { method: 'PATCH' })).json();
+  (await fetch(`${engine}?id=${id}&status=stopped`, { method: 'DELETE' })).json();
 
-export const drive = async (id: number) => {
-  const res: Response = await fetch(`${engine}?id = ${id}&status=drive`, { method: 'PATCH' }).catch();
-  return res.status !== 200 ? { success: false } : { ...(await res.json()) };
+export const driveCar = async (id: number): Promise<respDrive> => {
+  const res: Response = await fetch(`${engine}?id=${id}&status=drive`, { method: 'PATCH' });
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const resp: respDrive = await res.json();
+  if (res.status == 200) {
+    return resp;
+  }
+  return resp;
+  // return res.status !== 200 ? { success: false } : { ...(await res.json()) };
 };

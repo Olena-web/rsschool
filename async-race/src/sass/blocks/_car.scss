@@ -5,6 +5,7 @@ body {
 	display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  column-gap: 65%;
 }
 .race-car {
   width: 140px;
@@ -19,7 +20,6 @@ body {
 }
 .flag {
 	position: relative;
-	left: 590px;
   width: 118px;
 }
 .hide {
