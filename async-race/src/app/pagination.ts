@@ -1,7 +1,5 @@
 // if you have any suggestion of questions, pleasse feel free to send me an email to chiholiu10@gmail.com
 import { getCars } from './api';
-import { road } from './store';
-import { createFlag } from './svg';
 import { carsInGarage } from './garage-view';
 
 const prevButton = document.getElementById('prev');

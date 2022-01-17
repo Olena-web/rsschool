@@ -92,7 +92,7 @@ export const carsInGarage = async (page: number) => {
            </g>
           </svg>
         </div>
-        <div class="flag">${createFlag()}</div>
+        <div class = "flag" id="flag-${id}">${createFlag()}</div>
     	  <div class="road-race">
       </div>
     </div>
