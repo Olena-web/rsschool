@@ -4,7 +4,7 @@ import { carsNumber, carsInGarage } from './garage-view';
 import brandsCars from './brands-cars';
 import modelsCars from './models-cars';
 import { numPages } from './pagination';
-import {currentPage, carOnPage} from './pagination'
+import { currentPage, carOnPage } from './pagination';
 
 const generateBtn = document.querySelector<HTMLButtonElement>('.generate');
 export const road = document.querySelector<HTMLDivElement>('.road');

@@ -1,11 +1,15 @@
-import { getCars } from './api';
+import { getCars, startEngine, driveCar, stopEngine, deleteCar } from './api';
 import { createFlag } from './svg';
 import { road } from './store';
 import { carOnPage } from './pagination';
+import { stopButton } from './race';
+import { animation } from './animation';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
+const firstPage = 1;
 export const carsNumber = document.querySelector<HTMLSpanElement>('.cars-number');
-//const carName = document.querySelector<HTMLSpanElement>('.car-name');
+const raceButton = document.querySelector<HTMLButtonElement>('.race');
+const resetButton = document.querySelector<HTMLButtonElement>('.reset');
 
 export const carsInGarage = async (page: number) => {
   const a = await getCars(page, carOnPage);
@@ -26,7 +30,7 @@ export const carsInGarage = async (page: number) => {
       </div>
       <div class="control-panel">
         <button class="start-button" id='start-button-${id}'>A</button>
-        <button id="stop-button-${id}">B</button>
+        <button class="stop-button" id="stop-button-${id}">B</button>
       </div>
       <div class="wrapper-road">
         <div id ="car-${id}" class="race-car">
@@ -100,10 +104,43 @@ export const carsInGarage = async (page: number) => {
       if (pageNumber) {
         pageNumber.innerHTML = '<h4  id = "number-current-page' + `${page}` + '"> Page #' + `${page}` + '</h4>';
       }
+
+      if (raceButton)
+        raceButton.addEventListener('click', (): void => {
+          const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+          const startDriving = async (id: number) => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            const { velocity, distance } = await startEngine(id);
+            const time = Math.round(distance / velocity);
+            if (stopButton) stopButton.disabled = false;
+            car.classList.add('started');
+            return time;
+          };
+          async function driveAll() {
+            const time = await startDriving(id);
+            if (car.classList.contains('started')) {
+              const distance1 = window.innerWidth * 0.85;
+              const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+              await driveCar(id);
+              animation(car, distance1, time);
+            }
+          }
+          void driveAll();
+        });
+
+      if (resetButton)
+        resetButton.addEventListener('click', () => {
+          void stopEngine(id);
+          const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+          if (car) {
+            car.style.transform = `translateX(0)`;
+            car.classList.add('stopped');
+          }
+        });
     });
   }
 };
-void carsInGarage(1);
+void carsInGarage(firstPage);
 
 // export const newCar = async () => {
 //   const a = await getCar(5);
@@ -111,3 +148,16 @@ void carsInGarage(1);
 //   if (carColor) carColor.style.fill = a.color;
 // };
 // newCar();
+
+// delete car
+document.body.addEventListener('click', (event: MouseEvent) => {
+  if (event.target) {
+    if ((event.target as HTMLElement).classList.contains('remove-button')) {
+      const id = +(event.target as HTMLElement).id.split('remove-car-')[1];
+      void deleteCar(id);
+      window.location.reload();
+    }
+  }
+});
+
+// update car

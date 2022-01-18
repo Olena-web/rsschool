@@ -2,13 +2,10 @@ const base = 'http://localhost:3000';
 
 const garage = `${base}/garage`;
 const engine = `${base}/engine`;
-const winners = `${base}/winners`;
-const params = `?_limit=7&_page=3`;
-const page = garage + params;
 
 type BODY = {
   name: string;
-  color: string;
+  color: string | undefined;
 };
 
 export interface CAR {
