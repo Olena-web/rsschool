@@ -1,7 +1,7 @@
 import { getCars, startEngine, driveCar, stopEngine, deleteCar } from './api';
 import { createFlag } from './svg';
 import { road } from './store';
-import { carOnPage } from './pagination';
+import { carOnPage, currentPage } from './pagination';
 import { stopButton } from './race';
 import { animation } from './animation';
 
@@ -155,7 +155,7 @@ document.body.addEventListener('click', (event: MouseEvent) => {
     if ((event.target as HTMLElement).classList.contains('remove-button')) {
       const id = +(event.target as HTMLElement).id.split('remove-car-')[1];
       void deleteCar(id);
-      window.location.reload();
+      void carsInGarage(currentPage);
     }
   }
 });
