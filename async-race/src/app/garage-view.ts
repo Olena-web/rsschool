@@ -34,7 +34,7 @@ export const carsInGarage = async (page: number) => {
       </div>
       <div class="wrapper-road">
         <div id ="car-${id}" class="race-car">
-        <svg  version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg  version="1.1" id="svg-${id}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 511 511" style="enable-background:new 0 0 511 511;" xml:space="preserve">
         eslint-disable-next-line max-len
         <g>

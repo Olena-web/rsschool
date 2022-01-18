@@ -73,11 +73,11 @@ async function createNewCar() {
       color: newCarColor,
     };
     await createCar(newBody);
-    //return body;
   }
 }
 if (createButton)
   createButton.addEventListener('click', () => {
-    console.log(carName.value, color.value);
-    void createNewCar();
+    if (color) void createNewCar();
+    void numPages();
+    void carsInGarage(currentPage);
   });

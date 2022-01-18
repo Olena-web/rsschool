@@ -1,12 +1,12 @@
 import { updateCar } from './api';
-export const color = document.getElementById('#color-Well') as HTMLInputElement;
+export const color = document.querySelector<HTMLInputElement>('#colorWell');
 const colorNew = document.querySelector<HTMLInputElement>('#color-new-Well');
 const carNewName = document.getElementById('car-new-name') as HTMLInputElement;
 const updateButton = document.querySelector<HTMLButtonElement>('.update-cars__button');
 const carName = document.getElementById('car-name-${id}') as HTMLSpanElement;
 export const defaultColor = '#0000ff';
 
-export const carColor = document.querySelector<HTMLElement>('#Capa_1 > g:nth-child(1) > path:nth-child(2)');
+export const carColor = document.getElementById('svg-${id} > g:nth-child(1) > path:nth-child(2)') as HTMLElement;
 
 function updateFirst(ev: Event) {
   if (carColor) {
@@ -35,13 +35,29 @@ document.body.addEventListener('click', (event: MouseEvent) => {
       if (updateButton)
         updateButton.addEventListener('click', () => {
           const body = {
-            color: 'green',
+            color: '',
             name: carNewName.value,
           };
           if (carName) carName.innerText = carNewName.value;
+          if (colorNew)
+            colorNew.addEventListener('change', (e) => {
+              if (carColor) carColor.style.fill = (<HTMLInputElement>e.target).value;
+              console.log(carColor.style.fill);
+            });
           void updateCar(id, body);
           window.location.reload();
         });
     }
   }
 });
+
+function createColor() {
+  if (color) {
+    color.value = defaultColor;
+    color.addEventListener('input', updateFirst, false);
+    color.addEventListener('change', updateAll, false);
+    color.select();
+  }
+  if (color) return color.value;
+}
+window.addEventListener('load', createColor, false);
