@@ -59,9 +59,9 @@ export const updateCar = async (id: number, body: BODY) =>
   ).json();
 
 export const deleteCar = async (id: number) => (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();
-// for (let i = 6; i < 55; i += 1) {
-//   void deleteCar(i);
-// }
+//  for (let i = 1; i < 526; i += 1) {
+//    void deleteCar(i);
+//  }
 
 export const createCar = async (body: BODY) =>
   (

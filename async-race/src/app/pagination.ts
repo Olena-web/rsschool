@@ -6,7 +6,7 @@ const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 // const numberCurrentPage = document.querySelectorAll('.number-current-page');
 export let currentPage = 1;
-export const carOnPage = 3;
+export const carOnPage = 7;
 
 export const numPages = async () => {
   const a = await getCars(currentPage, carOnPage);

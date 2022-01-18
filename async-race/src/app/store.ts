@@ -5,10 +5,13 @@ import brandsCars from './brands-cars';
 import modelsCars from './models-cars';
 import { numPages } from './pagination';
 import { currentPage, carOnPage } from './pagination';
+import { color } from './color-car';
+const createButton = document.querySelector<HTMLButtonElement>('.create-cars__button');
+const carName = document.getElementById('car-name') as HTMLInputElement;
 
 const generateBtn = document.querySelector<HTMLButtonElement>('.generate');
 export const road = document.querySelector<HTMLDivElement>('.road');
-const maxCreateNumber = 5;
+const maxCreateNumber = 10;
 
 export function getRandomNum(min: number, max: number): number {
   min = Math.ceil(min);
@@ -41,7 +44,7 @@ async function createNewGarage() {
       name: newCarName,
       color: newCarColor,
     };
-    void createCar(body);
+    await createCar(body);
     newGarage.push(body);
   }
   const a = await getCars(currentPage, carOnPage);
@@ -58,3 +61,23 @@ if (generateBtn) {
     window.location.reload();
   });
 }
+
+// create car
+
+async function createNewCar() {
+  if (color) {
+    const newCarName = carName.value;
+    const newCarColor = color.value;
+    const newBody = {
+      name: newCarName,
+      color: newCarColor,
+    };
+    await createCar(newBody);
+    //return body;
+  }
+}
+if (createButton)
+  createButton.addEventListener('click', () => {
+    console.log(carName.value, color.value);
+    void createNewCar();
+  });

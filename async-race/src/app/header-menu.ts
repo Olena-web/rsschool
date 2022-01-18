@@ -5,7 +5,7 @@ const html = `
 				<button class="winners-page__button">to winners</button>
 			</div>
 			<div class="create-cars">
-				<input type="text" id="car-name">
+				<input type="text" value= "" id="car-name">
 				<input type="color" id="colorWell">
 				<label for = "colorWell"></label>
 				<button class="create-cars__button">create</button>

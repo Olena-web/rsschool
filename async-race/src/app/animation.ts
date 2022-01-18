@@ -1,8 +1,8 @@
+let start = 0;
+const state = {
+  id: 0,
+};
 export function animation(car: HTMLDivElement, distance: number, animationTime: number) {
-  let start = 0;
-  const state = {
-    id: 0,
-  };
   function step(timestamp: number) {
     if (!start) start = timestamp;
     const time = timestamp - start;
@@ -15,4 +15,8 @@ export function animation(car: HTMLDivElement, distance: number, animationTime: 
   }
   state.id = window.requestAnimationFrame(step);
   return state;
+}
+
+export function cancelAnimation() {
+  cancelAnimationFrame(state.id);
 }

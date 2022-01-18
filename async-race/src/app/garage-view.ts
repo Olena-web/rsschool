@@ -26,7 +26,7 @@ export const carsInGarage = async (page: number) => {
         <div class="general-buttons">
         <button class="select-button" id='select-car-${id}'>select</button>
         <button class="remove-button" id='remove-car-${id}'>remove</button>
-        <span class="car-name">${name}</span>
+        <span class="car-name-${id}">${name}</span>
       </div>
       <div class="control-panel">
         <button class="start-button" id='start-button-${id}'>A</button>
@@ -159,5 +159,3 @@ document.body.addEventListener('click', (event: MouseEvent) => {
     }
   }
 });
-
-// update car

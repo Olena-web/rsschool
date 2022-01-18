@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { startEngine, stopEngine, driveCar } from './api';
-import { animation } from './animation';
+import { animation, cancelAnimation } from './animation';
 
 const id = 0;
 export const stopButton = document.getElementById(`stopbutton-${id}`) as HTMLButtonElement;
@@ -39,9 +39,10 @@ document.body.addEventListener('click', async (event: MouseEvent) => {
       const id = +(event.target as HTMLElement).id.split('stop-button-')[1];
       await stopEngine(id);
       if (stopButton) stopButton.disabled = true;
+      (event.target as HTMLElement).classList.remove('started');
       (event.target as HTMLElement).classList.add('stopped');
       const car = document.getElementById(`car-${id}`) as HTMLDivElement;
-      console.log(car);
+      cancelAnimation();
       if (car) car.style.transform = `translateX(0)`;
     }
   }
