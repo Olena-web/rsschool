@@ -8,3 +8,4 @@ import './app/animation';
 import './app/race';
 import './app/store';
 import './app/svg';
+import './app/winner-view';

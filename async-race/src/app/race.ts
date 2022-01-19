@@ -3,17 +3,12 @@ import { startEngine, stopEngine, driveCar } from './api';
 import { animation, cancelAnimation } from './animation';
 
 const id = 0;
-export const stopButton = document.getElementById(`stopbutton-${id}`) as HTMLButtonElement;
 
+export const stopButton = document.getElementById(`stopbutton-${id}`) as HTMLButtonElement;
 export const flag = document.getElementById(`flag-${id}`) as HTMLDivElement;
 
-// const startDriving = async (id: number) => {
-//   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-//   const { velocity, distance } = await startEngine(id);
-//   const time = Math.round(distance / velocity);
-//   if (stopButton) stopButton.disabled = false;
-//   return time;
-// };
+export let time = 0;
+
 document.body.addEventListener('click', async (event: MouseEvent) => {
   if (event.target) {
     if ((event.target as HTMLElement).classList.contains('start-button')) {
@@ -21,12 +16,13 @@ document.body.addEventListener('click', async (event: MouseEvent) => {
       const startDriving = async (id: number) => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const { velocity, distance } = await startEngine(id);
-        const time = Math.round(distance / velocity);
+        time = Math.round(distance / velocity);
         if (stopButton) stopButton.disabled = false;
         (event.target as HTMLElement).classList.add('started');
         return time;
       };
-      const time = await startDriving(id);
+      time = await startDriving(id);
+
       if ((event.target as HTMLElement).classList.contains('started')) {
         const distance1 = window.innerWidth * 0.85;
         const car = document.getElementById(`car-${id}`) as HTMLDivElement;

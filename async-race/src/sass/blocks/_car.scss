@@ -1,6 +1,10 @@
 body {
   background-color: rgb(178, 241, 135);
 }
+.garage-header {
+  display: flex;
+  column-gap: 7%;
+}
 .wrapper-road {
 	display: flex;
   flex-direction: row;
@@ -34,4 +38,3 @@ body {
 .opacity {
   opacity: 0.5;
 }
-

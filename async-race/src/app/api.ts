@@ -2,6 +2,7 @@ const base = 'http://localhost:3000';
 
 const garage = `${base}/garage`;
 const engine = `${base}/engine`;
+const winners = `${base}/winners`;
 
 type BODY = {
   name: string;
@@ -9,6 +10,7 @@ type BODY = {
 };
 
 export interface CAR {
+  classList: string;
   name: string;
   color: string;
   id: number;
@@ -22,9 +24,18 @@ export type respDrive = {
 export type GARAGE = {
   items: CAR[];
   count: number;
-  // name: string;
-  // color: string;
-  // id: number;
+};
+
+export type winnerParams = {
+  id: number;
+  wins: number;
+  time: number;
+  name?: string;
+};
+
+type updateWinner = {
+  wins: number;
+  time: number;
 };
 
 export const getCars = async (page: number, limit: number): Promise<GARAGE> => {
@@ -78,7 +89,7 @@ export const startEngine = async (id: number) =>
   (await fetch(`${engine}?id=${id}&status=started`, { method: 'PATCH' })).json();
 
 export const stopEngine = async (id: number) =>
-  (await fetch(`${engine}?id=${id}&status=stopped`, { method: 'DELETE' })).json();
+  (await fetch(`${engine}?id=${id}&status=stopped`, { method: 'PATCH' })).json();
 
 export const driveCar = async (id: number): Promise<respDrive> => {
   const res: Response = await fetch(`${engine}?id=${id}&status=drive`, { method: 'PATCH' });
@@ -90,3 +101,28 @@ export const driveCar = async (id: number): Promise<respDrive> => {
   return resp;
   // return res.status !== 200 ? { success: false } : { ...(await res.json()) };
 };
+export const createWinner = async (body: winnerParams) =>
+  (
+    await fetch(winners, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  ).json();
+
+export const getWinner = async (id: number) => (await fetch(`${winners}/${id}`)).json();
+
+export const deleteWinner = async (id: number) => (await fetch(`${winners}/${id}`, { method: 'DELETE' })).json();
+
+export const updateWinners = async (id: number, body: updateWinner) =>
+  (
+    await fetch(`${winners}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+  ).json();

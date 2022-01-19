@@ -1,15 +1,25 @@
-import { getCars, startEngine, driveCar, stopEngine, deleteCar } from './api';
+import { getCars, startEngine, driveCar, stopEngine, deleteCar, winnerParams } from './api';
 import { createFlag } from './svg';
 import { road } from './store';
 import { carOnPage, currentPage } from './pagination';
 import { stopButton } from './race';
-import { animation } from './animation';
+import { animation, cancelAnimation } from './animation';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
 const firstPage = 1;
 export const carsNumber = document.querySelector<HTMLSpanElement>('.cars-number');
 const raceButton = document.querySelector<HTMLButtonElement>('.race');
 const resetButton = document.querySelector<HTMLButtonElement>('.reset');
+
+export interface RESULTRACE {
+  time: number;
+  id: number;
+  name: string;
+  color: string;
+}
+
+export const resultRace: Array<RESULTRACE> = [];
+//export const data = Object.keys(resultRace[0]);
 
 export const carsInGarage = async (page: number) => {
   const a = await getCars(page, carOnPage);
@@ -118,6 +128,15 @@ export const carsInGarage = async (page: number) => {
           };
           async function driveAll() {
             const time = await startDriving(id);
+            console.log(`${time / 1000} s`);
+            const winner = {
+              time: time / 1000,
+              id: id,
+              name: name,
+              color: color,
+            };
+            resultRace.push(winner);
+            console.log(resultRace);
             if (car.classList.contains('started')) {
               const distance1 = window.innerWidth * 0.85;
               const car = document.getElementById(`car-${id}`) as HTMLDivElement;
@@ -133,6 +152,7 @@ export const carsInGarage = async (page: number) => {
           void stopEngine(id);
           const car = document.getElementById(`car-${id}`) as HTMLDivElement;
           if (car) {
+            cancelAnimation();
             car.style.transform = `translateX(0)`;
             car.classList.add('stopped');
           }
@@ -141,13 +161,6 @@ export const carsInGarage = async (page: number) => {
   }
 };
 void carsInGarage(firstPage);
-
-// export const newCar = async () => {
-//   const a = await getCar(5);
-//   if (carName) carName.innerText = a.name;
-//   if (carColor) carColor.style.fill = a.color;
-// };
-// newCar();
 
 // delete car
 document.body.addEventListener('click', (event: MouseEvent) => {
