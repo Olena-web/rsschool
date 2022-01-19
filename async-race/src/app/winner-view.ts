@@ -1,5 +1,6 @@
 import { resultRace } from './garage-view';
 import { root, garagePage } from './header-menu';
+import { createWinner } from './api';
 
 export const currentWinnersPage = 1;
 export const winnersOnPage = 10;
@@ -9,7 +10,7 @@ const garagePageButton = document.querySelector<HTMLButtonElement>('.garage-page
 
 const winnerPage = document.createElement('div');
 winnerPage.innerHTML = `
-<h2>Winners (<span class = "winners-number">${resultRace.length / 3}</span>)</h2>
+<h2>Winners (<span class = "winners-number">1</span>)</h2>
 <h4 class = "page-number" >Page # ${currentWinnersPage}</h4>
 <div class="pagination-buttons">
 	<button id="prev">prev</button>
