@@ -142,7 +142,7 @@ export const carsInGarage = async (page: number) => {
               time: resultRace[0].time,
               wins: 0,
             };
-            await createWinner(body);
+            //await createWinner(body);
 
             if (car.classList.contains('started')) {
               const distance1 = window.innerWidth * 0.85;

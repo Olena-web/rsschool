@@ -4,17 +4,24 @@ const garage = `${base}/garage`;
 const engine = `${base}/engine`;
 const winners = `${base}/winners`;
 
+enum Errors {
+  'res.status === 400' = 0,
+  'res.status === 404' = 1,
+  'res.status === 429' = 2,
+  'res.status === 500' = 3,
+}
+
 type BODY = {
   name: string;
   color: string | undefined;
 };
 
-export interface CAR {
+export type CAR = {
   classList: string;
   name: string;
   color: string;
   id: number;
-}
+};
 
 export type respDrive = {
   velocity: number;
@@ -94,12 +101,13 @@ export const stopEngine = async (id: number) =>
 export const driveCar = async (id: number): Promise<respDrive> => {
   const res: Response = await fetch(`${engine}?id=${id}&status=drive`, { method: 'PATCH' });
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const resp: respDrive = await res.json();
-  if (res.status == 200) {
-    return resp;
+  const result: respDrive = await res.json();
+  if (res.status === 200) {
+    return result;
+  } else if (Errors) {
+    console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
   }
-  return resp;
-  // return res.status !== 200 ? { success: false } : { ...(await res.json()) };
+  throw Error(res.statusText);
 };
 export const createWinner = async (body: winnerParams) =>
   (

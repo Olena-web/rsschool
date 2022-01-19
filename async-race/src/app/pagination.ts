@@ -4,7 +4,7 @@ import { carsInGarage } from './garage-view';
 
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
-// const numberCurrentPage = document.querySelectorAll('.number-current-page');
+
 export let currentPage = 1;
 export const carOnPage = 7;
 
