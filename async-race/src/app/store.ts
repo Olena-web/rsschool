@@ -1,6 +1,5 @@
-/* eslint-disable max-len */
 import { createCar, getCars } from './api';
-import { carsNumber, carsInGarage } from './garage-view';
+import { carsInGarage, carsNumber } from './garage-view';
 import brandsCars from './brands-cars';
 import modelsCars from './models-cars';
 import { numPages } from './pagination';
@@ -11,7 +10,7 @@ const carName = document.getElementById('car-name') as HTMLInputElement;
 
 const generateBtn = document.querySelector<HTMLButtonElement>('.generate');
 export const road = document.querySelector<HTMLDivElement>('.road');
-const maxCreateNumber = 10;
+const maxCreateNumber = 100;
 
 export function getRandomNum(min: number, max: number): number {
   min = Math.ceil(min);
@@ -20,7 +19,7 @@ export function getRandomNum(min: number, max: number): number {
   return randomNum;
 }
 
-function createRandomCars(): string {
+function createRandomCar(): string {
   const carBrand = brandsCars[getRandomNum(1, brandsCars.length - 1)];
   const carModel = modelsCars[getRandomNum(1, modelsCars.length - 1)];
   const carName = `${carBrand} ${carModel}`;
@@ -38,7 +37,7 @@ function createRandomColor(): string {
 async function createNewGarage() {
   const newGarage = [];
   for (let i = 0; i < maxCreateNumber; i += 1) {
-    const newCarName = createRandomCars();
+    const newCarName = createRandomCar();
     const newCarColor = createRandomColor();
     const body = {
       name: newCarName,
@@ -47,20 +46,25 @@ async function createNewGarage() {
     await createCar(body);
     newGarage.push(body);
   }
-  const a = await getCars(currentPage, carOnPage);
-  if (carsNumber && a) {
-    carsNumber.innerText = (a.count + newGarage.length).toString();
-    return newGarage;
-  }
+  console.log(newGarage.length);
+  return newGarage;
 }
+
 if (generateBtn) {
   generateBtn.addEventListener('click', () => {
     void createNewGarage();
-    void numPages();
-    void carsInGarage(currentPage);
-    window.location.reload();
+    void numberCarInGarage();
+    //void carsInGarage(currentPage);
   });
 }
+
+export const numberCarInGarage = async () => {
+  const a = await getCars(currentPage, carOnPage);
+  if (carsNumber && a) {
+    carsNumber.innerText = a.count.toString();
+  }
+};
+//await numberCarInGarage();
 
 // create car
 

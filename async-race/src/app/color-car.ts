@@ -6,7 +6,7 @@ const updateButton = document.querySelector<HTMLButtonElement>('.update-cars__bu
 const carName = document.getElementById('car-name-${id}') as HTMLSpanElement;
 export const defaultColor = '#0000ff';
 
-export const carColor = document.getElementById('svg-${id} > g:nth-child(1) > path:nth-child(2)') as HTMLElement;
+export const carColor = document.getElementById('#svg-${id} > g:nth-child(1) > path:nth-child(2)') as HTMLElement;
 
 function updateFirst(ev: Event) {
   if (carColor) {
@@ -31,18 +31,18 @@ window.addEventListener('load', startup, false);
 document.body.addEventListener('click', (event: MouseEvent) => {
   if (event.target) {
     if ((event.target as HTMLElement).classList.contains('select-button')) {
+      if (colorNew && carColor) carColor.style.fill = colorNew.value;
       const id = +(event.target as HTMLElement).id.split('select-car-')[1];
-      if (updateButton)
+      if (updateButton && colorNew)
         updateButton.addEventListener('click', () => {
           const body = {
-            color: '',
+            color: colorNew.value,
             name: carNewName.value,
           };
           if (carName) carName.innerText = carNewName.value;
           if (colorNew)
             colorNew.addEventListener('change', (e) => {
               if (carColor) carColor.style.fill = (<HTMLInputElement>e.target).value;
-              console.log(carColor.style.fill);
             });
           void updateCar(id, body);
           window.location.reload();

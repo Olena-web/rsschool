@@ -7,7 +7,7 @@ import { animation, cancelAnimation } from './animation';
 import { createWinner } from './api';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
-const firstPage = 1;
+
 export const carsNumber = document.querySelector<HTMLSpanElement>('.cars-number');
 const raceButton = document.querySelector<HTMLButtonElement>('.race');
 const resetButton = document.querySelector<HTMLButtonElement>('.reset');
@@ -20,19 +20,19 @@ export interface RESULTRACE {
 }
 
 export const resultRace: Array<RESULTRACE> = [];
-//export const data = Object.keys(resultRace[0]);
 
 export const carsInGarage = async (page: number) => {
   const a = await getCars(page, carOnPage);
   if (carsNumber && a) {
     carsNumber.innerText = a.count.toString();
-    if (road) road.innerHTML = '';
-    a.items.forEach((car) => {
-      const id = car.id;
-      const name = car.name;
-      const color = car.color;
-      if (road)
-        road.innerHTML += `
+  }
+  if (road) road.innerHTML = '';
+  a.items.forEach((car) => {
+    const id = car.id;
+    const name = car.name;
+    const color = car.color;
+    if (road)
+      road.innerHTML += `
       <div class="roadtrack-${id}">
         <div class="general-buttons">
         <button class="select-button" id='select-car-${id}'>select</button>
@@ -112,62 +112,65 @@ export const carsInGarage = async (page: number) => {
       </div>
     </div>
      `;
-      if (pageNumber) {
-        pageNumber.innerHTML = '<h4  id = "number-current-page' + `${page}` + '"> Page #' + `${page}` + '</h4>';
-      }
+    if (pageNumber) {
+      pageNumber.innerHTML = '<h4  id = "number-current-page' + `${page}` + '"> Page #' + `${page}` + '</h4>';
+    }
 
-      if (raceButton)
-        raceButton.addEventListener('click', (): void => {
+    if (raceButton)
+      raceButton.addEventListener('click', (): void => {
+        const startDriving = async (id: number) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          const { velocity, distance } = await startEngine(id);
+          const time = Math.round(distance / velocity);
+          if (stopButton) stopButton.disabled = false;
+          return time;
+        };
+        async function driveAll() {
           const car = document.getElementById(`car-${id}`) as HTMLDivElement;
-          const startDriving = async (id: number) => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            const { velocity, distance } = await startEngine(id);
-            const time = Math.round(distance / velocity);
-            if (stopButton) stopButton.disabled = false;
-            car.classList.add('started');
-            return time;
+          car.classList.add('started');
+          const time = await startDriving(id);
+          const winner = {
+            time: time / 1000,
+            id: id,
+            name: name,
+            color: color,
           };
-          async function driveAll() {
-            const time = await startDriving(id);
-            const winner = {
-              time: time / 1000,
-              id: id,
-              name: name,
-              color: color,
-            };
-            resultRace.push(winner);
-            resultRace.sort((x, y) => x.time - y.time);
-            const body = {
-              id: resultRace[0].id,
-              time: resultRace[0].time,
-              wins: 0,
-            };
-            //await createWinner(body);
+          resultRace.push(winner);
+          resultRace.sort((x, y) => x.time - y.time);
+          const body = {
+            id: resultRace[0].id,
+            time: resultRace[0].time,
+            wins: 0,
+          };
+          //await createWinner(body);
 
-            if (car.classList.contains('started')) {
-              const distance1 = window.innerWidth * 0.85;
-              const car = document.getElementById(`car-${id}`) as HTMLDivElement;
-              await driveCar(id);
-              animation(car, distance1, time);
-            }
+          if (car.classList.contains('started')) {
+            const distance1 = window.innerWidth * 0.85;
+            const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+            await driveCar(id);
+            animation(car, distance1, time);
           }
-          void driveAll();
-        });
+        }
+        void driveAll();
+      });
 
-      if (resetButton)
-        resetButton.addEventListener('click', () => {
+    if (resetButton)
+      resetButton.addEventListener('click', () => {
+        const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+        if (car.classList.contains('started')) {
           void stopEngine(id);
-          const car = document.getElementById(`car-${id}`) as HTMLDivElement;
           if (car) {
             cancelAnimation();
             car.style.transform = `translateX(0)`;
+            car.classList.remove('started');
             car.classList.add('stopped');
           }
-        });
-    });
-  }
+        }
+      });
+  });
 };
-void carsInGarage(firstPage);
+
+void carsInGarage(currentPage);
 
 // delete car
 document.body.addEventListener('click', (event: MouseEvent) => {
@@ -175,7 +178,7 @@ document.body.addEventListener('click', (event: MouseEvent) => {
     if ((event.target as HTMLElement).classList.contains('remove-button')) {
       const id = +(event.target as HTMLElement).id.split('remove-car-')[1];
       void deleteCar(id);
-      void carsInGarage(currentPage);
+      window.location.reload();
     }
   }
 });
