@@ -122,6 +122,7 @@ module.exports = ({ development }) => {
                 },
             ],
         },
+
         plugins: [
             new MiniCssExtractPlugin({ filename: 'css/[name].[contenthash].css' }),
             ...getHtmlPlugins(pages),

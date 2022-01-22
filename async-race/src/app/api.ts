@@ -11,6 +11,17 @@ enum Errors {
   'res.status === 500' = 3,
 }
 
+export enum Sort {
+  'id' = 0,
+  'wins' = 1,
+  'time' = 2,
+}
+
+export enum Order {
+  'ASC' = 0,
+  'DESC' = 1,
+}
+
 type BODY = {
   name: string;
   color: string | undefined;
@@ -23,14 +34,14 @@ export type CAR = {
   id: number;
 };
 
-export type respDrive = {
-  velocity: number;
-  distance: number;
-};
-
 export type GARAGE = {
   items: CAR[];
   count: number;
+};
+
+export type respDrive = {
+  velocity: number;
+  distance: number;
 };
 
 export type winnerParams = {
@@ -38,6 +49,11 @@ export type winnerParams = {
   wins: number;
   time: number;
   name?: string;
+};
+
+export type listWinners = {
+  items: winnerParams[];
+  count: number;
 };
 
 type updateWinner = {
@@ -77,9 +93,6 @@ export const updateCar = async (id: number, body: BODY) =>
   ).json();
 
 export const deleteCar = async (id: number) => (await fetch(`${garage}/${id}`, { method: 'DELETE' })).json();
-//  for (let i = 1; i < 526; i += 1) {
-//    void deleteCar(i);
-//  }
 
 export const createCar = async (body: BODY) =>
   (
@@ -134,3 +147,26 @@ export const updateWinners = async (id: number, body: updateWinner) =>
       },
     })
   ).json();
+
+const sortOrder = (sort: string, order: string) => {
+  if (sort && order) return `&_sort=${sort}&_order=${order}`;
+  return '';
+};
+
+export const getWinners = async (page: number, limit = 10, sort: string, order: string): Promise<listWinners> => {
+  const response: Response = await fetch(`${winners}?_page=${page}&_limit=${limit}${sortOrder(sort, order)}`);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const items: winnerParams[] = await response.json();
+  const count = response.headers.get('X-Total-Count');
+  if (count)
+    return {
+      items,
+      count: Number(count),
+    };
+  else {
+    return {
+      items,
+      count: 0,
+    };
+  }
+};

@@ -1,4 +1,5 @@
-import { updateCar } from './api';
+import { updateCar, getCars } from './api';
+import { carOnPage, currentPage } from './pagination';
 export const color = document.querySelector<HTMLInputElement>('#colorWell');
 const colorNew = document.querySelector<HTMLInputElement>('#color-new-Well');
 const carNewName = document.getElementById('car-new-name') as HTMLInputElement;
@@ -31,7 +32,6 @@ window.addEventListener('load', startup, false);
 document.body.addEventListener('click', (event: MouseEvent) => {
   if (event.target) {
     if ((event.target as HTMLElement).classList.contains('select-button')) {
-      if (colorNew && carColor) carColor.style.fill = colorNew.value;
       const id = +(event.target as HTMLElement).id.split('select-car-')[1];
       if (updateButton && colorNew)
         updateButton.addEventListener('click', () => {
@@ -41,8 +41,9 @@ document.body.addEventListener('click', (event: MouseEvent) => {
           };
           if (carName) carName.innerText = carNewName.value;
           if (colorNew)
-            colorNew.addEventListener('change', (e) => {
+            colorNew.addEventListener('input', (e) => {
               if (carColor) carColor.style.fill = (<HTMLInputElement>e.target).value;
+              console.log(carColor);
             });
           void updateCar(id, body);
           window.location.reload();
@@ -61,3 +62,17 @@ function createColor() {
   if (color) return color.value;
 }
 window.addEventListener('load', createColor, false);
+
+async function changeColorDynamically() {
+  if (colorNew) {
+    const a = await getCars(currentPage, carOnPage);
+    colorNew.addEventListener('input', function (e: Event) {
+      a.items.forEach((car) => {
+        let color = car.color;
+        console.log(color);
+        if (color) color = (<HTMLInputElement>e.target).value;
+      });
+    });
+  }
+}
+//await changeColorDynamically();

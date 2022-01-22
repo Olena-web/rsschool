@@ -4,7 +4,7 @@ import { road } from './store';
 import { carOnPage, currentPage } from './pagination';
 import { stopButton } from './race';
 import { animation, cancelAnimation } from './animation';
-import { createWinner } from './api';
+import { createListWinners, createTable } from './winner-view';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
 
@@ -136,20 +136,13 @@ export const carsInGarage = async (page: number) => {
             color: color,
           };
           resultRace.push(winner);
-          resultRace.sort((x, y) => x.time - y.time);
-          const body = {
-            id: resultRace[0].id,
-            time: resultRace[0].time,
-            wins: 0,
-          };
-          //await createWinner(body);
-
           if (car.classList.contains('started')) {
             const distance1 = window.innerWidth * 0.85;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
             await driveCar(id);
             animation(car, distance1, time);
           }
+          void createListWinners();
         }
         void driveAll();
       });

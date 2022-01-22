@@ -46,7 +46,7 @@ async function createNewGarage() {
     await createCar(body);
     newGarage.push(body);
   }
-  console.log(newGarage.length);
+  window.location.reload();
   return newGarage;
 }
 
@@ -54,17 +54,15 @@ if (generateBtn) {
   generateBtn.addEventListener('click', () => {
     void createNewGarage();
     void numberCarInGarage();
-    //void carsInGarage(currentPage);
   });
 }
-
+//
 export const numberCarInGarage = async () => {
   const a = await getCars(currentPage, carOnPage);
   if (carsNumber && a) {
     carsNumber.innerText = a.count.toString();
   }
 };
-//await numberCarInGarage();
 
 // create car
 
