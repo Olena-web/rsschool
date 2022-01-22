@@ -1,6 +1,6 @@
 import { resultRace } from './garage-view';
 import { root, garagePage } from './header-menu';
-import { createWinner, getWinner, updateWinners, getWinners, Sort, Order } from './api';
+import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar } from './api';
 import { createCarImg } from './svg';
 
 export const currentWinnersPage = 1;
@@ -8,35 +8,34 @@ export const winnersOnPage = 10;
 
 const winnerPageButton = document.querySelector<HTMLButtonElement>('.winners-page__button');
 const garagePageButton = document.querySelector<HTMLButtonElement>('.garage-page__button');
-const winnersNumber = document.querySelector('winners-number');
-console.log(winnersNumber);
+const winnersNumber = document.querySelector<HTMLElement>('.winners-number');
 
 const winnerPage = document.createElement('div');
-
-winnerPage.innerHTML = `
-<h2>Winners (<span class = "winners-number">1</span>)</h2>
-<h4 class = "page-number" >Page # ${currentWinnersPage}</h4>
-<div class="pagination-buttons">
-	<button id="prev">prev</button>
-	<button id="next">next</button>
-</div>
-`;
 winnerPage.classList.add('hide');
 root.append(winnerPage);
-
-const table = document.createElement('table');
-const thead = document.createElement('thead');
-thead.innerHTML = `<tr><td> # </td><td>Car</td><td> ID </tdr><td> Time </td><td> Wins </td></tr>`;
-const tbody = document.createElement('tbody');
-table.appendChild(thead);
-table.appendChild(tbody);
-winnerPage.append(table);
 
 export async function createTable() {
   const getListWinners = async () => {
     const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[1]);
-    console.log(a.count);
-    if (winnersNumber) winnersNumber.innerHTML = a.count.toString();
+    winnerPage.innerHTML = `
+    <h2 class ="winners-number">Winners ${a.count.toString()}</h2>
+    <h4 class ="page-number" >Page # ${currentWinnersPage}</h4>
+    <div class="pagination-buttons">
+      <button id="prev">prev</button>
+      <button id="next">next</button>
+    </div>
+    `;
+
+    if (winnersNumber) winnersNumber.innerHTML = `Winners ${a.count.toString()}`;
+
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    thead.innerHTML = `<tr><td> # </td><td>Car</td><td> ID </tdr><td> Time </td><td> Wins </td></tr>`;
+    const tbody = document.createElement('tbody');
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    winnerPage.append(table);
+
     a.items.forEach((winner) => {
       const id = winner.id;
       const time = winner.time;
@@ -49,11 +48,11 @@ export async function createTable() {
   };
   await getListWinners();
 }
-void createTable();
+//void createTable();
+
 export async function createListWinners() {
-  resultRace.sort((x, y) => x.time - y.time);
+  //resultRace.sort((x, y) => x.time - y.time);
   const winnerId = resultRace[resultRace.length - 1].id;
-  console.log(winnerId);
   await getWinner(winnerId);
   if (Response.error()) {
     const body = {
@@ -73,6 +72,7 @@ export async function createListWinners() {
   // }
   await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
 }
+
 if (winnerPageButton)
   winnerPageButton.addEventListener('click', (): void => {
     garagePage.classList.add('hide');

@@ -136,34 +136,40 @@ export const carsInGarage = async (page: number) => {
             color: color,
           };
           resultRace.push(winner);
+          resultRace.sort((x, y) => x.time - y.time);
           if (car.classList.contains('started')) {
             const distance1 = window.innerWidth * 0.85;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
-            await driveCar(id);
-            animation(car, distance1, time);
+            await driveCar(id)
+              .then(() => animation(car, distance1, time))
+              .catch(() => {
+                cancelAnimation();
+                console.log(`Car ${winner.name} has been stopped suddenly. It's engine was broken down.`);
+              });
+            void createListWinners();
           }
-          void createListWinners();
         }
         void driveAll();
-      });
 
-    if (resetButton)
-      resetButton.addEventListener('click', () => {
-        const car = document.getElementById(`car-${id}`) as HTMLDivElement;
-        if (car.classList.contains('started')) {
-          void stopEngine(id);
-          if (car) {
-            cancelAnimation();
-            car.style.transform = `translateX(0)`;
-            car.classList.remove('started');
-            car.classList.add('stopped');
-          }
-        }
+        if (resetButton)
+          resetButton.addEventListener('click', () => {
+            const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+            if (car.classList.contains('started')) {
+              void stopEngine(id);
+              if (car) {
+                cancelAnimation();
+                car.style.transform = `translateX(0)`;
+                car.classList.remove('started');
+                car.classList.add('stopped');
+              }
+            }
+          });
       });
   });
 };
 
 void carsInGarage(currentPage);
+void createTable();
 
 // delete car
 document.body.addEventListener('click', (event: MouseEvent) => {
@@ -175,8 +181,9 @@ document.body.addEventListener('click', (event: MouseEvent) => {
     }
   }
 });
+
 // export async function createNewWinner() {
-//   resultRace.sort((x, y) => x.time - y.time).splice(0, 1);
+//   resultRace.sort((x, y) => x.time - y.time);
 //   const body = {
 //     id: resultRace[0].id,
 //     time: resultRace[0].time,
