@@ -77,10 +77,11 @@ if (winnerPageButton)
   winnerPageButton.addEventListener('click', (): void => {
     garagePage.classList.add('hide');
     winnerPage.classList.remove('hide');
+    winnerPage.setAttribute('style', 'display: flex; flex-direction: column; align-items: center;');
   });
 
 if (garagePageButton)
   garagePageButton.addEventListener('click', (): void => {
-    winnerPage.classList.add('hide');
+    winnerPage.setAttribute('style', 'display: none');
     garagePage.classList.remove('hide');
   });

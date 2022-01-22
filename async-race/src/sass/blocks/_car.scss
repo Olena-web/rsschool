@@ -1,23 +1,40 @@
-body {
-  background-color: darkseagreen;
-}
 .garage-header {
   display: flex;
   column-gap: 7%;
+  justify-content: center;
+}
+.titles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.road {
+  padding: 20px;
 }
 .wrapper-road {
 	display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  column-gap: 65%;
+  column-gap: 70%;
+  margin-left: 4em;
+  margin-top: -3em;
 }
-.race-car {
-  width: 140px;
+.general-buttons,
+.control-panel {
   position: relative;
+  top: -3em;
+}
+
+.race-car {
+  width: 96px;
+  position: relative;
+  top: -41px;
+  pointer-events: none;
 }
 .road-race {
   display: block;
-  margin-top: -37px;
+  margin-top: -69px;
   border-bottom: green dotted;
   height: 3px;
   left: 0;
@@ -25,16 +42,26 @@ body {
 }
 .flag {
 	position: relative;
-  width: 118px;
+  top: -30px;
+  width: 72px;
 }
 .hide {
   display: none;
 }
+h2,
 .page-number {
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  justify-content: center;
+  font-size: 24px;
 }
 .opacity {
   opacity: 0.5;
+}
+.pagination-buttons {
+  display: flex;
+  margin-top: -4em;
+  gap: 35px;
+  justify-content: center;
 }

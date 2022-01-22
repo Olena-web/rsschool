@@ -138,7 +138,7 @@ export const carsInGarage = async (page: number) => {
           resultRace.push(winner);
           resultRace.sort((x, y) => x.time - y.time);
           if (car.classList.contains('started')) {
-            const distance1 = window.innerWidth * 0.85;
+            const distance1 = window.innerWidth * 0.8;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
             await driveCar(id)
               .then(() => animation(car, distance1, time))

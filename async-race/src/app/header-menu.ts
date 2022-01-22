@@ -30,14 +30,16 @@ garagePage.innerHTML = `
 		<button class="generate">generate cars</button>
 	</div>
 </div>
+<div class="titles">
 	<h2>Garage (<span class = "cars-number"></span>)</h2>
 	<h4 class = "page-number" >Page # </h4>
-	<div class="road">
+</div>	
+<div class="road">
 	</div>
 	</div>
 	<div class="pagination-buttons">
 		<button id="prev">prev</button>
 		<button id="next">next</button>
-	</div>
+</div>
 `;
 root.append(garagePage);
