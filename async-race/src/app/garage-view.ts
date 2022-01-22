@@ -181,13 +181,3 @@ document.body.addEventListener('click', (event: MouseEvent) => {
     }
   }
 });
-
-// export async function createNewWinner() {
-//   resultRace.sort((x, y) => x.time - y.time);
-//   const body = {
-//     id: resultRace[0].id,
-//     time: resultRace[0].time,
-//     wins: 0,
-//   };
-//   await createWinner(body);
-// }

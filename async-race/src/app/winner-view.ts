@@ -51,25 +51,25 @@ export async function createTable() {
 //void createTable();
 
 export async function createListWinners() {
-  //resultRace.sort((x, y) => x.time - y.time);
   const winnerId = resultRace[resultRace.length - 1].id;
-  await getWinner(winnerId);
-  if (Response.error()) {
-    const body = {
-      id: resultRace[0].id,
-      time: resultRace[0].time,
-      wins: 1,
-    };
-    await createWinner(body);
-  }
-  // else {
-  //   const bodyUpdated = {
-  //     id: winnerId,
-  //     time: resultRace[0].time,
-  //     wins: 2,
-  //   };
-  //   await updateWinners(winnerId, bodyUpdated);
-  // }
+  await getWinner(winnerId)
+    .then(async () => {
+      const bodyUpdated = {
+        id: winnerId,
+        time: resultRace[0].time,
+        wins: 2,
+      };
+      await updateWinners(winnerId, bodyUpdated);
+    })
+    .catch(async () => {
+      const body = {
+        id: resultRace[0].id,
+        time: resultRace[0].time,
+        wins: 1,
+      };
+      await createWinner(body);
+    });
+
   await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
 }
 
