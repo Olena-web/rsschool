@@ -4,7 +4,7 @@ import { road } from './store';
 import { carOnPage, currentPage } from './pagination';
 import { stopButton } from './race';
 import { animation, cancelAnimation } from './animation';
-import { createListWinners, createTable } from './winner-view';
+import { createListWinners } from './winner-view';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
 
@@ -27,6 +27,7 @@ export const carsInGarage = async (page: number) => {
     carsNumber.innerText = a.count.toString();
   }
   if (road) road.innerHTML = '';
+
   a.items.forEach((car) => {
     const id = car.id;
     const name = car.name;
@@ -129,35 +130,45 @@ export const carsInGarage = async (page: number) => {
           const car = document.getElementById(`car-${id}`) as HTMLDivElement;
           car.classList.add('started');
           const time = await startDriving(id);
-          const winner = {
+          const racingCar = {
             time: time / 1000,
             id: id,
             name: name,
             color: color,
           };
-          resultRace.push(winner);
-          resultRace.sort((x, y) => x.time - y.time);
-          //console.log(resultRace);
-          //console.log(resultRace[0]);
-          //const winnerId = resultRace[0].id;
-          //console.log(winnerId);
 
           if (car.classList.contains('started')) {
             const distance1 = window.innerWidth * 0.8;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
             await driveCar(id)
-              .then(() => animation(car, distance1, time))
-              .catch(() => {
-                cancelAnimation();
-                console.log(`Car ${winner.name} has been stopped suddenly. It's engine was broken down.`);
+              .then(() => {
+                resultRace.push(racingCar);
+                animation(car, distance1, time);
+              })
+              .catch((err) => {
+                if (err === 500) cancelAnimation();
+                console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
               });
-            void createListWinners();
+            await createListWinners();
           }
+
+          // if (car.classList.contains('started')) {
+          //   const distance1 = window.innerWidth * 0.8;
+          //   const car = document.getElementById(`car-${id}`) as HTMLDivElement;
+          //   await driveCar(id)
+          //     .then(() => animation(car, distance1, time))
+          //     .catch(() => {
+          //       cancelAnimation();
+          //       console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
+          //     });
+          //   await createListWinners();
+          // }
         }
         void driveAll();
 
         if (resetButton)
           resetButton.addEventListener('click', () => {
+            resultRace.length = 0;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
             if (car.classList.contains('started')) {
               void stopEngine(id);
@@ -174,7 +185,6 @@ export const carsInGarage = async (page: number) => {
 };
 
 void carsInGarage(currentPage);
-//void createTable();
 
 // delete car
 document.body.addEventListener('click', (event: MouseEvent) => {

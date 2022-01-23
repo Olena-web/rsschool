@@ -61,7 +61,7 @@ export async function createListWinners() {
   await getWinner(winnerId)
     .then(async () => {
       if (Response.error()) {
-        console.log('Code: 404 NOT FOUND');
+        console.log('Code: 404 NOT FOUND, CAR IS NOT IN THE WINNERS TABLE');
         const body = {
           id: resultRace[0].id,
           time: resultRace[0].time,
@@ -82,7 +82,7 @@ export async function createListWinners() {
       throw err;
     });
 
-  //await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
+  await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
 }
 
 if (winnerPageButton)
