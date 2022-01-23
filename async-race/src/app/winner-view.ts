@@ -2,9 +2,7 @@ import { resultRace } from './garage-view';
 import { root, garagePage } from './header-menu';
 import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar } from './api';
 import { createCarImg } from './svg';
-
-export const currentWinnersPage = 1;
-export const winnersOnPage = 10;
+import { currentWinnersPage, winnersOnPage } from './pagination';
 
 const winnerPageButton = document.querySelector<HTMLButtonElement>('.winners-page__button');
 const garagePageButton = document.querySelector<HTMLButtonElement>('.garage-page__button');
@@ -14,15 +12,20 @@ const winnerPage = document.createElement('div');
 winnerPage.classList.add('hide');
 root.append(winnerPage);
 
-export async function createTable() {
+export async function createTable(page: number) {
   const getListWinners = async () => {
-    const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[1]);
-    winnerPage.innerHTML = `
-    <h2 class ="winners-number">Winners ${a.count.toString()}</h2>
-    <h4 class ="page-number" >Page # ${currentWinnersPage}</h4>
-    <div class="pagination-buttons">
-      <button id="prev">prev</button>
-      <button id="next">next</button>
+    const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
+    winnerPage.innerHTML =
+      `
+    <div class="titles">
+      <h2 class ="winners-number">Winners (${a.count.toString()})</h2>
+      <h4 class ="page-number" >Page #` +
+      `${page}` +
+      `</h4>
+    </div>
+    <div class="pagination-buttons pagination-winners">
+      <button id="prev prev-winners">prev</button>
+      <button id="next next-winners">next</button>
     </div>
     `;
 
@@ -48,11 +51,25 @@ export async function createTable() {
   };
   await getListWinners();
 }
-//void createTable();
 
 export async function createListWinners() {
-  const winnerId = resultRace[resultRace.length - 1].id;
+  resultRace.sort((x, y) => x.time - y.time);
+  const winnerId = resultRace[0].id;
+  console.log(resultRace);
+  console.log(resultRace[0]);
+  console.log(winnerId);
   await getWinner(winnerId)
+    .then(async () => {
+      if (Response.error()) {
+        console.log('Code: 404 NOT FOUND');
+        const body = {
+          id: resultRace[0].id,
+          time: resultRace[0].time,
+          wins: 1,
+        };
+        await createWinner(body);
+      }
+    })
     .then(async () => {
       const bodyUpdated = {
         id: winnerId,
@@ -61,22 +78,18 @@ export async function createListWinners() {
       };
       await updateWinners(winnerId, bodyUpdated);
     })
-    .catch(async () => {
-      const body = {
-        id: resultRace[0].id,
-        time: resultRace[0].time,
-        wins: 1,
-      };
-      await createWinner(body);
+    .catch((err) => {
+      throw err;
     });
 
-  await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
+  //await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
 }
 
 if (winnerPageButton)
   winnerPageButton.addEventListener('click', (): void => {
     garagePage.classList.add('hide');
     winnerPage.classList.remove('hide');
+    void createTable(currentWinnersPage);
     winnerPage.setAttribute('style', 'display: flex; flex-direction: column; align-items: center;');
   });
 

@@ -137,6 +137,11 @@ export const carsInGarage = async (page: number) => {
           };
           resultRace.push(winner);
           resultRace.sort((x, y) => x.time - y.time);
+          //console.log(resultRace);
+          //console.log(resultRace[0]);
+          //const winnerId = resultRace[0].id;
+          //console.log(winnerId);
+
           if (car.classList.contains('started')) {
             const distance1 = window.innerWidth * 0.8;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
@@ -169,7 +174,7 @@ export const carsInGarage = async (page: number) => {
 };
 
 void carsInGarage(currentPage);
-void createTable();
+//void createTable();
 
 // delete car
 document.body.addEventListener('click', (event: MouseEvent) => {
