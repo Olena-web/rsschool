@@ -9,3 +9,4 @@ import './app/race';
 import './app/store';
 import './app/svg';
 import './app/winner-view';
+import './app/modal';

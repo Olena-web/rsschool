@@ -55,9 +55,9 @@ export async function createTable(page: number) {
 export async function createListWinners() {
   resultRace.sort((x, y) => x.time - y.time);
   const winnerId = resultRace[0].id;
-  console.log(resultRace);
-  console.log(resultRace[0]);
-  console.log(winnerId);
+  const winnerName = resultRace[0].name;
+  const winnerTime = resultRace[0].time.toString();
+  console.log(winnerName, winnerTime);
   await getWinner(winnerId)
     .then(async () => {
       if (Response.error()) {

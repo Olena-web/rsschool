@@ -5,6 +5,7 @@ import { carOnPage, currentPage } from './pagination';
 import { stopButton } from './race';
 import { animation, cancelAnimation } from './animation';
 import { createListWinners } from './winner-view';
+import { toggleModal } from './modal';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
 
@@ -12,6 +13,7 @@ export const carsNumber = document.querySelector<HTMLSpanElement>('.cars-number'
 const raceButton = document.querySelector<HTMLButtonElement>('.race');
 const resetButton = document.querySelector<HTMLButtonElement>('.reset');
 
+const message = document.querySelector<HTMLElement>('.message');
 export interface RESULTRACE {
   time: number;
   id: number;
@@ -144,26 +146,22 @@ export const carsInGarage = async (page: number) => {
               .then(() => {
                 resultRace.push(racingCar);
                 animation(car, distance1, time);
+                car.classList.add('animated');
+              })
+              .then(() => {
+                const winnerName = resultRace[0].name;
+                const winnerTime = resultRace[0].time.toString();
+                if (message) message.innerHTML = `Winner is ${winnerName} with time ${winnerTime} s`;
               })
               .catch((err) => {
-                if (err === 500) cancelAnimation();
+                if (err === 500) cancelAnimationFrame(id);
                 console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
-              });
+              })
+              .finally(() => toggleModal());
             await createListWinners();
           }
-
-          // if (car.classList.contains('started')) {
-          //   const distance1 = window.innerWidth * 0.8;
-          //   const car = document.getElementById(`car-${id}`) as HTMLDivElement;
-          //   await driveCar(id)
-          //     .then(() => animation(car, distance1, time))
-          //     .catch(() => {
-          //       cancelAnimation();
-          //       console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
-          //     });
-          //   await createListWinners();
-          // }
         }
+
         void driveAll();
 
         if (resetButton)

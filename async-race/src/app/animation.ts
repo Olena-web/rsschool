@@ -7,7 +7,6 @@ export function animation(car: HTMLDivElement, distance: number, animationTime: 
     if (!start) start = timestamp;
     const time = timestamp - start;
     const passed = Math.round(time * (distance / animationTime));
-
     car.style.transform = `translateX(${Math.min(passed, distance)}px)`;
     if (passed < distance) {
       state.id = window.requestAnimationFrame(step);
