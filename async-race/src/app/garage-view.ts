@@ -8,7 +8,6 @@ import { createListWinners } from './winner-view';
 import { toggleModal } from './modal';
 
 const pageNumber = document.querySelector<HTMLElement>('.page-number');
-
 export const carsNumber = document.querySelector<HTMLSpanElement>('.cars-number');
 const raceButton = document.querySelector<HTMLButtonElement>('.race');
 const resetButton = document.querySelector<HTMLButtonElement>('.reset');
@@ -21,8 +20,15 @@ export interface RESULTRACE {
   color: string;
 }
 
-export const resultRace: Array<RESULTRACE> = [];
+//const getKeyValue = <U extends keyof T, T extends object>(key: U) => (obj: T) => obj[key];
+export interface CARINPAGE {
+  id: number;
+  name: string;
+  color: string;
+}
 
+export const resultRace: Array<RESULTRACE> = [];
+export const carOnThisPage: Array<CARINPAGE> = [];
 export const carsInGarage = async (page: number) => {
   const a = await getCars(page, carOnPage);
   if (carsNumber && a) {
@@ -34,6 +40,7 @@ export const carsInGarage = async (page: number) => {
     const id = car.id;
     const name = car.name;
     const color = car.color;
+    carOnThisPage.push(car);
     if (road)
       road.innerHTML += `
       <div class="roadtrack-${id}">
@@ -143,6 +150,10 @@ export const carsInGarage = async (page: number) => {
             const distance1 = window.innerWidth * 0.8;
             const car = document.getElementById(`car-${id}`) as HTMLDivElement;
             await driveCar(id)
+              .catch((err) => {
+                if (err === 500) cancelAnimationFrame(id);
+                console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
+              })
               .then(() => {
                 resultRace.push(racingCar);
                 animation(car, distance1, time);
@@ -152,12 +163,8 @@ export const carsInGarage = async (page: number) => {
                 const winnerName = resultRace[0].name;
                 const winnerTime = resultRace[0].time.toString();
                 if (message) message.innerHTML = `Winner is ${winnerName} with time ${winnerTime} s`;
-              })
-              .catch((err) => {
-                if (err === 500) cancelAnimationFrame(id);
-                console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
-              })
-              .finally(() => toggleModal());
+              });
+            setTimeout(toggleModal, 10000);
             await createListWinners();
           }
         }
@@ -181,7 +188,6 @@ export const carsInGarage = async (page: number) => {
       });
   });
 };
-
 void carsInGarage(currentPage);
 
 // delete car

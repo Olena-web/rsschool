@@ -1,6 +1,6 @@
 import { resultRace } from './garage-view';
 import { root, garagePage } from './header-menu';
-import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar } from './api';
+import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar, CAR } from './api';
 import { createCarImg } from './svg';
 import { currentWinnersPage, winnersOnPage } from './pagination';
 
@@ -15,6 +15,7 @@ root.append(winnerPage);
 export async function createTable(page: number) {
   const getListWinners = async () => {
     const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
+
     winnerPage.innerHTML =
       `
     <div class="titles">
@@ -33,7 +34,7 @@ export async function createTable(page: number) {
 
     const table = document.createElement('table');
     const thead = document.createElement('thead');
-    thead.innerHTML = `<tr><td> # </td><td>Car</td><td> ID </tdr><td> Time </td><td> Wins </td></tr>`;
+    thead.innerHTML = `<tr><td>ID </td><td>Car</td><td>Name</td><td> Time </td><td> Wins </td></tr>`;
     const tbody = document.createElement('tbody');
     table.appendChild(thead);
     table.appendChild(tbody);
@@ -43,9 +44,10 @@ export async function createTable(page: number) {
       const id = winner.id;
       const time = winner.time;
       const wins = winner.wins;
+      void getCarName(id);
       thead.insertAdjacentHTML(
         'afterend',
-        `<tr><td>${id}</td><td>${createCarImg()}</td><td>${id}</tdr><td>${time} s</td><td>${wins}</td></tr>`
+        `<tr><td>${id}</td><td>${createCarImg()}</td><td>${nameWinner()}</td><td>${time} s</td><td>${wins}</td></tr>`
       );
     });
   };
@@ -71,12 +73,15 @@ export async function createListWinners() {
       }
     })
     .then(async () => {
-      const bodyUpdated = {
-        id: winnerId,
-        time: resultRace[0].time,
-        wins: 2,
-      };
-      await updateWinners(winnerId, bodyUpdated);
+      if (Response) {
+        console.log(Response);
+        const bodyUpdated = {
+          id: winnerId,
+          time: resultRace[0].time,
+          wins: 2,
+        };
+        await updateWinners(winnerId, bodyUpdated);
+      }
     })
     .catch((err) => {
       throw err;
@@ -98,3 +103,24 @@ if (garagePageButton)
     winnerPage.setAttribute('style', 'display: none');
     garagePage.classList.remove('hide');
   });
+
+async function getCarName(id: number): Promise<string> {
+  return await getCar(id)
+    .then((promiseResult: CAR) => {
+      return promiseResult;
+    })
+    .then((responseResult) => {
+      console.log(responseResult.name);
+      names.push(responseResult.name);
+      return responseResult.name;
+    });
+}
+
+const names: Array<string> = [];
+const nameWinner = (): string => {
+  for (let i = 0; i < names.length; i += 1) {
+    const name = names[i];
+    return name;
+  }
+  return '';
+};

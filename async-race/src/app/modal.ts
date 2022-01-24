@@ -14,7 +14,10 @@ modal.innerHTML = `
 const closeButton = document.querySelector<HTMLButtonElement>('.close-button');
 
 export function toggleModal(): void {
-  modal.classList.toggle('show-modal');
+  modal.classList.add('show-modal');
+}
+export function removeModal(): void {
+  modal.classList.remove('show-modal');
 }
 
-closeButton?.addEventListener('click', toggleModal);
+closeButton?.addEventListener('click', removeModal);

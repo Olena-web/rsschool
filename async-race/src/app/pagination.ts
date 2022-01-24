@@ -5,7 +5,7 @@ import { createTable } from './winner-view';
 
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
-const prevWinnersButton = document.getElementById('prev-winners');
+export const prevWinnersButton = document.getElementById('prev-winners');
 const nextWinnersButton = document.getElementById('next-winners');
 
 export let currentPage = 1;
@@ -13,27 +13,27 @@ export const carOnPage = 7;
 export let currentWinnersPage = 1;
 export const winnersOnPage = 10;
 
-export const numPages = async () => {
+export const numPages = async (): Promise<void> => {
   const a = await getCars(currentPage, carOnPage);
   if (a) {
     const carsNumber = a.count;
     const totalPages = Math.ceil(carsNumber / carOnPage);
 
-    const prevPage = async function () {
+    const prevPage = async function (): Promise<void> {
       if (currentPage > 1) {
         currentPage--;
         await carsInGarage(currentPage);
       }
     };
 
-    const nextPage = async function () {
+    const nextPage = async function (): Promise<void> {
       if (currentPage < totalPages) {
         currentPage++;
         await carsInGarage(currentPage);
       }
     };
 
-    const checkButtonOpacity = function () {
+    const checkButtonOpacity = function (): void {
       if (prevButton) currentPage == 1 ? prevButton.classList.add('opacity') : prevButton.classList.remove('opacity');
       if (nextButton)
         currentPage == totalPages ? nextButton.classList.add('opacity') : nextButton.classList.remove('opacity');
@@ -51,27 +51,27 @@ export const numPages = async () => {
 };
 void numPages();
 
-export const numWinnerPages = async () => {
+export const numWinnerPages = async (): Promise<void> => {
   const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
   if (a) {
     const winnersNumber = a.count;
     const totalWinnersPages = Math.ceil(winnersNumber / winnersOnPage);
 
-    const prevWinnersPage = async function () {
+    const prevWinnersPage = async function (): Promise<void> {
       if (currentWinnersPage > 1) {
         currentWinnersPage--;
         await createTable(currentWinnersPage);
       }
     };
 
-    const nextWinnersPage = async function () {
+    const nextWinnersPage = async function (): Promise<void> {
       if (currentWinnersPage < totalWinnersPages) {
         currentWinnersPage++;
         await createTable(currentWinnersPage);
       }
     };
 
-    const checkButtonOpacity = function () {
+    const checkButtonOpacity = function (): void {
       if (prevWinnersButton)
         currentWinnersPage == 1
           ? prevWinnersButton.classList.add('opacity')
@@ -84,10 +84,13 @@ export const numWinnerPages = async () => {
 
     if (prevWinnersButton)
       prevWinnersButton.addEventListener('click', () => {
+        console.log('click');
         void prevWinnersPage(), checkButtonOpacity();
       });
     if (nextWinnersButton)
       nextWinnersButton.addEventListener('click', () => {
+        console.log(prevWinnersButton);
+        console.log('click');
         void nextWinnersPage(), checkButtonOpacity();
       });
   }
