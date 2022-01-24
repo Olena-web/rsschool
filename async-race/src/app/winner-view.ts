@@ -48,9 +48,10 @@ export async function createTable(page: number) {
       async function getCarName(id: number): Promise<string> {
         return await getCar(id).then((promiseResult: CAR) => {
           const name = promiseResult.name;
+          const color = promiseResult.color;
           thead.insertAdjacentHTML(
             'afterend',
-            `<tr><td>${id}</td><td>${createCarImg()}</td><td>${name}</td><td>${time} s</td><td>${wins}</td></tr>`
+            `<tr><td>${id}</td><td>${createCarImg(color)}</td><td>${name}</td><td>${time} s</td><td>${wins}</td></tr>`
           );
           return promiseResult.name;
         });
