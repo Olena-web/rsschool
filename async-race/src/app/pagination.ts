@@ -5,8 +5,8 @@ import { createTable } from './winner-view';
 
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
-export const prevWinnersButton = document.getElementById('prev-winners');
-const nextWinnersButton = document.getElementById('next-winners');
+export const prevWinnersButton = document.querySelector<HTMLButtonElement>('#prev-winners');
+const nextWinnersButton = document.querySelector<HTMLButtonElement>('#next-winners');
 
 export let currentPage = 1;
 export const carOnPage = 7;

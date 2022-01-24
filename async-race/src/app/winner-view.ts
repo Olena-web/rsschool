@@ -25,8 +25,8 @@ export async function createTable(page: number) {
       `</h4>
     </div>
     <div class="pagination-buttons pagination-winners">
-      <button id="prev prev-winners">prev</button>
-      <button id="next next-winners">next</button>
+      <button id="prev-winners">prev</button>
+      <button id="next-winners">next</button>
     </div>
     `;
 
@@ -34,7 +34,7 @@ export async function createTable(page: number) {
 
     const table = document.createElement('table');
     const thead = document.createElement('thead');
-    thead.innerHTML = `<tr><td>ID </td><td>Car</td><td>Name</td><td> Time </td><td> Wins </td></tr>`;
+    thead.innerHTML = `<tr><td> ID </td><td>Car</td><td>Name</td><td> Time </td><td> Wins </td></tr>`;
     const tbody = document.createElement('tbody');
     table.appendChild(thead);
     table.appendChild(tbody);
@@ -44,11 +44,18 @@ export async function createTable(page: number) {
       const id = winner.id;
       const time = winner.time;
       const wins = winner.wins;
+
+      async function getCarName(id: number): Promise<string> {
+        return await getCar(id).then((promiseResult: CAR) => {
+          const name = promiseResult.name;
+          thead.insertAdjacentHTML(
+            'afterend',
+            `<tr><td>${id}</td><td>${createCarImg()}</td><td>${name}</td><td>${time} s</td><td>${wins}</td></tr>`
+          );
+          return promiseResult.name;
+        });
+      }
       void getCarName(id);
-      thead.insertAdjacentHTML(
-        'afterend',
-        `<tr><td>${id}</td><td>${createCarImg()}</td><td>${nameWinner()}</td><td>${time} s</td><td>${wins}</td></tr>`
-      );
     });
   };
   await getListWinners();
@@ -103,24 +110,3 @@ if (garagePageButton)
     winnerPage.setAttribute('style', 'display: none');
     garagePage.classList.remove('hide');
   });
-
-async function getCarName(id: number): Promise<string> {
-  return await getCar(id)
-    .then((promiseResult: CAR) => {
-      return promiseResult;
-    })
-    .then((responseResult) => {
-      console.log(responseResult.name);
-      names.push(responseResult.name);
-      return responseResult.name;
-    });
-}
-
-const names: Array<string> = [];
-const nameWinner = (): string => {
-  for (let i = 0; i < names.length; i += 1) {
-    const name = names[i];
-    return name;
-  }
-  return '';
-};
