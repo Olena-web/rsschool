@@ -14,7 +14,7 @@ root.append(winnerPage);
 
 export async function createTable(page: number) {
   const getListWinners = async () => {
-    const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
+    const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[2], Order[1]);
 
     winnerPage.innerHTML =
       `

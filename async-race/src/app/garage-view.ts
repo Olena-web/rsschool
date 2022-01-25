@@ -1,4 +1,4 @@
-import { getCars, startEngine, driveCar, stopEngine, deleteCar } from './api';
+import { getCars, startEngine, driveCar, stopEngine, deleteCar, deleteWinner } from './api';
 import { createFlag } from './svg';
 import { road } from './store';
 import { carOnPage, currentPage } from './pagination';
@@ -19,8 +19,6 @@ export interface RESULTRACE {
   name: string;
   color: string;
 }
-
-//const getKeyValue = <U extends keyof T, T extends object>(key: U) => (obj: T) => obj[key];
 export interface CARINPAGE {
   id: number;
   name: string;
@@ -29,6 +27,7 @@ export interface CARINPAGE {
 
 export const resultRace: Array<RESULTRACE> = [];
 export const carOnThisPage: Array<CARINPAGE> = [];
+
 export const carsInGarage = async (page: number) => {
   const a = await getCars(page, carOnPage);
   if (carsNumber && a) {
@@ -196,7 +195,8 @@ document.body.addEventListener('click', (event: MouseEvent) => {
     if ((event.target as HTMLElement).classList.contains('remove-button')) {
       const id = +(event.target as HTMLElement).id.split('remove-car-')[1];
       void deleteCar(id);
-      window.location.reload();
+      void deleteWinner(id);
+      void carsInGarage(currentPage);
     }
   }
 });
