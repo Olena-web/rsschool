@@ -1,0 +1,41 @@
+@media (max-width: 700px) {
+	.race-car {
+		width: 80px;
+	}
+	.flag {
+		width: 52px;
+	}
+	.modal-content {
+		left: 18%;
+	}
+	button {
+		font-size: 11px;
+	}
+
+}
+
+@media (max-width: 568px) {
+	.race-car {
+		width: 68px;
+		top: -47px;
+	}
+	.flag {
+		width: 40px;
+	}
+	button{
+		font-size: 10px;
+	}
+	.general-buttons {
+		display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: flex-start;
+	}
+	h2, h4 {
+		font-size: 20px;
+	}
+	.garage-header {
+		column-gap: 1%;
+	}
+}

@@ -85,13 +85,15 @@ export const carsInGarage = async (page: number) => {
           };
 
           if (car.classList.contains('started')) {
-            const distance1 = window.innerWidth * 0.8;
+            let distance1 = window.innerWidth * 0.8;
+            if (window.innerWidth < 930) distance1 = window.innerWidth * 0.7;
+            if (window.innerWidth < 700) distance1 = window.innerWidth * 0.65;
             await driveCar(id)
               .then(() => {
                 animation(car, distance1, time);
               })
               .catch((err) => {
-                if (err === 500) cancelAnimationFrame(id);
+                if (err === 500) cancelAnimation();
                 console.log(`Car ${racingCar.name} has been stopped suddenly. It's engine was broken down.`);
               })
 
