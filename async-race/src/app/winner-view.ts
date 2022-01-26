@@ -1,6 +1,6 @@
 import { resultRace } from './garage-view';
 import { root, garagePage } from './header-menu';
-import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar, CAR } from './api';
+import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar, CAR, updateWinner } from './api';
 import { createCarImg } from './svg';
 import { currentWinnersPage, winnersOnPage } from './pagination';
 
@@ -14,7 +14,7 @@ root.append(winnerPage);
 
 export async function createTable(page: number) {
   const getListWinners = async () => {
-    const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[2], Order[1]);
+    const a = await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
 
     winnerPage.innerHTML =
       `
@@ -65,34 +65,28 @@ export async function createTable(page: number) {
 export async function createListWinners() {
   resultRace.sort((x, y) => x.time - y.time);
   const winnerId = resultRace[0].id;
-  const winnerName = resultRace[0].name;
-  const winnerTime = resultRace[0].time.toString();
-  console.log(winnerName, winnerTime);
+  const winnerTime = resultRace[0].time;
   await getWinner(winnerId)
-    .then(async () => {
+    .then(async (responseResult: updateWinner) => {
+      const prevTime = responseResult.time;
+      const prevWins = responseResult.wins;
+      const nextTime = prevTime < winnerTime ? prevTime : winnerTime;
+
+      const bodyUpdated = {
+        time: nextTime,
+        wins: prevWins,
+      };
+      await updateWinners(winnerId, bodyUpdated);
+    })
+    .then(() => {
       if (Response.error()) {
-        console.log('Code: 404 NOT FOUND, CAR IS NOT IN THE WINNERS TABLE');
         const body = {
-          id: resultRace[0].id,
-          time: resultRace[0].time,
+          id: winnerId,
+          time: winnerTime,
           wins: 1,
         };
-        await createWinner(body);
+        void createWinner(body);
       }
-    })
-    .then(async () => {
-      if (Response) {
-        console.log(Response);
-        const bodyUpdated = {
-          id: winnerId,
-          time: resultRace[0].time,
-          wins: 2,
-        };
-        await updateWinners(winnerId, bodyUpdated);
-      }
-    })
-    .catch((err) => {
-      throw err;
     });
 
   await getWinners(currentWinnersPage, winnersOnPage, Sort[0], Order[0]);
@@ -102,6 +96,7 @@ if (winnerPageButton)
   winnerPageButton.addEventListener('click', (): void => {
     garagePage.classList.add('hide');
     winnerPage.classList.remove('hide');
+    void createListWinners();
     void createTable(currentWinnersPage);
     winnerPage.setAttribute('style', 'display: flex; flex-direction: column; align-items: center;');
   });

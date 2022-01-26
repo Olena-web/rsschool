@@ -26,6 +26,12 @@ type BODY = {
   name: string;
   color: string | undefined;
 };
+export type RACINGCAR = {
+  name: string;
+  color: string;
+  id: number;
+  time: number;
+};
 
 export type CAR = {
   classList: string;
@@ -56,7 +62,7 @@ export type listWinners = {
   count: number;
 };
 
-type updateWinner = {
+export type updateWinner = {
   wins: number;
   time: number;
 };

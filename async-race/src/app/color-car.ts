@@ -1,5 +1,4 @@
-import { updateCar, getCars } from './api';
-import { carOnPage, currentPage } from './pagination';
+import { updateCar } from './api';
 
 export const color = document.querySelector<HTMLInputElement>('#colorWell');
 const colorNew = document.querySelector<HTMLInputElement>('#color-new-Well');
