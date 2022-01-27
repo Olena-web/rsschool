@@ -74,7 +74,7 @@ export async function createListWinners() {
 
       const bodyUpdated = {
         time: nextTime,
-        wins: prevWins,
+        wins: prevWins + 1,
       };
       await updateWinners(winnerId, bodyUpdated);
     })
