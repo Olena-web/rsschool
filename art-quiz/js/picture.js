@@ -1,4 +1,7 @@
-// picture from github
+import { firstNumberPicture, lastNumberPicture } from './constants.js';
+import { getImageUrl } from './helpers.js';
+import { IMG_POSTFIX } from './constants.js';
+
 function choosePicture() {
   let randomNum;
   function getRandomNum(min, max) {
@@ -9,10 +12,10 @@ function choosePicture() {
   }
   getRandomNum();
   const pictureImg = document.querySelector('.picture_img');
-  let bgNum = getRandomNum(0, 119);
+  let bgNum = getRandomNum(firstNumberPicture, lastNumberPicture);
   function setBg() {
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/full/${bgNum}full.jpg`;
+    img.src = getImageUrl(bgNum += 1, IMG_POSTFIX.IMG);
     img.addEventListener('load', () => {
       pictureImg.style.backgroundImage = `url(${img.src})`;
     });

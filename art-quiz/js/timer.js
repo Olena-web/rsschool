@@ -1,13 +1,15 @@
+import { HOUR, MINUTES } from './constants.js';
+
 function startTimer(duration, display) {
-  var timer = duration,
+  let timer = duration,
     minutes,
     seconds;
   setInterval(function () {
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
+    minutes = parseInt(timer / HOUR, MINUTES);
+    seconds = parseInt(timer % HOUR, MINUTES);
 
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+    minutes = minutes < MINUTES ? '0' + minutes : minutes;
+    seconds = seconds < MINUTES ? '0' + seconds : seconds;
 
     display.textContent = minutes + ':' + seconds;
 

@@ -1,4 +1,7 @@
 import data from './data.js';
+import { firstNumberPicture, lastNumberPicture, numberQuestion } from './constants.js';
+import { getImageUrl } from './helpers.js';
+import { IMG_POSTFIX } from './constants.js';
 
 const pictureQuestion = document.querySelectorAll('.picture_question');
 const pictureQuizName = document.getElementById('author');
@@ -11,14 +14,15 @@ function getRandomNum(min, max) {
 }
 getRandomNum();
 
-let bgNum = getRandomNum(0, 119);
+let bgNum = getRandomNum(firstNumberPicture, lastNumberPicture);
 
 function setPictures() {
-  for (let i = 0; i < 4; i += 1) {
+  for (let i = 0; i < numberQuestion; i += 1) {
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/img/${(bgNum += 1)}.jpg`;
-    img.addEventListener('load', () => {});
-    pictureQuestion[i].style.backgroundImage = `url(${img.src})`;
+    img.src = getImageUrl(bgNum += 1, IMG_POSTFIX.IMG);
+    img.addEventListener('load', () => {
+      pictureQuestion[i].style.backgroundImage = `url(${img.src})`;
+    });
   }
 }
 setPictures();

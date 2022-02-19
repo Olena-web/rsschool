@@ -1,3 +1,6 @@
+import { getLinearGradient } from './helpers.js';
+import { MIN_OPACITY, MAX_OPACITY } from './constants.js';
+
 const labelVolume = document.querySelector('.label-volume');
 const labelTime = document.querySelector('.label-time');
 const volumeRange = document.querySelector('.volume_range');
@@ -13,11 +16,11 @@ function forInput() {
   let volume = audioElement.volume;
   const value = this.value;
   volume = value;
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #c4c4c4 ${value}%, #c4c4c4 100%)`;
+  this.style.background = getLinearGradient(value);
   if (volume === 0) {
-    muteButton.style.opacity = 0.4;
+    muteButton.style.opacity = MIN_OPACITY;
   } else {
-    muteButton.style.opacity = 1;
+    muteButton.style.opacity = MAX_OPACITY;
   }
 }
 function settingsPage() {
@@ -36,25 +39,8 @@ function settingsPage() {
       playBtn();
     });
 
-    // stop audio
-    // audioElement.stop();
-
-    // soundVolume.addEventListener("input", function () {
-    //   AUDIO.volume = soundVolume.value;
-    //   if (AUDIO.volume == 0) {
-    //     muteButton.style.opacity = 0.4;
-    //   } else {
-    //     muteButton.style.opacity = 1;
-    //   }
-    // });
     muteButton.addEventListener('click', () => {
-      // if (soundVolume.value == 0) {
-      // AUDIO.volume = restoreValue;
       volumeRange.classList.toggle('non-active');
-      // } else {
-      // AUDIO.volume = 0;
-      // restoreValue = soundVolume.value;
-      // volumeRange.classList.remove("non-active");
     });
   });
 }

@@ -1,6 +1,9 @@
 import data from './data.js';
 import shuffle from './category.js';
 import choosePicture from './picture.js';
+import { AUTHOR, NAME, NUMBER_QUESTION_BY_AUTHOR, firstNumberPicture, lastNumberPicture, numberQuestion } from './constants.js';
+import { getImageUrl } from './helpers.js';
+import { IMG_POSTFIX } from './constants.js';
 choosePicture();
 
 const answersWrapper = document.querySelector('.answers_wrapper');
@@ -13,16 +16,16 @@ const questionsByAuthor = [];
 const questionsByPicture = [];
 data.forEach((item, index) => {
   if (index % 2 === 0) {
-    questionsByAuthor.push({ ...item, type: 'author' });
+    questionsByAuthor.push({ ...item, type: AUTHOR });
   } else if (index % 2 !== 0) {
-    questionsByPicture.push({ ...item, type: 'name' });
+    questionsByPicture.push({ ...item, type: NAME });
   }
 });
 
 const uniqAnswersByAuthor = [...new Set(questionsByAuthor.map((item) => item.author))];
 const uniqAnswersByPicture = [...new Set(questionsByPicture.map((item) => item.author))];
-const newquestionsByAuthor = splitArr(questionsByAuthor, 12);
-const newquestionsByPicture = splitArr(questionsByPicture, 12);
+const newquestionsByAuthor = splitArr(questionsByAuthor, NUMBER_QUESTION_BY_AUTHOR);
+const newquestionsByPicture = splitArr(questionsByPicture, NUMBER_QUESTION_BY_AUTHOR);
 
 const answers = {
   uniqAnswersByAuthor,
@@ -42,10 +45,10 @@ function getRandomNum(min, max) {
 }
 getRandomNum();
 const pictureImg = document.querySelector('.picture_img');
-let bgNum = getRandomNum(0, 119);
+let bgNum = getRandomNum(firstNumberPicture, lastNumberPicture);
 function setBg() {
   const img = new Image();
-  img.src = `https://raw.githubusercontent.com/Olena-web/image-data/master/full/${bgNum}full.jpg`;
+  img.src = getImageUrl(bgNum += 1, IMG_POSTFIX.IMG);
   img.addEventListener('load', () => {
     pictureImg.style.backgroundImage = `url(${img.src})`;
   });
@@ -54,7 +57,7 @@ setBg();
 
 function createAnswersPicture() {
   shuffle(uniqAnswersByPicture);
-  for (let i = 0; i < 4; i += 1) {
+  for (let i = 0; i < numberQuestion; i += 1) {
     answersWrapper.innerHTML += `
   <li class="variant">"${data[(bgNum += 1)].author}"</li>
  `;

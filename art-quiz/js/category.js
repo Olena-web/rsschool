@@ -1,39 +1,14 @@
 import data from './data.js';
+import images from './constants.js';
 
-let images = [
-  'img/0.webp',
-  'img/10.webp',
-  'img/20.webp',
-  'img/30.webp',
-  'img/40.webp',
-  'img/51.webp',
-  'img/59.webp',
-  'img/64.webp',
-  'img/68.webp',
-  'img/76.webp',
-  'img/81.webp',
-  'img/95.webp'
-];
+const NUMBER_PICTURES = 5;
 
-let titles = [
-  'realism',
-  'landscape',
-  'renaissance',
-  'portrait',
-  'romanticism',
-  'painting',
-  'avant-garde',
-  'expressionism',
-  'religion',
-  'impressionism',
-  'surrealism',
-  'marine'
-];
+
 const pictureContainer = document.querySelector('.picture_container');
 const artistsContainer = document.querySelector('.artists_container');
-0;
+
 function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i -= 1) {
+  for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [[array[j]], array[i]];
   }
@@ -42,13 +17,14 @@ function shuffle(array) {
 function createGalleryPicture() {
   shuffle(images);
   images.forEach((img, i) => {
-    pictureContainer.innerHTML += `<div class = "item_picture">
-  <div class = "wrapper">
-  <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
-  <div class = "counter">5</div>
-  </div>
-  <img src = "${images[i]}"></img>
-  </div>`;
+    pictureContainer.innerHTML += `
+    <div class="item_picture">
+      <div class="wrapper">
+        <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
+        <div class="counter">${NUMBER_PICTURES}</div>
+      </div>
+      <img src = "${images[i]}"></img>
+    </div>`;
   });
 }
 createGalleryPicture();
@@ -56,13 +32,14 @@ createGalleryPicture();
 function createGalleryArtists() {
   shuffle(images);
   images.forEach((img, i) => {
-    artistsContainer.innerHTML += `<div class = "item_picture_artists">
-  <div class = "wrapper">
-  <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
-  <div class = "counter">5</div>
-  </div>
-  <img src = "${images[i]}"></img>
-  </div>`;
+    artistsContainer.innerHTML += `
+    <div class="item_picture_artists">
+      <div class="wrapper">
+        <div class="title">${data[images[i].toString().slice(4, -5)].category}</div>
+        <div class="counter">${NUMBER_PICTURES}</div>
+      </div>
+      <img src = "${images[i]}"></img>
+    </div>`;
   });
 }
 createGalleryArtists();
