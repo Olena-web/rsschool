@@ -7,6 +7,7 @@ import { currentWinnersPage, winnersOnPage } from './pagination';
 const winnerPageButton = document.querySelector<HTMLButtonElement>('.winners-page__button');
 const garagePageButton = document.querySelector<HTMLButtonElement>('.garage-page__button');
 const winnersNumber = document.querySelector<HTMLElement>('.winners-number');
+export const nextWinnersButton = document.querySelector<HTMLButtonElement>('#next-winners');
 
 const winnerPage = document.createElement('div');
 winnerPage.classList.add('hide');

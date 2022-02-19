@@ -1,12 +1,11 @@
 // if you have any suggestion of questions, pleasse feel free to send me an email to chiholiu10@gmail.com
 import { getCars, getWinners, Sort, Order } from './api';
 import { carsInGarage } from './garage-view';
-import { createTable } from './winner-view';
+import { createTable, nextWinnersButton } from './winner-view';
 
 const prevButton = document.getElementById('prev');
 const nextButton = document.getElementById('next');
 export const prevWinnersButton = document.querySelector<HTMLButtonElement>('#prev-winners');
-const nextWinnersButton = document.querySelector<HTMLButtonElement>('#next-winners');
 
 export let currentPage = 1;
 export const carOnPage = 7;
