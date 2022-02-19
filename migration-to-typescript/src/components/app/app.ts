@@ -1,7 +1,5 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
-// import APISource from '../view/news/news';
-// import Article from '../view/news/news';
 
 class App {
   controller: AppController;
