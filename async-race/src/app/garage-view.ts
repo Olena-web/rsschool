@@ -13,21 +13,21 @@ const raceButton = document.querySelector<HTMLButtonElement>('.race');
 const resetButton = document.querySelector<HTMLButtonElement>('.reset');
 
 const message = document.querySelector<HTMLElement>('.message');
-export interface RESULTRACE {
+export interface RESULT_RACE {
   time: number;
   id: number;
   name: string;
   color: string;
 }
 
-export interface CARINPAGE {
+export interface CAR_IN_PAGE {
   id: number;
   name: string;
   color: string;
 }
 
-export const resultRace: Array<RESULTRACE> = [];
-export const carOnThisPage: Array<CARINPAGE> = [];
+export const resultRace: Array<RESULT_RACE> = [];
+export const carOnThisPage: Array<CAR_IN_PAGE> = [];
 export const carsInGarage = async (page: number) => {
   const a = await getCars(page, carOnPage);
   if (carsNumber && a) {
@@ -53,10 +53,12 @@ export const carsInGarage = async (page: number) => {
         <button class="stop-button" id="stop-button-${id}">B</button>
       </div>
       <div class="wrapper-road">
-        <div id ="car-${id}" class="race-car">
-        ${createCarImg(color)}
+        <div id="car-${id}" class="race-car">
+          ${createCarImg(color)}
         </div>
-        <div class = "flag" id="flag-${id}">${createFlag()}</div>
+        <div class="flag" id="flag-${id}">
+          ${createFlag()}
+          </div>
     	  <div class="road-race">
       </div>
     </div>
@@ -66,7 +68,7 @@ export const carsInGarage = async (page: number) => {
     }
     if (raceButton)
       raceButton.addEventListener('click', (): void => {
-        const startDriving = async (id: number) => {
+        const startDriving = async (id: number): Promise<number> => {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const { velocity, distance } = await startEngine(id);
           const time = Math.round(distance / velocity);

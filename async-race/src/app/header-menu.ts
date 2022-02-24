@@ -1,21 +1,23 @@
 const html = `
 <header>
-			<div class="page-buttons">
-				<button class="garage-page__button">to garage</button>
-				<button class="winners-page__button">to winners</button>
-			</div>
-		</header>
+	<div class="page-buttons">
+		<button class="garage-page__button">to garage</button>
+		<button class="winners-page__button">to winners</button>
+	</div>
+</header>
 `;
+
 export const root = document.createElement('div');
 root.innerHTML = html;
 document.body.appendChild(root);
+
 export const garagePage = document.createElement('div');
 garagePage.innerHTML = `
 <div class= "garage-header">
 	<div class="create-cars">
 		<input type="text" value= "" id="car-name">
 		<input type="color" id="colorWell">
-		<label for = "colorWell"></label>
+		<label for ="colorWell"></label>
 		<button class="create-cars__button">create</button>
 	</div>
 	<div class="update-cars">
@@ -35,11 +37,10 @@ garagePage.innerHTML = `
 	<h4 class = "page-number" >Page # </h4>
 </div>	
 <div class="road">
-	</div>
-	</div>
-	<div class="pagination-buttons">
-		<button id="prev">prev</button>
-		<button id="next">next</button>
+</div>
+<div class="pagination-buttons">
+	<button id="prev">prev</button>
+	<button id="next">next</button>
 </div>
 `;
 root.append(garagePage);

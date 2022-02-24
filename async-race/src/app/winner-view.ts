@@ -1,6 +1,6 @@
 import { resultRace } from './garage-view';
 import { root, garagePage } from './header-menu';
-import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar, CAR, updateWinner } from './api';
+import { createWinner, getWinner, updateWinners, getWinners, Sort, Order, getCar, CAR, UpdateWinner } from './api';
 import { createCarImg } from './svg';
 import { currentWinnersPage, winnersOnPage } from './pagination';
 
@@ -68,7 +68,7 @@ export async function createListWinners() {
   const winnerId = resultRace[0].id;
   const winnerTime = resultRace[0].time;
   await getWinner(winnerId)
-    .then(async (responseResult: updateWinner) => {
+    .then(async (responseResult: UpdateWinner) => {
       const prevTime = responseResult.time;
       const prevWins = responseResult.wins;
       const nextTime = prevTime < winnerTime ? prevTime : winnerTime;

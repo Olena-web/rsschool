@@ -61,17 +61,3 @@ function createColor() {
   if (color) return color.value;
 }
 window.addEventListener('load', createColor, false);
-
-// function can change color to all cars on the page
-// async function changeColorDynamically() {
-//   if (colorNew) {
-//     const a = await getCars(currentPage, carOnPage);
-//     colorNew.addEventListener('input', function (e: Event) {
-//       a.items.forEach((car) => {
-//         const color = car.color;
-//         (<HTMLInputElement>e.target).value = color;
-//       });
-//     });
-//   }
-// }
-// void changeColorDynamically();

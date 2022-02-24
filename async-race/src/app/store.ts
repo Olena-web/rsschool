@@ -1,6 +1,6 @@
 import { createCar, getCars } from './api';
 import { carsInGarage, carsNumber } from './garage-view';
-import brandsCars from './brands-cars';
+import carBrands from './brands-cars';
 import modelsCars from './models-cars';
 import { numPages } from './pagination';
 import { currentPage, carOnPage } from './pagination';
@@ -20,7 +20,7 @@ export function getRandomNum(min: number, max: number): number {
 }
 
 function createRandomCar(): string {
-  const carBrand = brandsCars[getRandomNum(1, brandsCars.length - 1)];
+  const carBrand = carBrands[getRandomNum(1, carBrands.length - 1)];
   const carModel = modelsCars[getRandomNum(1, modelsCars.length - 1)];
   const carName = `${carBrand} ${carModel}`;
   return carName;
